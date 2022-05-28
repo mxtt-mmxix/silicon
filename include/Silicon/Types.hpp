@@ -51,6 +51,39 @@ using Allocator = boost::pool_allocator<T>;
 template <typename T>
 using Ref = std::reference_wrapper<T>;
 
+template <typename T>
+class RefToPtr
+{
+public:
+    RefToPtr(T&& object) : m_pointer(&object) { }
+
+    T& operator*()
+    {
+        assert(m_pointer);
+        return *m_pointer;
+    }
+
+    T* operator->()
+    {
+        return m_pointer;
+    }
+
+    operator T&()
+    {
+        assert(m_pointer);
+        return *m_pointer;
+    }
+
+    operator T&() const
+    {
+        assert(m_pointer);
+        return *m_pointer;
+    }
+
+private:
+    T* m_pointer;
+};
+
 /**
  * STL compliant data structure for contiguously storing an arbitrary amount of data.
  */

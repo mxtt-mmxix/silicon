@@ -38,7 +38,7 @@
 class CustomNode : public Si::Node
 {
 public:
-    CustomNode(const char* message, std::initializer_list<Si::Node*> nodes = {}) : Si::Node(nodes)
+    CustomNode(const char* message, std::initializer_list<Si::RefToPtr<Node>> nodes = {}) : Si::Node(nodes)
     {
         SI_INFO(message);
     }
@@ -49,8 +49,19 @@ int main(int argc, char** argv)
     CustomNode root {
         "Node A",
         {
-            new CustomNode {
-                "Node B"
+            CustomNode {
+                "Node B",
+                {
+                    CustomNode {
+                        "Node C"
+                    },
+                    CustomNode {
+                        "Node D"
+                    }
+                }
+            },
+            CustomNode {
+                "Node E"
             }
         }
     };
