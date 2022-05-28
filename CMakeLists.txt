@@ -35,3 +35,4 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
         Boost::boost)
 
 include(test/HelloWorld/HelloWorld.cmake)
+include(test/NodeTree/NodeTree.cmake)
