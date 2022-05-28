@@ -1,3 +1,6 @@
 [submodule "libs/vcpkg"]
 	path = libs/vcpkg
 	url = https://github.com/microsoft/vcpkg.git
+[submodule "libs/doxygen-awesome-css"]
+	path = libs/doxygen-awesome-css
+	url = https://github.com/jothepro/doxygen-awesome-css.git
