@@ -1,26 +1,112 @@
 \hypertarget{class_si_1_1_node}{}\doxysection{Si\+::Node Class Reference}
 \label{class_si_1_1_node}\index{Si::Node@{Si::Node}}
+
+
+A \mbox{\hyperlink{class_si_1_1_node}{Node}} is the building block of your game.  
+
+
+
+
+{\ttfamily \#include $<$Node.\+hpp$>$}
+
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_si_1_1_node_a30bf21d6327a9ec23d77c18022b8276f}\label{class_si_1_1_node_a30bf21d6327a9ec23d77c18022b8276f}} 
-using {\bfseries Graph} = Si\+::\+Graph$<$ \mbox{\hyperlink{class_si_1_1_node}{Node}} $\ast$, \mbox{\hyperlink{struct_si_1_1_graph_list}{Graph\+List}} $>$
-\end{DoxyCompactItemize}
+using \mbox{\hyperlink{class_si_1_1_node_a30bf21d6327a9ec23d77c18022b8276f}{Graph}} = Si\+::\+Graph$<$ \mbox{\hyperlink{class_si_1_1_node}{Node}} $\ast$, \mbox{\hyperlink{struct_si_1_1_graph_list}{Graph\+List}} $>$
+\begin{DoxyCompactList}\small\item\em Helper type used to define the \mbox{\hyperlink{class_si_1_1_node}{Node}} tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_si_1_1_node_ac73aecd14796bbcc50f2a47903f5d85a}\label{class_si_1_1_node_ac73aecd14796bbcc50f2a47903f5d85a}} 
-{\bfseries Node} (std\+::initializer\+\_\+list$<$ \mbox{\hyperlink{class_si_1_1_node}{Node}} $\ast$ $>$)
-\item 
+\mbox{\hyperlink{class_si_1_1_node_ab079ebcac2cf870469b8cd67824f1fc0}{Node}} (std\+::initializer\+\_\+list$<$ \mbox{\hyperlink{class_si_1_1_node}{Node}} $\ast$ $>$ nodes)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{class_si_1_1_node}{Node}}. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_si_1_1_node_ad392027fc4d094c018b90f4bd92798f8}{On\+Attach}} ()
+\begin{DoxyCompactList}\small\item\em Gets called when the \mbox{\hyperlink{class_si_1_1_node}{Node}} is attached to the tree. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_si_1_1_node_acd249869767df516e1f0bcc371d819b4}{On\+Tick}} (float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Gets called on each application tick. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_si_1_1_node_a9592b5b72aea1fddec1c987d2c8c5fea}{On\+Detach}} ()
+\begin{DoxyCompactList}\small\item\em Gets called when the \mbox{\hyperlink{class_si_1_1_node}{Node}} is removed from the tree. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_si_1_1_node_af48b1b2fc3fecf69427ee572e99b611b}\label{class_si_1_1_node_af48b1b2fc3fecf69427ee572e99b611b}} 
+virtual {\bfseries $\sim$\+Node} ()
+\begin{DoxyCompactList}\small\item\em End all be all for this \mbox{\hyperlink{class_si_1_1_node}{Node}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A \mbox{\hyperlink{class_si_1_1_node}{Node}} is the building block of your game. 
+
+Nodes allow you to define your application declaratively. Nodes can be attached to other nodes to form a node tree. While Nodes are designed to be created and attached declaratively, they can created and attached imperatively as well. You may inherit the nodes to provide your own functionality. All Nodes can be attached to another declaratively, but not every \mbox{\hyperlink{class_si_1_1_node}{Node}} needs or should allow child Nodes to be attached declaratively.
+
+A \mbox{\hyperlink{class_si_1_1_node}{Node}} may be instantiated but not yet attached to a tree. Subsequently, a \mbox{\hyperlink{class_si_1_1_node}{Node}} may be attached and detached from the tree several times. This allows Nodes to be reused between \char`\"{}scenes\char`\"{}. a \mbox{\hyperlink{class_si_1_1_node}{Node}} cannot be \char`\"{}attached\char`\"{} again if it is currently attached; A \mbox{\hyperlink{class_si_1_1_node}{Node}} must be detached first before it can be attached again. A \mbox{\hyperlink{class_si_1_1_node}{Node}} should not expect to be attached to a specific location in the tree nor should its behavior depend on where it is attached in the tree. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_si_1_1_node_a30bf21d6327a9ec23d77c18022b8276f}\label{class_si_1_1_node_a30bf21d6327a9ec23d77c18022b8276f}} 
+\index{Si::Node@{Si::Node}!Graph@{Graph}}
+\index{Graph@{Graph}!Si::Node@{Si::Node}}
+\doxysubsubsection{\texorpdfstring{Graph}{Graph}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{class_si_1_1_node_a30bf21d6327a9ec23d77c18022b8276f}{Si\+::\+Node\+::\+Graph}} =  Si\+::\+Graph$<$\mbox{\hyperlink{class_si_1_1_node}{Node}}$\ast$, \mbox{\hyperlink{struct_si_1_1_graph_list}{Graph\+List}}$>$}
+
+
+
+Helper type used to define the \mbox{\hyperlink{class_si_1_1_node}{Node}} tree. 
+
+You do not need to use this type directly. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_si_1_1_node_ab079ebcac2cf870469b8cd67824f1fc0}\label{class_si_1_1_node_ab079ebcac2cf870469b8cd67824f1fc0}} 
+\index{Si::Node@{Si::Node}!Node@{Node}}
+\index{Node@{Node}!Si::Node@{Si::Node}}
+\doxysubsubsection{\texorpdfstring{Node()}{Node()}}
+{\footnotesize\ttfamily Si\+::\+Node\+::\+Node (\begin{DoxyParamCaption}\item[{std\+::initializer\+\_\+list$<$ \mbox{\hyperlink{class_si_1_1_node}{Node}} $\ast$ $>$}]{nodes }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{class_si_1_1_node}{Node}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nodes} & Attaches the specified nodes as children of this \mbox{\hyperlink{class_si_1_1_node}{Node}} and attaches it to the tree. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_si_1_1_node_ad392027fc4d094c018b90f4bd92798f8}\label{class_si_1_1_node_ad392027fc4d094c018b90f4bd92798f8}} 
-virtual bool {\bfseries On\+Attach} ()
-\item 
-\mbox{\Hypertarget{class_si_1_1_node_acd249869767df516e1f0bcc371d819b4}\label{class_si_1_1_node_acd249869767df516e1f0bcc371d819b4}} 
-virtual void {\bfseries On\+Tick} (float delta\+Time)
-\item 
+\index{Si::Node@{Si::Node}!OnAttach@{OnAttach}}
+\index{OnAttach@{OnAttach}!Si::Node@{Si::Node}}
+\doxysubsubsection{\texorpdfstring{OnAttach()}{OnAttach()}}
+{\footnotesize\ttfamily bool Si\+::\+Node\+::\+On\+Attach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets called when the \mbox{\hyperlink{class_si_1_1_node}{Node}} is attached to the tree. 
+
+This is separate from when a \mbox{\hyperlink{class_si_1_1_node}{Node}} may be constructed. \begin{DoxyReturn}{Returns}
+true if attach was successful. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_si_1_1_node_a9592b5b72aea1fddec1c987d2c8c5fea}\label{class_si_1_1_node_a9592b5b72aea1fddec1c987d2c8c5fea}} 
-virtual void {\bfseries On\+Detach} ()
-\end{DoxyCompactItemize}
+\index{Si::Node@{Si::Node}!OnDetach@{OnDetach}}
+\index{OnDetach@{OnDetach}!Si::Node@{Si::Node}}
+\doxysubsubsection{\texorpdfstring{OnDetach()}{OnDetach()}}
+{\footnotesize\ttfamily void Si\+::\+Node\+::\+On\+Detach (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets called when the \mbox{\hyperlink{class_si_1_1_node}{Node}} is removed from the tree. 
+
+This is separate from its destruction and may be attached again to the tree. \mbox{\Hypertarget{class_si_1_1_node_acd249869767df516e1f0bcc371d819b4}\label{class_si_1_1_node_acd249869767df516e1f0bcc371d819b4}} 
+\index{Si::Node@{Si::Node}!OnTick@{OnTick}}
+\index{OnTick@{OnTick}!Si::Node@{Si::Node}}
+\doxysubsubsection{\texorpdfstring{OnTick()}{OnTick()}}
+{\footnotesize\ttfamily void Si\+::\+Node\+::\+On\+Tick (\begin{DoxyParamCaption}\item[{float}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Gets called on each application tick. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delta\+Time} & Time since last application tick. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

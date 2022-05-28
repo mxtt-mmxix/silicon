@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['silicon_20engine_0',['Silicon Engine',['../index.html',1,'']]],
-  ['string_1',['String',['../class_si_1_1_string.html',1,'Si']]]
+  ['level_0',['Level',['../struct_si_1_1_log_entry.html#a3c3b9baa1ec6fc9c8e2d77a40c61936a',1,'Si::LogEntry']]],
+  ['logentry_1',['LogEntry',['../struct_si_1_1_log_entry.html',1,'Si']]]
 ];

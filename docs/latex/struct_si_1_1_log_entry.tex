@@ -2,7 +2,17 @@
 \label{struct_si_1_1_log_entry}\index{Si::LogEntry@{Si::LogEntry}}
 
 
-Collaboration diagram for Si\+::Log\+Entry\+:\nopagebreak
+A log entry.  
+
+
+
+
+{\ttfamily \#include $<$Log.\+hpp$>$}
+
+
+
+Collaboration diagram for Si\+::Log\+Entry\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,34 +22,94 @@ Collaboration diagram for Si\+::Log\+Entry\+:\nopagebreak
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324c}\label{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324c}} 
-enum class {\bfseries Type} \{ {\bfseries Engine}
-, {\bfseries Client}
+enum class \mbox{\hyperlink{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324c}{Type}} \{ \mbox{\hyperlink{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324ca7bfa30721c5e726ff17e3f972237a82c}{Engine}}
+, \mbox{\hyperlink{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324ca577d7068826de925ea2aec01dbadf5e4}{Client}}
  \}
-\item 
-\mbox{\Hypertarget{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936a}\label{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936a}} 
-enum class {\bfseries Level} \{ \newline
-{\bfseries Trace}
-, {\bfseries Information}
-, {\bfseries Debug}
-, {\bfseries Warning}
+\begin{DoxyCompactList}\small\item\em The type of log. \end{DoxyCompactList}\item 
+enum class \mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936a}{Level}} \{ \newline
+\mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aadd4ec0ac4e58f7c32a01244ae91150b1}{Trace}}
+, \mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aaa82be0f551b8708bc08eb33cd9ded0cf}{Information}}
+, \mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aaa603905470e2a5b8c13e96b579ef0dba}{Debug}}
+, \mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aa0eaadb4fcb48a0a0ed7bc9868be9fbaa}{Warning}}
 , \newline
-{\bfseries Error}
-, {\bfseries Critical}
+\mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aa902b0d55fddef6f8d651fe1035b7d4bd}{Error}}
+, \mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aa278d01e5af56273bae1bb99a98b370cd}{Critical}}
  \}
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{struct_si_1_1_log_entry_a64b5427f83f1bba1352f4e37ad69ea1d}\label{struct_si_1_1_log_entry_a64b5427f83f1bba1352f4e37ad69ea1d}} 
-Type {\bfseries type} = Type\+::\+Client
+\mbox{\hyperlink{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324c}{Type}} {\bfseries type} = \mbox{\hyperlink{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324ca577d7068826de925ea2aec01dbadf5e4}{Type\+::\+Client}}
 \item 
 \mbox{\Hypertarget{struct_si_1_1_log_entry_a6d582cbab10b0ae5328f20cc9c2c4d06}\label{struct_si_1_1_log_entry_a6d582cbab10b0ae5328f20cc9c2c4d06}} 
-Level {\bfseries level} = Level\+::\+Information
+\mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936a}{Level}} {\bfseries level} = \mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aaa82be0f551b8708bc08eb33cd9ded0cf}{Level\+::\+Information}}
 \item 
 \mbox{\Hypertarget{struct_si_1_1_log_entry_a706d247ec9ebd2205e5411ed1ebab2a6}\label{struct_si_1_1_log_entry_a706d247ec9ebd2205e5411ed1ebab2a6}} 
 \mbox{\hyperlink{class_si_1_1_string}{String}} {\bfseries message}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A log entry. 
+
+This holds information to be logged independent of the backend.
+
+This allows the same information to be logged to multiple backends, e.\+g.\+: stdout or a file. 
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936a}\label{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936a}} 
+\index{Si::LogEntry@{Si::LogEntry}!Level@{Level}}
+\index{Level@{Level}!Si::LogEntry@{Si::LogEntry}}
+\doxysubsubsection{\texorpdfstring{Level}{Level}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936a}{Si\+::\+Log\+Entry\+::\+Level}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Trace@{Trace}!Si::LogEntry@{Si::LogEntry}}\index{Si::LogEntry@{Si::LogEntry}!Trace@{Trace}}}\mbox{\Hypertarget{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aadd4ec0ac4e58f7c32a01244ae91150b1}\label{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aadd4ec0ac4e58f7c32a01244ae91150b1}} 
+Trace&Verbose information, not informative to the end-\/user. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Information@{Information}!Si::LogEntry@{Si::LogEntry}}\index{Si::LogEntry@{Si::LogEntry}!Information@{Information}}}\mbox{\Hypertarget{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aaa82be0f551b8708bc08eb33cd9ded0cf}\label{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aaa82be0f551b8708bc08eb33cd9ded0cf}} 
+Information&Information that maybe relevant to the end user. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Debug@{Debug}!Si::LogEntry@{Si::LogEntry}}\index{Si::LogEntry@{Si::LogEntry}!Debug@{Debug}}}\mbox{\Hypertarget{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aaa603905470e2a5b8c13e96b579ef0dba}\label{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aaa603905470e2a5b8c13e96b579ef0dba}} 
+Debug&Debug, technical information. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Warning@{Warning}!Si::LogEntry@{Si::LogEntry}}\index{Si::LogEntry@{Si::LogEntry}!Warning@{Warning}}}\mbox{\Hypertarget{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aa0eaadb4fcb48a0a0ed7bc9868be9fbaa}\label{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aa0eaadb4fcb48a0a0ed7bc9868be9fbaa}} 
+Warning&Information that could suggest an error but does not affect application. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Error@{Error}!Si::LogEntry@{Si::LogEntry}}\index{Si::LogEntry@{Si::LogEntry}!Error@{Error}}}\mbox{\Hypertarget{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aa902b0d55fddef6f8d651fe1035b7d4bd}\label{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aa902b0d55fddef6f8d651fe1035b7d4bd}} 
+Error&Information that may affect the engine and may cause a crash. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Critical@{Critical}!Si::LogEntry@{Si::LogEntry}}\index{Si::LogEntry@{Si::LogEntry}!Critical@{Critical}}}\mbox{\Hypertarget{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aa278d01e5af56273bae1bb99a98b370cd}\label{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aa278d01e5af56273bae1bb99a98b370cd}} 
+Critical&Information pertaining to a crash. \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324c}\label{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324c}} 
+\index{Si::LogEntry@{Si::LogEntry}!Type@{Type}}
+\index{Type@{Type}!Si::LogEntry@{Si::LogEntry}}
+\doxysubsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324c}{Si\+::\+Log\+Entry\+::\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+The type of log. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Engine@{Engine}!Si::LogEntry@{Si::LogEntry}}\index{Si::LogEntry@{Si::LogEntry}!Engine@{Engine}}}\mbox{\Hypertarget{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324ca7bfa30721c5e726ff17e3f972237a82c}\label{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324ca7bfa30721c5e726ff17e3f972237a82c}} 
+Engine&Logs from the engine. Please refrain from using in your application. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Client@{Client}!Si::LogEntry@{Si::LogEntry}}\index{Si::LogEntry@{Si::LogEntry}!Client@{Client}}}\mbox{\Hypertarget{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324ca577d7068826de925ea2aec01dbadf5e4}\label{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324ca577d7068826de925ea2aec01dbadf5e4}} 
+Client&Logs from the client. Use this to for your logging. \\
+\hline
+
+\end{DoxyEnumFields}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}

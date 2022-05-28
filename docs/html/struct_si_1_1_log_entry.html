@@ -92,31 +92,37 @@ $(document).ready(function(){initNavTree('struct_si_1_1_log_entry.html',''); ini
   <div class="headertitle"><div class="title">Si::LogEntry Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A log entry.  
+ <a href="struct_si_1_1_log_entry.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_log_8hpp_source.html">Log.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Si::LogEntry:</div>
 <div class="dyncontent">
 <div class="center"><img src="struct_si_1_1_log_entry__coll__graph.png" border="0" usemap="#a_si_1_1_log_entry_coll__map" alt="Collaboration graph"/></div>
 <map name="a_si_1_1_log_entry_coll__map" id="a_si_1_1_log_entry_coll__map">
-<area shape="rect" title=" " alt="" coords="13,171,107,197"/>
-<area shape="rect" href="class_si_1_1_string.html" title=" " alt="" coords="22,81,98,108"/>
+<area shape="rect" title="A log entry." alt="" coords="13,171,107,197"/>
+<area shape="rect" href="class_si_1_1_string.html" title="Stores char type strings." alt="" coords="22,81,98,108"/>
 <area shape="rect" title=" " alt="" coords="5,5,115,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ac842b800c8dde89df7b1f35c2d80324c"><td class="memItemLeft" align="right" valign="top"><a id="ac842b800c8dde89df7b1f35c2d80324c" name="ac842b800c8dde89df7b1f35c2d80324c"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Type</b> { <b>Engine</b>
-, <b>Client</b>
+<tr class="memitem:ac842b800c8dde89df7b1f35c2d80324c"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_si_1_1_log_entry.html#ac842b800c8dde89df7b1f35c2d80324c">Type</a> { <a class="el" href="struct_si_1_1_log_entry.html#ac842b800c8dde89df7b1f35c2d80324ca7bfa30721c5e726ff17e3f972237a82c">Engine</a>
+, <a class="el" href="struct_si_1_1_log_entry.html#ac842b800c8dde89df7b1f35c2d80324ca577d7068826de925ea2aec01dbadf5e4">Client</a>
  }</td></tr>
+<tr class="memdesc:ac842b800c8dde89df7b1f35c2d80324c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of log.  <a href="struct_si_1_1_log_entry.html#ac842b800c8dde89df7b1f35c2d80324c">More...</a><br /></td></tr>
 <tr class="separator:ac842b800c8dde89df7b1f35c2d80324c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c3b9baa1ec6fc9c8e2d77a40c61936a"><td class="memItemLeft" align="right" valign="top"><a id="a3c3b9baa1ec6fc9c8e2d77a40c61936a" name="a3c3b9baa1ec6fc9c8e2d77a40c61936a"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Level</b> { <br />
-&#160;&#160;<b>Trace</b>
-, <b>Information</b>
-, <b>Debug</b>
-, <b>Warning</b>
+<tr class="memitem:a3c3b9baa1ec6fc9c8e2d77a40c61936a"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_si_1_1_log_entry.html#a3c3b9baa1ec6fc9c8e2d77a40c61936a">Level</a> { <br />
+&#160;&#160;<a class="el" href="struct_si_1_1_log_entry.html#a3c3b9baa1ec6fc9c8e2d77a40c61936aadd4ec0ac4e58f7c32a01244ae91150b1">Trace</a>
+, <a class="el" href="struct_si_1_1_log_entry.html#a3c3b9baa1ec6fc9c8e2d77a40c61936aaa82be0f551b8708bc08eb33cd9ded0cf">Information</a>
+, <a class="el" href="struct_si_1_1_log_entry.html#a3c3b9baa1ec6fc9c8e2d77a40c61936aaa603905470e2a5b8c13e96b579ef0dba">Debug</a>
+, <a class="el" href="struct_si_1_1_log_entry.html#a3c3b9baa1ec6fc9c8e2d77a40c61936aa0eaadb4fcb48a0a0ed7bc9868be9fbaa">Warning</a>
 , <br />
-&#160;&#160;<b>Error</b>
-, <b>Critical</b>
+&#160;&#160;<a class="el" href="struct_si_1_1_log_entry.html#a3c3b9baa1ec6fc9c8e2d77a40c61936aa902b0d55fddef6f8d651fe1035b7d4bd">Error</a>
+, <a class="el" href="struct_si_1_1_log_entry.html#a3c3b9baa1ec6fc9c8e2d77a40c61936aa278d01e5af56273bae1bb99a98b370cd">Critical</a>
 <br />
  }</td></tr>
 <tr class="separator:a3c3b9baa1ec6fc9c8e2d77a40c61936a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,15 +130,88 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a64b5427f83f1bba1352f4e37ad69ea1d"><td class="memItemLeft" align="right" valign="top"><a id="a64b5427f83f1bba1352f4e37ad69ea1d" name="a64b5427f83f1bba1352f4e37ad69ea1d"></a>
-Type&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> = Type::Client</td></tr>
+<a class="el" href="struct_si_1_1_log_entry.html#ac842b800c8dde89df7b1f35c2d80324c">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> = <a class="el" href="struct_si_1_1_log_entry.html#ac842b800c8dde89df7b1f35c2d80324ca577d7068826de925ea2aec01dbadf5e4">Type::Client</a></td></tr>
 <tr class="separator:a64b5427f83f1bba1352f4e37ad69ea1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d582cbab10b0ae5328f20cc9c2c4d06"><td class="memItemLeft" align="right" valign="top"><a id="a6d582cbab10b0ae5328f20cc9c2c4d06" name="a6d582cbab10b0ae5328f20cc9c2c4d06"></a>
-Level&#160;</td><td class="memItemRight" valign="bottom"><b>level</b> = Level::Information</td></tr>
+<a class="el" href="struct_si_1_1_log_entry.html#a3c3b9baa1ec6fc9c8e2d77a40c61936a">Level</a>&#160;</td><td class="memItemRight" valign="bottom"><b>level</b> = <a class="el" href="struct_si_1_1_log_entry.html#a3c3b9baa1ec6fc9c8e2d77a40c61936aaa82be0f551b8708bc08eb33cd9ded0cf">Level::Information</a></td></tr>
 <tr class="separator:a6d582cbab10b0ae5328f20cc9c2c4d06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a706d247ec9ebd2205e5411ed1ebab2a6"><td class="memItemLeft" align="right" valign="top"><a id="a706d247ec9ebd2205e5411ed1ebab2a6" name="a706d247ec9ebd2205e5411ed1ebab2a6"></a>
 <a class="el" href="class_si_1_1_string.html">String</a>&#160;</td><td class="memItemRight" valign="bottom"><b>message</b></td></tr>
 <tr class="separator:a706d247ec9ebd2205e5411ed1ebab2a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >A log entry. </p>
+<p >This holds information to be logged independent of the backend.</p>
+<p >This allows the same information to be logged to multiple backends, e.g.: stdout or a file. </p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a id="a3c3b9baa1ec6fc9c8e2d77a40c61936a" name="a3c3b9baa1ec6fc9c8e2d77a40c61936a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c3b9baa1ec6fc9c8e2d77a40c61936a">&#9670;&nbsp;</a></span>Level</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="struct_si_1_1_log_entry.html#a3c3b9baa1ec6fc9c8e2d77a40c61936a">Si::LogEntry::Level</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3c3b9baa1ec6fc9c8e2d77a40c61936aadd4ec0ac4e58f7c32a01244ae91150b1" name="a3c3b9baa1ec6fc9c8e2d77a40c61936aadd4ec0ac4e58f7c32a01244ae91150b1"></a>Trace&#160;</td><td class="fielddoc"><p >Verbose information, not informative to the end-user. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3c3b9baa1ec6fc9c8e2d77a40c61936aaa82be0f551b8708bc08eb33cd9ded0cf" name="a3c3b9baa1ec6fc9c8e2d77a40c61936aaa82be0f551b8708bc08eb33cd9ded0cf"></a>Information&#160;</td><td class="fielddoc"><p >Information that maybe relevant to the end user. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3c3b9baa1ec6fc9c8e2d77a40c61936aaa603905470e2a5b8c13e96b579ef0dba" name="a3c3b9baa1ec6fc9c8e2d77a40c61936aaa603905470e2a5b8c13e96b579ef0dba"></a>Debug&#160;</td><td class="fielddoc"><p >Debug, technical information. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3c3b9baa1ec6fc9c8e2d77a40c61936aa0eaadb4fcb48a0a0ed7bc9868be9fbaa" name="a3c3b9baa1ec6fc9c8e2d77a40c61936aa0eaadb4fcb48a0a0ed7bc9868be9fbaa"></a>Warning&#160;</td><td class="fielddoc"><p >Information that could suggest an error but does not affect application. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3c3b9baa1ec6fc9c8e2d77a40c61936aa902b0d55fddef6f8d651fe1035b7d4bd" name="a3c3b9baa1ec6fc9c8e2d77a40c61936aa902b0d55fddef6f8d651fe1035b7d4bd"></a>Error&#160;</td><td class="fielddoc"><p >Information that may affect the engine and may cause a crash. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a3c3b9baa1ec6fc9c8e2d77a40c61936aa278d01e5af56273bae1bb99a98b370cd" name="a3c3b9baa1ec6fc9c8e2d77a40c61936aa278d01e5af56273bae1bb99a98b370cd"></a>Critical&#160;</td><td class="fielddoc"><p >Information pertaining to a crash. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="ac842b800c8dde89df7b1f35c2d80324c" name="ac842b800c8dde89df7b1f35c2d80324c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac842b800c8dde89df7b1f35c2d80324c">&#9670;&nbsp;</a></span>Type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="struct_si_1_1_log_entry.html#ac842b800c8dde89df7b1f35c2d80324c">Si::LogEntry::Type</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The type of log. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac842b800c8dde89df7b1f35c2d80324ca7bfa30721c5e726ff17e3f972237a82c" name="ac842b800c8dde89df7b1f35c2d80324ca7bfa30721c5e726ff17e3f972237a82c"></a>Engine&#160;</td><td class="fielddoc"><p >Logs from the engine. </p>
+<p >Please refrain from using in your application. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac842b800c8dde89df7b1f35c2d80324ca577d7068826de925ea2aec01dbadf5e4" name="ac842b800c8dde89df7b1f35c2d80324ca577d7068826de925ea2aec01dbadf5e4"></a>Client&#160;</td><td class="fielddoc"><p >Logs from the client. </p>
+<p >Use this to for your logging. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/Silicon/<a class="el" href="_log_8hpp_source.html">Log.hpp</a></li>
 </ul>

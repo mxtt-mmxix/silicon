@@ -2,37 +2,63 @@
 \label{_node_8hpp_source}\index{include/Silicon/Node.hpp@{include/Silicon/Node.hpp}}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{1 \textcolor{comment}{//}}
-\DoxyCodeLine{2 \textcolor{comment}{// Created by Matthew McCall on 5/27/22.}}
-\DoxyCodeLine{3 \textcolor{comment}{//}}
-\DoxyCodeLine{4 }
-\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef SILICON\_NODE\_HPP}}
-\DoxyCodeLine{6 \textcolor{preprocessor}{\#define SILICON\_NODE\_HPP}}
-\DoxyCodeLine{7 }
-\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <initializer\_list>}}
-\DoxyCodeLine{9 }
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}Types.hpp"{}}}
-\DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{keyword}{namespace }Si \{}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_si_1_1_node}{Node}} \{}
-\DoxyCodeLine{15 \textcolor{keyword}{public}:}
-\DoxyCodeLine{16     \textcolor{keyword}{using} Graph = Si::Graph<Node*, GraphList>;}
-\DoxyCodeLine{17 }
-\DoxyCodeLine{18     \mbox{\hyperlink{class_si_1_1_node}{Node}}(std::initializer\_list<Node*>);}
-\DoxyCodeLine{19 }
-\DoxyCodeLine{20     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} OnAttach();}
-\DoxyCodeLine{21     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnTick(\textcolor{keywordtype}{float} deltaTime);}
-\DoxyCodeLine{22     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} OnDetach();}
-\DoxyCodeLine{23 }
-\DoxyCodeLine{24     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_si_1_1_node}{\string~Node}}();}
-\DoxyCodeLine{25 }
-\DoxyCodeLine{26 \textcolor{keyword}{private}:}
-\DoxyCodeLine{27     Node::Graph::vertex\_descriptor m\_descriptor;}
-\DoxyCodeLine{28 \};}
-\DoxyCodeLine{29 }
-\DoxyCodeLine{30 \} \textcolor{comment}{// Si}}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * BSD 2-\/Clause License}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Copyright (c) 2022, Matthew McCall}}
+\DoxyCodeLine{5 \textcolor{comment}{ * All rights reserved.}}
+\DoxyCodeLine{6 \textcolor{comment}{ *}}
+\DoxyCodeLine{7 \textcolor{comment}{ * Redistribution and use in source and binary forms, with or without}}
+\DoxyCodeLine{8 \textcolor{comment}{ * modification, are permitted provided that the following conditions are met:}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * 1. Redistributions of source code must retain the above copyright notice, this}}
+\DoxyCodeLine{11 \textcolor{comment}{ *    list of conditions and the following disclaimer.}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * 2. Redistributions in binary form must reproduce the above copyright notice,}}
+\DoxyCodeLine{14 \textcolor{comment}{ *    this list of conditions and the following disclaimer in the documentation}}
+\DoxyCodeLine{15 \textcolor{comment}{ *    and/or other materials provided with the distribution.}}
+\DoxyCodeLine{16 \textcolor{comment}{ *}}
+\DoxyCodeLine{17 \textcolor{comment}{ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "{}AS IS"{}}}
+\DoxyCodeLine{18 \textcolor{comment}{ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE}}
+\DoxyCodeLine{19 \textcolor{comment}{ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE}}
+\DoxyCodeLine{20 \textcolor{comment}{ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE}}
+\DoxyCodeLine{21 \textcolor{comment}{ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL}}
+\DoxyCodeLine{22 \textcolor{comment}{ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR}}
+\DoxyCodeLine{23 \textcolor{comment}{ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER}}
+\DoxyCodeLine{24 \textcolor{comment}{ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,}}
+\DoxyCodeLine{25 \textcolor{comment}{ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE}}
+\DoxyCodeLine{26 \textcolor{comment}{ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.}}
+\DoxyCodeLine{27 \textcolor{comment}{ */}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#ifndef SILICON\_NODE\_HPP}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define SILICON\_NODE\_HPP}}
 \DoxyCodeLine{31 }
-\DoxyCodeLine{32 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_NODE\_HPP}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <initializer\_list>}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include "{}Types.hpp"{}}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{keyword}{namespace }Si \{}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{51 \textcolor{keyword}{class }\mbox{\hyperlink{class_si_1_1_node}{Node}} \{}
+\DoxyCodeLine{52 \textcolor{keyword}{public}:}
+\DoxyCodeLine{56     \textcolor{keyword}{using} \mbox{\hyperlink{class_si_1_1_node_a30bf21d6327a9ec23d77c18022b8276f}{Graph}} = Si::Graph<Node*, GraphList>;}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{62     \mbox{\hyperlink{class_si_1_1_node_ab079ebcac2cf870469b8cd67824f1fc0}{Node}}(std::initializer\_list<Node*> nodes);}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{70     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_si_1_1_node_ad392027fc4d094c018b90f4bd92798f8}{OnAttach}}();}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{76     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_si_1_1_node_acd249869767df516e1f0bcc371d819b4}{OnTick}}(\textcolor{keywordtype}{float} deltaTime);}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{83     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_si_1_1_node_a9592b5b72aea1fddec1c987d2c8c5fea}{OnDetach}}();}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{88     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_si_1_1_node_af48b1b2fc3fecf69427ee572e99b611b}{\string~Node}}();}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 \textcolor{keyword}{private}:}
+\DoxyCodeLine{91     Node::Graph::vertex\_descriptor m\_descriptor;}
+\DoxyCodeLine{92 \};}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \} \textcolor{comment}{// Si}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_NODE\_HPP}}
 
 \end{DoxyCode}

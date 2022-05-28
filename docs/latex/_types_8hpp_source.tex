@@ -2,88 +2,121 @@
 \label{_types_8hpp_source}\index{include/Silicon/Types.hpp@{include/Silicon/Types.hpp}}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{1 \textcolor{comment}{//}}
-\DoxyCodeLine{2 \textcolor{comment}{// Created by Matthew McCall on 5/27/22.}}
-\DoxyCodeLine{3 \textcolor{comment}{//}}
-\DoxyCodeLine{4 }
-\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef SILICON\_TYPES\_HPP}}
-\DoxyCodeLine{6 \textcolor{preprocessor}{\#define SILICON\_TYPES\_HPP}}
-\DoxyCodeLine{7 }
-\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <functional>}}
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <list>}}
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <string>}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <vector>}}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <boost/graph/adjacency\_list.hpp>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <boost/pool/pool\_alloc.hpp>}}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{16 \textcolor{keyword}{namespace }Si \{}
-\DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{19 \textcolor{keyword}{using} Allocator = boost::pool\_allocator<T>;}
-\DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{22 \textcolor{keyword}{using} Ref = std::reference\_wrapper<T>;}
-\DoxyCodeLine{23 }
-\DoxyCodeLine{24 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{25 \textcolor{keyword}{using} Vector = std::vector<T, Allocator<T>>;}
-\DoxyCodeLine{26 }
-\DoxyCodeLine{27 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{28 \textcolor{keyword}{using} List = std::list<T, Allocator<T>>;}
-\DoxyCodeLine{29 }
-\DoxyCodeLine{30 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{31 \textcolor{keyword}{using} IString = std::basic\_string<T, std::char\_traits<T>, Allocator<T>>;}
-\DoxyCodeLine{32 }
-\DoxyCodeLine{33 \textcolor{keyword}{class }\mbox{\hyperlink{class_si_1_1_string}{String}} : \textcolor{keyword}{public} IString<char>}
-\DoxyCodeLine{34 \{}
-\DoxyCodeLine{35 \textcolor{keyword}{public}:}
-\DoxyCodeLine{36     \mbox{\hyperlink{class_si_1_1_string}{String}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{37     \mbox{\hyperlink{class_si_1_1_string}{String}}(std::string\&\& other);}
-\DoxyCodeLine{38 \};}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * BSD 2-\/Clause License}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Copyright (c) 2022, Matthew McCall}}
+\DoxyCodeLine{5 \textcolor{comment}{ * All rights reserved.}}
+\DoxyCodeLine{6 \textcolor{comment}{ *}}
+\DoxyCodeLine{7 \textcolor{comment}{ * Redistribution and use in source and binary forms, with or without}}
+\DoxyCodeLine{8 \textcolor{comment}{ * modification, are permitted provided that the following conditions are met:}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * 1. Redistributions of source code must retain the above copyright notice, this}}
+\DoxyCodeLine{11 \textcolor{comment}{ *    list of conditions and the following disclaimer.}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * 2. Redistributions in binary form must reproduce the above copyright notice,}}
+\DoxyCodeLine{14 \textcolor{comment}{ *    this list of conditions and the following disclaimer in the documentation}}
+\DoxyCodeLine{15 \textcolor{comment}{ *    and/or other materials provided with the distribution.}}
+\DoxyCodeLine{16 \textcolor{comment}{ *}}
+\DoxyCodeLine{17 \textcolor{comment}{ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "{}AS IS"{}}}
+\DoxyCodeLine{18 \textcolor{comment}{ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE}}
+\DoxyCodeLine{19 \textcolor{comment}{ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE}}
+\DoxyCodeLine{20 \textcolor{comment}{ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE}}
+\DoxyCodeLine{21 \textcolor{comment}{ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL}}
+\DoxyCodeLine{22 \textcolor{comment}{ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR}}
+\DoxyCodeLine{23 \textcolor{comment}{ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER}}
+\DoxyCodeLine{24 \textcolor{comment}{ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,}}
+\DoxyCodeLine{25 \textcolor{comment}{ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE}}
+\DoxyCodeLine{26 \textcolor{comment}{ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.}}
+\DoxyCodeLine{27 \textcolor{comment}{ */}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#ifndef SILICON\_TYPES\_HPP}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define SILICON\_TYPES\_HPP}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include <list>}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#include <boost/graph/adjacency\_list.hpp>}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{\#include <boost/pool/pool\_alloc.hpp>}}
 \DoxyCodeLine{39 }
-\DoxyCodeLine{40 \textcolor{keyword}{using} WideString = IString<wchar\_t>;}
-\DoxyCodeLine{41 \textcolor{keyword}{using} U8String = IString<char8\_t>;}
-\DoxyCodeLine{42 \textcolor{keyword}{using} U16String = IString<char16\_t>;}
-\DoxyCodeLine{43 \textcolor{keyword}{using} U32String = IString<char32\_t>;}
-\DoxyCodeLine{44 }
-\DoxyCodeLine{45 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_si_1_1_graph_vector}{GraphVector}} \{\};}
-\DoxyCodeLine{46 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_si_1_1_graph_list}{GraphList}} \{\};}
+\DoxyCodeLine{40 \textcolor{keyword}{namespace }Si \{}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{45 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{46 \textcolor{keyword}{using} Allocator = boost::pool\_allocator<T>;}
 \DoxyCodeLine{47 }
-\DoxyCodeLine{48 \}}
-\DoxyCodeLine{49 }
-\DoxyCodeLine{50 \textcolor{keyword}{namespace }boost}
-\DoxyCodeLine{51 \{}
-\DoxyCodeLine{52 }
-\DoxyCodeLine{53 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
-\DoxyCodeLine{54 \textcolor{keyword}{struct }container\_gen<Si::GraphVector, T> \{}
-\DoxyCodeLine{55     \textcolor{keyword}{typedef} Si::Vector<T> type;}
-\DoxyCodeLine{56 \};}
-\DoxyCodeLine{57 }
-\DoxyCodeLine{58 \textcolor{keyword}{template} <>}
-\DoxyCodeLine{59 \textcolor{keyword}{struct }parallel\_edge\_traits<Si::GraphVector> \{}
-\DoxyCodeLine{60     \textcolor{keyword}{typedef} allow\_parallel\_edge\_tag type;}
-\DoxyCodeLine{61 \};}
-\DoxyCodeLine{62 }
-\DoxyCodeLine{63 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
-\DoxyCodeLine{64 \textcolor{keyword}{struct }container\_gen<Si::GraphList, T> \{}
-\DoxyCodeLine{65     \textcolor{keyword}{typedef} Si::List<T> type;}
-\DoxyCodeLine{66 \};}
-\DoxyCodeLine{67 }
-\DoxyCodeLine{68 \textcolor{keyword}{template} <>}
-\DoxyCodeLine{69 \textcolor{keyword}{struct }parallel\_edge\_traits<Si::GraphList> \{}
-\DoxyCodeLine{70     \textcolor{keyword}{typedef} allow\_parallel\_edge\_tag type;}
-\DoxyCodeLine{71 \};}
-\DoxyCodeLine{72 }
-\DoxyCodeLine{73 \}}
-\DoxyCodeLine{74 }
-\DoxyCodeLine{75 \textcolor{keyword}{namespace }Si}
+\DoxyCodeLine{51 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{52 \textcolor{keyword}{using} Ref = std::reference\_wrapper<T>;}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{57 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{58 \textcolor{keyword}{using} Vector = std::vector<T, Allocator<T>>;}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{63 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{64 \textcolor{keyword}{using} List = std::list<T, Allocator<T>>;}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{69 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{70 \textcolor{keyword}{using} IString = std::basic\_string<T, std::char\_traits<T>, Allocator<T>>;}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{75 \textcolor{keyword}{class }\mbox{\hyperlink{class_si_1_1_string}{String}} : \textcolor{keyword}{public} IString<char>}
 \DoxyCodeLine{76 \{}
-\DoxyCodeLine{77 }
-\DoxyCodeLine{78 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} ContainerT = GraphVector>}
-\DoxyCodeLine{79 \textcolor{keyword}{using} Graph = boost::adjacency\_list<ContainerT, ContainerT, boost::bidirectionalS, T>;}
-\DoxyCodeLine{80 }
-\DoxyCodeLine{81 \}}
-\DoxyCodeLine{82 }
-\DoxyCodeLine{83 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_TYPES\_HPP}}
+\DoxyCodeLine{77 \textcolor{keyword}{public}:}
+\DoxyCodeLine{78     \mbox{\hyperlink{class_si_1_1_string}{String}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{79     \mbox{\hyperlink{class_si_1_1_string}{String}}(std::string\&\& other);}
+\DoxyCodeLine{80     \mbox{\hyperlink{class_si_1_1_string}{String}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* other);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82     \textcolor{keyword}{operator} std::string();}
+\DoxyCodeLine{83 \};}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{88 \textcolor{keyword}{using} WideString = IString<wchar\_t>;}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{93 \textcolor{keyword}{using} U8String = IString<char8\_t>;}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{98 \textcolor{keyword}{using} U16String = IString<char16\_t>;}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{103 \textcolor{keyword}{using} U32String = IString<char32\_t>;}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{108 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_si_1_1_graph_vector}{GraphVector}} \{\};}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{113 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_si_1_1_graph_list}{GraphList}} \{\};}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 \}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119 \textcolor{keyword}{namespace }boost}
+\DoxyCodeLine{120 \{}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{123 \textcolor{keyword}{struct }container\_gen<Si::GraphVector, T> \{}
+\DoxyCodeLine{124     \textcolor{keyword}{typedef} Si::Vector<T> type;}
+\DoxyCodeLine{125 \};}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127 \textcolor{keyword}{template} <>}
+\DoxyCodeLine{128 \textcolor{keyword}{struct }parallel\_edge\_traits<Si::GraphVector> \{}
+\DoxyCodeLine{129     \textcolor{keyword}{typedef} allow\_parallel\_edge\_tag type;}
+\DoxyCodeLine{130 \};}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{133 \textcolor{keyword}{struct }container\_gen<Si::GraphList, T> \{}
+\DoxyCodeLine{134     \textcolor{keyword}{typedef} Si::List<T> type;}
+\DoxyCodeLine{135 \};}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137 \textcolor{keyword}{template} <>}
+\DoxyCodeLine{138 \textcolor{keyword}{struct }parallel\_edge\_traits<Si::GraphList> \{}
+\DoxyCodeLine{139     \textcolor{keyword}{typedef} allow\_parallel\_edge\_tag type;}
+\DoxyCodeLine{140 \};}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \}}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 \textcolor{keyword}{namespace }Si}
+\DoxyCodeLine{147 \{}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{152 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} ContainerT = GraphVector>}
+\DoxyCodeLine{153 \textcolor{keyword}{using} Graph = boost::adjacency\_list<ContainerT, ContainerT, boost::bidirectionalS, T>;}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \}}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_TYPES\_HPP}}
 
 \end{DoxyCode}
