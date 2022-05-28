@@ -51,6 +51,14 @@ using Allocator = boost::pool_allocator<T>;
 template <typename T>
 using Ref = std::reference_wrapper<T>;
 
+/**
+ * A utility which allows us to implicitly cast references to pointers for use in containers.
+ *
+ * This type allows us to use stack-allocated, discarded values that can be passed to functions as references be used
+ * in an STL container.
+ *
+ * @tparam T
+ */
 template <typename T>
 class RefToPtr
 {
