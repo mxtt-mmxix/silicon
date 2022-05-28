@@ -38,7 +38,8 @@
 class CustomNode : public Si::Node
 {
 public:
-    CustomNode(const char* message, std::initializer_list<Si::Node*> nodes = {}) : Si::Node(nodes) {
+    CustomNode(const char* message, std::initializer_list<Si::Node*> nodes = {}) : Si::Node(nodes)
+    {
         SI_INFO(message);
     }
 };

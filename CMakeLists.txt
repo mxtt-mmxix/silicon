@@ -17,7 +17,13 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(SRC
         src/Log.cpp
-        include/Silicon/Log.hpp include/Silicon/Types.hpp include/Silicon/Engine.hpp src/Engine.cpp src/Node.cpp include/Silicon/Node.hpp)
+        include/Silicon/Log.hpp
+        include/Silicon/Types.hpp
+        include/Silicon/Engine.hpp
+        src/Engine.cpp
+        src/Node.cpp
+        include/Silicon/Node.hpp
+        src/Types.cpp)
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SRC})
 

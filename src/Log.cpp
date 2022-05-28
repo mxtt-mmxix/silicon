@@ -27,6 +27,7 @@
  */
 
 #include "Silicon/Log.hpp"
+#include "Silicon/Types.hpp"
 
 #include <sstream>
 #include <thread>
@@ -75,11 +76,6 @@ void Log(const LogEntry& entry)
     }
 
     fmt::print("] {}\n", entry.message);
-}
-
-String::String(std::string&& other)
-    : basic_string(other.begin(), other.end())
-{
 }
 
 } // Si

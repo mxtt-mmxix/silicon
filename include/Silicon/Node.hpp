@@ -42,17 +42,49 @@ namespace Si {
  * While Nodes are designed to be created and attached declaratively, they can created and attached imperatively as
  * well. You may inherit the nodes to provide your own functionality. All Nodes can be attached to another
  * declaratively, but not every Node needs or should allow child Nodes to be attached declaratively.
+ *
+ * A Node may be instantiated but not yet attached to a tree. Subsequently, a Node may be attached and detached from
+ * the tree several times. This allows Nodes to be reused between "scenes". a Node cannot be "attached" again if it is
+ * currently attached; A Node must be detached first before it can be attached again. A Node should not expect to be
+ * attached to a specific location in the tree nor should its behavior depend on where it is attached in the tree.
  */
 class Node {
 public:
+    /**
+     * Helper type used to define the Node tree. You do not need to use this type directly.
+     */
     using Graph = Si::Graph<Node*, GraphList>;
 
-    Node(std::initializer_list<Node*>);
+    /**
+     * Constructs a Node.
+     * @param nodes Attaches the specified nodes as children of this Node and attaches it to the tree.
+     */
+    Node(std::initializer_list<Node*> nodes);
 
+    /**
+     * Gets called when the Node is attached to the tree.
+     *
+     * This is separate from when a Node may be constructed.
+     * @return true if attach was successful.
+     */
     virtual bool OnAttach();
+
+    /**
+     * Gets called on each application tick.
+     * @param deltaTime Time since last application tick.
+     */
     virtual void OnTick(float deltaTime);
+
+    /**
+     * Gets called when the Node is removed from the tree.
+     *
+     * This is separate from its destruction and may be attached again to the tree.
+     */
     virtual void OnDetach();
 
+    /**
+     * End all be all for this Node.
+     */
     virtual ~Node();
 
 private:

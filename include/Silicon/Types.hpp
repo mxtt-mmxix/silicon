@@ -39,34 +39,77 @@
 
 namespace Si {
 
+/**
+ * STL compliant allocator.
+ */
 template <typename T>
 using Allocator = boost::pool_allocator<T>;
 
+/**
+ * Static, compile-time, assignable, copyable, movable reference that can't be null.
+ */
 template <typename T>
 using Ref = std::reference_wrapper<T>;
 
+/**
+ * STL compliant data structure for contiguously storing an arbitrary amount of data.
+ */
 template <typename T>
 using Vector = std::vector<T, Allocator<T>>;
 
+/**
+ * STL compliant data structure for storing an arbitrary amount of data.
+ */
 template <typename T>
 using List = std::list<T, Allocator<T>>;
 
+/**
+ * Template class for storing strings with a custom underlying datatype.
+ */
 template <typename T>
 using IString = std::basic_string<T, std::char_traits<T>, Allocator<T>>;
 
+/**
+ * Stores char type strings. Compatible with std::string and const char*
+ */
 class String : public IString<char>
 {
 public:
     String() = default;
     String(std::string&& other);
+    String(const char* other);
+
+    operator std::string();
 };
 
+/**
+ * Stores wide-char strings.
+ */
 using WideString = IString<wchar_t>;
+
+/**
+ * Stores UTF-8 strings.
+ */
 using U8String = IString<char8_t>;
+
+/**
+ * Stores UTF-16 strings.
+ */
 using U16String = IString<char16_t>;
+
+/**
+ * Stores UTF-32 strings.
+ */
 using U32String = IString<char32_t>;
 
+/**
+ * Vector for use in Graphs.
+ */
 struct GraphVector {};
+
+/**
+ * List for use in Graphs.
+ */
 struct GraphList {};
 
 }
@@ -103,6 +146,9 @@ struct parallel_edge_traits<Si::GraphList> {
 namespace Si
 {
 
+/**
+ * Container for representing relationships between objects.
+ */
 template <typename T, typename ContainerT = GraphVector>
 using Graph = boost::adjacency_list<ContainerT, ContainerT, boost::bidirectionalS, T>;
 
