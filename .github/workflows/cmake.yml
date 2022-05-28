@@ -18,7 +18,7 @@ jobs:
     
     strategy:
       matrix:
-        BuildType: [Release, Debug]
+        build-type: [Release, Debug]
 
     steps:
     - uses: actions/checkout@v3
