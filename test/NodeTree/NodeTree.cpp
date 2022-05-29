@@ -46,6 +46,9 @@ public:
 
 int main(int argc, char** argv)
 {
+
+    CustomNode lvalue { "Node F" };
+
     CustomNode root {
         "Node A",
         {
@@ -62,7 +65,8 @@ int main(int argc, char** argv)
             },
             CustomNode {
                 "Node E"
-            }
+            },
+            lvalue
         }
     };
 

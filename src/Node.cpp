@@ -48,6 +48,12 @@ Node::Node(std::initializer_list<RefToPtr<Node>> nodes)
     }
 }
 
+Node::Node(Node&& node)
+{
+    m_descriptor = boost::add_vertex(this, s_graph);
+    CopyChildren(node);
+}
+
 bool Node::OnAttach()
 {
     return false;
@@ -65,6 +71,22 @@ Node::~Node()
 {
     boost::clear_vertex(m_descriptor, s_graph);
     boost::remove_vertex(m_descriptor, s_graph);
+}
+
+Node& Node::operator=(Node&& node)
+{
+    CopyChildren(node);
+
+    return *this;
+}
+
+void Node::CopyChildren(Node& other)
+{
+    auto [begin, end] = boost::adjacent_vertices(other.m_descriptor, s_graph);
+
+    std::for_each(begin, end, [this](Graph::vertex_descriptor node) {
+        boost::add_edge(m_descriptor, node, s_graph);
+    });
 }
 
 } // Si

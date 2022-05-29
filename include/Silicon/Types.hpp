@@ -31,19 +31,15 @@
 
 #include <functional>
 #include <list>
-#include <string>
+#include <optional>
 #include <vector>
 
 #include <boost/graph/adjacency_list.hpp>
-#include <boost/pool/pool_alloc.hpp>
+
+#include "Allocator.hpp"
+#include "Log.hpp"
 
 namespace Si {
-
-/**
- * STL compliant allocator.
- */
-template <typename T>
-using Allocator = boost::pool_allocator<T>;
 
 /**
  * Static, compile-time, assignable, copyable, movable reference that can't be null.
@@ -63,33 +59,32 @@ template <typename T>
 class RefToPtr
 {
 public:
-    RefToPtr(T&& object) : m_pointer(&object) { }
-
-    T& operator*()
+    RefToPtr(T& object)
+        : xp(&object)
     {
-        assert(m_pointer);
-        return *m_pointer;
+        SI_CORE_TRACE("Pointer to lvalue");
     }
 
-    T* operator->()
+    RefToPtr(T&& object)
+        : x(std::move(object))
+        , xp(&(*x))
     {
-        return m_pointer;
+        SI_CORE_TRACE("Moving rvalue");
     }
 
     operator T&()
     {
-        assert(m_pointer);
-        return *m_pointer;
+        return *xp;
     }
 
     operator T&() const
     {
-        assert(m_pointer);
-        return *m_pointer;
+        return *xp;
     }
 
 private:
-    T* m_pointer;
+    std::optional<T> x = std::nullopt;
+    T* xp;
 };
 
 /**
@@ -103,45 +98,6 @@ using Vector = std::vector<T, Allocator<T>>;
  */
 template <typename T>
 using List = std::list<T, Allocator<T>>;
-
-/**
- * Template class for storing strings with a custom underlying datatype.
- */
-template <typename T>
-using IString = std::basic_string<T, std::char_traits<T>, Allocator<T>>;
-
-/**
- * Stores char type strings. Compatible with std::string and const char*
- */
-class String : public IString<char>
-{
-public:
-    String() = default;
-    String(std::string&& other);
-    String(const char* other);
-
-    operator std::string();
-};
-
-/**
- * Stores wide-char strings.
- */
-using WideString = IString<wchar_t>;
-
-/**
- * Stores UTF-8 strings.
- */
-using U8String = IString<char8_t>;
-
-/**
- * Stores UTF-16 strings.
- */
-using U16String = IString<char16_t>;
-
-/**
- * Stores UTF-32 strings.
- */
-using U32String = IString<char32_t>;
 
 /**
  * Vector for use in Graphs.

@@ -31,9 +31,11 @@
 
 #include <fmt/core.h>
 
-#include "Types.hpp"
+#include "Silicon/String.hpp"
 
 namespace Si {
+
+class String;
 
 /**
  * A log entry. This holds information to be logged independent of the backend.

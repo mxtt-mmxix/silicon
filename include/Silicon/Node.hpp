@@ -61,6 +61,9 @@ public:
      */
     Node(std::initializer_list<RefToPtr<Node>> nodes);
 
+    Node(const Node&) = delete;
+    Node(Node&&);
+
     /**
      * Gets called when the Node is attached to the tree.
      *
@@ -87,7 +90,12 @@ public:
      */
     virtual ~Node();
 
+    Node& operator=(const Node&) = delete;
+    Node& operator=(Node&&);
+
 private:
+    void CopyChildren(Node& other);
+
     Node::Graph::vertex_descriptor m_descriptor;
 };
 

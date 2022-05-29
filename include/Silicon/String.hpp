@@ -26,55 +26,54 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "Silicon/Log.hpp"
+#ifndef SILICON_STRING_HPP
+#define SILICON_STRING_HPP
 
-#include <sstream>
-#include <thread>
+#include <string>
 
-#include <fmt/color.h>
-#include <SDL_timer.h>
+#include "Allocator.hpp"
 
 namespace Si {
 
-void Log(const LogEntry& entry)
+/**
+ * Template class for storing strings with a custom underlying datatype.
+ */
+template <typename T>
+using IString = std::basic_string<T, std::char_traits<T>, Allocator<T>>;
+
+/**
+ * Stores char type strings. Compatible with std::string and const char*
+ */
+class String : public IString<char>
 {
-    std::stringstream ss;
-    ss << std::this_thread::get_id();
+public:
+    String() = default;
+    String(std::string&& other);
+    String(const char* other);
 
-    static std::mutex s_mutex;
-    std::unique_lock lock { s_mutex };
+    operator std::string();
+};
 
-    switch (entry.type) {
-    case LogEntry::Type::Engine:
-        fmt::print("[{:>12.3f}][{:>16}][Engine][", static_cast<float>(SDL_GetTicks64()) / 1000.0f, ss.str());
-        break;
-    case LogEntry::Type::Client:
-        fmt::print("[{:>12.3f}][{:>16}][Client][", static_cast<float>(SDL_GetTicks64()) / 1000.0f, ss.str());
-        break;
-    }
+/**
+ * Stores wide-char strings.
+ */
+using WideString = IString<wchar_t>;
 
-    switch (entry.level) {
-    case LogEntry::Level::Trace:
-        fmt::print(fmt::fg(fmt::color::gray), "{:>8}", "trace");
-        break;
-    case LogEntry::Level::Information:
-        fmt::print("{:>8}", "info");
-        break;
-    case LogEntry::Level::Debug:
-        fmt::print(fmt::fg(fmt::color::cyan), "{:>8}", "debug");
-        break;
-    case LogEntry::Level::Warning:
-        fmt::print(fmt::fg(fmt::color::yellow), "{:>8}", "warning");
-        break;
-    case LogEntry::Level::Error:
-        fmt::print(fmt::fg(fmt::color::orange), "{:>8}", "error");
-        break;
-    case LogEntry::Level::Critical:
-        fmt::print(fmt::fg(fmt::color::red), "{:>8}", "critical");
-        break;
-    }
+/**
+ * Stores UTF-8 strings.
+ */
+using U8String = IString<char8_t>;
 
-    fmt::print("] {}\n", entry.message);
+/**
+ * Stores UTF-16 strings.
+ */
+using U16String = IString<char16_t>;
+
+/**
+ * Stores UTF-32 strings.
+ */
+using U32String = IString<char32_t>;
+
 }
 
-} // Si
+#endif // SILICON_STRING_HPP

@@ -11,6 +11,7 @@ include(CTest)
 find_package(SDL2 CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(Boost REQUIRED)
+find_package(Vulkan REQUIRED)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
@@ -23,7 +24,8 @@ set(SRC
         src/Engine.cpp
         src/Node.cpp
         include/Silicon/Node.hpp
-        src/Types.cpp)
+        src/Types.cpp
+        include/Silicon/Allocator.hpp include/Silicon/String.hpp)
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SRC})
 
@@ -31,14 +33,22 @@ add_library(${PROJECT_NAME} ${SRC})
 
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
+if (${CMAKE_SYSTEM_NAME} EQUAL "Windows")
+    target_link_directories(${PROJECT_NAME} PUBLIC $ENV{VULKAN_SDK}/Lib)
+else()
+    target_link_directories(${PROJECT_NAME} PUBLIC $ENV{VULKAN_SDK}/lib)
+endif()
+
 target_link_libraries(${PROJECT_NAME} PRIVATE
         SDL2::SDL2
         SDL2::SDL2main
-        SDL2::SDL2-static)
+        SDL2::SDL2-static
+        shaderc_combined
+        Vulkan::Vulkan)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
-        fmt::fmt
-        Boost::boost)
+        Boost::boost
+        fmt::fmt)
 
 include(test/HelloWorld/HelloWorld.cmake)
 include(test/NodeTree/NodeTree.cmake)
