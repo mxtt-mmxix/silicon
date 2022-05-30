@@ -4,6 +4,8 @@ import argparse
 import platform
 import subprocess
 import distro
+import requests
+import io
 
 dependencies = [
     "sdl2[vulkan]",
@@ -27,10 +29,21 @@ def setup():
     args = parser.parse_args()
 
     if args.install_vulkan:
-        if distro.id() == "ubuntu":
-            subprocess.run("./utils/Linux/Ubuntu/InstallVulkan.sh", check=True)
+        if platform.system() == "Windows":
+            r = requests.get("https://sdk.lunarg.com/sdk/download/latest/windows/vulkan-sdk.exe")
+            exe = open("vulkan-sdk.exe", mode="wb")
+            exe.write(r.content)
+
+            subprocess.run("vulkan-sdk.exe --accept-licenses --default-answer --confirm-command install com.lunarg.vulkan.32bit com.lunarg.vulkan.thirdparty com.lunarg.vulkan.debug com.lunarg.vulkan.debug32", shell=True, check=True)
+
         else:
-            subprocess.run("./utils/Linux/InstallVulkan.sh", check=True)
+            if distro.id() == "ubuntu":
+                r = requests.get("https://packages.lunarg.com/lunarg-signing-key-pub.asc")
+                subprocess.run("sudo apt-key add -", input=io.BytesIO(r.content).getvalue(), shell=True, check=True)
+
+                subprocess.run("./utils/Linux/Ubuntu/InstallVulkan.sh", check=True)
+            else:
+                subprocess.run("./utils/Linux/InstallVulkan.sh", check=True)
 
     vcpkg_bootstrap = "./libs/vcpkg/bootstrap-vcpkg.sh"
     vcpkg = "./libs/vcpkg/vcpkg"
