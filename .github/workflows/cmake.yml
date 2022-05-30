@@ -35,12 +35,6 @@ jobs:
           ${{ runner.os }}-build-${{ env.cache-name }}-
         path: |
           /home/runner/.cache/vcpkg/archives
-        
-    - name: Install Dependencies
-      run: |
-        curl -fsSL http://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -
-        sudo curl -fsSLo /etc/apt/sources.list.d/lunarg-vulkan-focal.list http://packages.lunarg.com/vulkan/lunarg-vulkan-focal.list
-        sudo apt-get update -y && sudo apt-get install libsdl2-dev libfmt-dev libboost-dev vulkan-sdk
       
     - name: Setup Script
       run: pip3 install distro && python3 ./utils/setup.py --install-vulkan
