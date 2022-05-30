@@ -39,7 +39,7 @@ jobs:
           /home/runner/.cache/vcpkg/archives
       
     - name: Setup Script
-      run: pip3 install distro && python3 ./utils/setup.py --install-vulkan
+      run: pip3 install distro requests && python3 ./utils/setup.py --install-vulkan
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.

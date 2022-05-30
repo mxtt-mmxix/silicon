@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 import argparse
-import platform
-import subprocess
 import distro
-import requests
 import io
+import platform
+import requests
+import subprocess
 
 dependencies = [
     "sdl2[vulkan]",
