@@ -33,6 +33,7 @@ def setup():
             r = requests.get("https://sdk.lunarg.com/sdk/download/latest/windows/vulkan-sdk.exe")
             exe = open("vulkan-sdk.exe", mode="wb")
             exe.write(r.content)
+            exe.close()
 
             subprocess.run("vulkan-sdk.exe --accept-licenses --default-answer --confirm-command install com.lunarg.vulkan.32bit com.lunarg.vulkan.thirdparty com.lunarg.vulkan.debug com.lunarg.vulkan.debug32", shell=True, check=True)
 
