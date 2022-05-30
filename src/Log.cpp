@@ -31,8 +31,8 @@
 #include <sstream>
 #include <thread>
 
-#include <fmt/color.h>
 #include <SDL_timer.h>
+#include <fmt/color.h>
 
 namespace Si {
 
