@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import argparse
+import os
+
 import distro
 import io
 import platform
@@ -36,15 +38,15 @@ def setup():
             exe.close()
 
             subprocess.run(
-                "vulkan-sdk.exe \
-                --accept-licenses \
-                --default-answer \
-                --confirm-command install \
-                --root .\\libs\\VulkanSDK\\ \
-                com.lunarg.vulkan.32bit \
-                com.lunarg.vulkan.thirdparty \
-                com.lunarg.vulkan.debug \
-                com.lunarg.vulkan.debug32",
+                f"vulkan-sdk.exe \
+--accept-licenses \
+--default-answer \
+--confirm-command install \
+--root {os.path.abspath('/libs/VulkanSDK/')} \
+com.lunarg.vulkan.32bit \
+com.lunarg.vulkan.thirdparty \
+com.lunarg.vulkan.debug \
+com.lunarg.vulkan.debug32",
                 shell=True,
                 check=True)
 
