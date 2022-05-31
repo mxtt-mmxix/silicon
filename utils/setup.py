@@ -42,7 +42,7 @@ def setup():
 --accept-licenses \
 --default-answer \
 --confirm-command install \
---root {os.path.normpath(os.path.join(os.getcwd(), '/libs/VulkanSDK/'))} \
+--root {os.path.abspath('/VulkanSDK/')} \
 com.lunarg.vulkan.32bit \
 com.lunarg.vulkan.thirdparty \
 com.lunarg.vulkan.debug \

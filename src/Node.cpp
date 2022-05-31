@@ -44,7 +44,7 @@ Node::Node(std::initializer_list<MoveIfRVal<Node>> nodes)
 
     for (Node& node: nodes) {
         boost::add_edge(m_descriptor, node.m_descriptor, s_graph);
-        node.OnAttach();
+        s_graph[node.m_descriptor]->OnAttach();
     }
 }
 
@@ -86,6 +86,7 @@ void Node::CopyChildren(Node& other)
 
     std::for_each(begin, end, [this](Graph::vertex_descriptor node) {
         boost::add_edge(m_descriptor, node, s_graph);
+        s_graph[node]->OnAttach();
     });
 }
 

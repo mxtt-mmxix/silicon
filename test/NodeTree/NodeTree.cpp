@@ -34,14 +34,27 @@
 
 #include "Silicon/Log.hpp"
 #include "Silicon/Node.hpp"
+#include "Silicon/String.hpp"
 
 class CustomNode : public Si::Node
 {
 public:
-    CustomNode(const char* message, std::initializer_list<Si::MoveIfRVal<Node>> nodes = {}) : Si::Node(nodes)
+    CustomNode(Si::String message, std::initializer_list<Si::MoveIfRVal<Node>> nodes = {})
+        : Si::Node(nodes)
+        , m_message(std::move(message))
     {
-        SI_INFO(message);
     }
+
+    CustomNode(const CustomNode&) = delete;
+
+    bool OnAttach() override
+    {
+        SI_INFO(m_message);
+        return true;
+    }
+
+private:
+    Si::String m_message;
 };
 
 int main(int argc, char** argv)

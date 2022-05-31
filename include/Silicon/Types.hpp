@@ -31,7 +31,7 @@
 
 #include <functional>
 #include <list>
-#include <optional>
+#include <variant>
 #include <vector>
 
 #include <boost/graph/adjacency_list.hpp>
@@ -59,31 +59,29 @@ template <typename T>
 class MoveIfRVal {
 public:
     MoveIfRVal(T& object)
-        : xp(&object)
+        : x(&object)
     {
         SI_CORE_TRACE("Pointer to lvalue");
     }
 
     MoveIfRVal(T&& object)
         : x(std::move(object))
-        , xp(&(*x))
     {
         SI_CORE_TRACE("Moving rvalue");
     }
 
     operator T&()
     {
-        return *xp;
+        return std::holds_alternative<T*>(x) ? *std::get<T*>(x) : std::get<T>(x);
     }
 
     operator T&() const
     {
-        return *xp;
+        return std::holds_alternative<T*>(x) ? *std::get<T*>(x) : const_cast<T&>(std::get<T>(x));
     }
 
 private:
-    std::optional<T> x = std::nullopt;
-    T* xp;
+    std::variant<T, T*> x;
 };
 
 /**

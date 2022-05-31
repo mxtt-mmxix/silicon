@@ -16,7 +16,7 @@ find_package(Boost REQUIRED)
 
 if (${CMAKE_SYSTEM_NAME} EQUAL "Windows")
     if (${USE_WINDOWS_CI_VULKAN})
-        set(Vulkan_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/libs/VulkanSDK/Include")
+        set(Vulkan_INCLUDE_DIR "D:/VulkanSDK/Include")
         set(Vulkan_LIBRARY "vulkan-1")
     endif()
 endif()
@@ -46,7 +46,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/i
 
 if (${CMAKE_SYSTEM_NAME} EQUAL "Windows")
     if (${USE_WINDOWS_CI_VULKAN})
-        target_link_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/libs/VulkanSDK/Lib")
+        target_link_directories(${PROJECT_NAME} PUBLIC "D:/VulkanSDK/Lib")
     else()
         target_link_directories(${PROJECT_NAME} PUBLIC $ENV{VULKAN_SDK}/Lib)
     endif()
