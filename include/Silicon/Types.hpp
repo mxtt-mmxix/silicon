@@ -56,16 +56,15 @@ using Ref = std::reference_wrapper<T>;
  * @tparam T
  */
 template <typename T>
-class RefToPtr
-{
+class MoveIfRVal {
 public:
-    RefToPtr(T& object)
+    MoveIfRVal(T& object)
         : xp(&object)
     {
         SI_CORE_TRACE("Pointer to lvalue");
     }
 
-    RefToPtr(T&& object)
+    MoveIfRVal(T&& object)
         : x(std::move(object))
         , xp(&(*x))
     {

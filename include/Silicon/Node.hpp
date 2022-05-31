@@ -59,7 +59,7 @@ public:
      * Constructs a Node.
      * @param nodes Attaches the specified nodes as children of this Node and attaches it to the tree.
      */
-    Node(std::initializer_list<RefToPtr<Node>> nodes);
+    Node(std::initializer_list<MoveIfRVal<Node>> nodes);
 
     Node(const Node&) = delete;
     Node(Node&&);

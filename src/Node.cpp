@@ -38,7 +38,7 @@ Si::Node::Graph s_graph;
 
 namespace Si {
 
-Node::Node(std::initializer_list<RefToPtr<Node>> nodes)
+Node::Node(std::initializer_list<MoveIfRVal<Node>> nodes)
 {
     m_descriptor = boost::add_vertex(this, s_graph);
 
