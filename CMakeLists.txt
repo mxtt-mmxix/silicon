@@ -6,11 +6,21 @@ set(
 
 project(Silicon)
 
+option(USE_WINDOWS_CI_VULKAN "Sets VulkanSDK to libs/VulkanSDK. Only for use in GitHub Actions" OFF)
+
 include(CTest)
 
 find_package(SDL2 CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(Boost REQUIRED)
+
+if (${CMAKE_SYSTEM_NAME} EQUAL "Windows")
+    if (${USE_WINDOWS_CI_VULKAN})
+        set(Vulkan_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/libs/VulkanSDK/Include")
+        set(Vulkan_LIBRARY "vulkan-1")
+    endif()
+endif()
+
 find_package(Vulkan REQUIRED)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -35,7 +45,11 @@ add_library(${PROJECT_NAME} ${SRC})
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 if (${CMAKE_SYSTEM_NAME} EQUAL "Windows")
-    target_link_directories(${PROJECT_NAME} PUBLIC $ENV{VULKAN_SDK}/Lib)
+    if (${USE_WINDOWS_CI_VULKAN})
+        target_link_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/libs/VulkanSDK/Lib")
+    else()
+        target_link_directories(${PROJECT_NAME} PUBLIC $ENV{VULKAN_SDK}/Lib)
+    endif()
 else()
     target_link_directories(${PROJECT_NAME} PUBLIC $ENV{VULKAN_SDK}/lib)
 endif()
