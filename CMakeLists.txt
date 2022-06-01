@@ -16,8 +16,7 @@ find_package(Boost REQUIRED)
 
 if (${CMAKE_SYSTEM_NAME} EQUAL "Windows")
     if (${USE_WINDOWS_CI_VULKAN})
-        set(Vulkan_INCLUDE_DIR "D:/VulkanSDK/Include")
-        set(Vulkan_LIBRARY "vulkan-1")
+        set(VULKAN_SDK "D:/VulkanSDK/")
     endif()
 endif()
 
