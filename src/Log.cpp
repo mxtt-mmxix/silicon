@@ -34,6 +34,10 @@
 #include <SDL_timer.h>
 #include <fmt/color.h>
 
+namespace {
+    std::mutex s_mutex;
+}
+
 namespace Si {
 
 void Log(const LogEntry& entry)
@@ -41,7 +45,6 @@ void Log(const LogEntry& entry)
     std::stringstream ss;
     ss << std::this_thread::get_id();
 
-    static std::mutex s_mutex;
     std::unique_lock lock { s_mutex };
 
     switch (entry.type) {

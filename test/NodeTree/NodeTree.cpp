@@ -36,16 +36,14 @@
 #include "Silicon/Node.hpp"
 #include "Silicon/String.hpp"
 
-class CustomNode : public Si::Node
-{
+class CustomNodeImpl : public Si::Node {
 public:
-    CustomNode(Si::String message, std::initializer_list<Si::MoveIfRVal<Node>> nodes = {})
-        : Si::Node(nodes)
-        , m_message(std::move(message))
+    explicit CustomNodeImpl(Si::String message)
+        : m_message(std::move(message))
     {
     }
 
-    CustomNode(const CustomNode&) = delete;
+    CustomNodeImpl(const CustomNodeImpl&) = delete;
 
     bool OnAttach() override
     {
@@ -53,35 +51,29 @@ public:
         return true;
     }
 
+    ~CustomNodeImpl() {
+        SI_INFO("Destroying {}", m_message);
+    };
+
 private:
     Si::String m_message;
 };
 
+SI_DECL_NODE(CustomNode, CustomNodeImpl)
+
 int main(int argc, char** argv)
 {
-
-    CustomNode lvalue { "Node F" };
-
     CustomNode root {
-        "Node A",
         {
             CustomNode {
-                "Node B",
-                {
-                    CustomNode {
-                        "Node C"
-                    },
-                    CustomNode {
-                        "Node D"
-                    }
-                }
-            },
-            CustomNode {
-                "Node E"
-            },
-            lvalue
-        }
+                {},
+                "Node B"
+            }
+        },
+        "Node A"
     };
+
+    root->OnAttach();
 
     return EXIT_SUCCESS;
 }

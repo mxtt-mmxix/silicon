@@ -50,19 +50,8 @@ namespace Si {
  */
 class Node {
 public:
-    /**
-     * Helper type used to define the Node tree. You do not need to use this type directly.
-     */
-    using Graph = Si::Graph<Node*, GraphList>;
-
-    /**
-     * Constructs a Node.
-     * @param nodes Attaches the specified nodes as children of this Node and attaches it to the tree.
-     */
-    Node(std::initializer_list<MoveIfRVal<Node>> nodes);
-
     Node(const Node&) = delete;
-    Node(Node&&);
+    Node(Node&&) = delete;
 
     /**
      * Gets called when the Node is attached to the tree.
@@ -88,17 +77,43 @@ public:
     /**
      * End all be all for this Node.
      */
-    virtual ~Node();
+    virtual ~Node() = default;
 
     Node& operator=(const Node&) = delete;
-    Node& operator=(Node&&);
+    Node& operator=(Node&&) = delete;
+
+protected:
+    Node() = default;
+};
+
+class NodeContainer {
+public:
+    /**
+     * Helper type used to define the Node tree. You do not need to use this type directly.
+     */
+    using Graph = Si::Graph<std::unique_ptr<Node>, GraphList>;
+
+    NodeContainer() = delete;
+    NodeContainer(std::unique_ptr<Node>&&, std::initializer_list<NodeContainer>);
+    NodeContainer(const NodeContainer&) = delete;
+    NodeContainer(NodeContainer&& other) noexcept;
+
+    Node* operator->();
 
 private:
-    void CopyChildren(Node& other);
-
-    Node::Graph::vertex_descriptor m_descriptor;
+    Graph::vertex_descriptor m_descriptor;
 };
 
 } // Si
+
+#define SI_DECL_NODE(NODE, INODE)                                                            \
+    template <typename... Args>                                                              \
+    class NODE : public Si::NodeContainer {                                                  \
+    public:                                                                                  \
+        NODE(std::initializer_list<NodeContainer> nodes, Args... args)                       \
+            : Si::NodeContainer(std::make_unique<INODE>(std::forward<Args>(args)...), nodes) \
+        {                                                                                    \
+        }                                                                                    \
+    };
 
 #endif // SILICON_NODE_HPP

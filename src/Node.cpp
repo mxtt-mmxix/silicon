@@ -32,27 +32,11 @@
 
 namespace {
 
-Si::Node::Graph s_graph;
+Si::NodeContainer::Graph s_graph;
 
 }
 
 namespace Si {
-
-Node::Node(std::initializer_list<MoveIfRVal<Node>> nodes)
-{
-    m_descriptor = boost::add_vertex(this, s_graph);
-
-    for (Node& node: nodes) {
-        boost::add_edge(m_descriptor, node.m_descriptor, s_graph);
-        s_graph[node.m_descriptor]->OnAttach();
-    }
-}
-
-Node::Node(Node&& node)
-{
-    m_descriptor = boost::add_vertex(this, s_graph);
-    CopyChildren(node);
-}
 
 bool Node::OnAttach()
 {
@@ -67,27 +51,25 @@ void Node::OnDetach()
 {
 }
 
-Node::~Node()
+NodeContainer::NodeContainer(std::unique_ptr<Node>&& ptr, std::initializer_list<NodeContainer> nodes)
 {
-    boost::clear_vertex(m_descriptor, s_graph);
-    boost::remove_vertex(m_descriptor, s_graph);
+    m_descriptor = boost::add_vertex(s_graph);
+    s_graph[m_descriptor] = std::move(ptr);
+
+    for (const NodeContainer& node: nodes) {
+        boost::add_edge(m_descriptor, node.m_descriptor, s_graph);
+        s_graph[node.m_descriptor]->OnAttach();
+    }
 }
 
-Node& Node::operator=(Node&& node)
+NodeContainer::NodeContainer(NodeContainer&& other) noexcept
+    : m_descriptor(other.m_descriptor)
 {
-    CopyChildren(node);
-
-    return *this;
 }
 
-void Node::CopyChildren(Node& other)
+Node* NodeContainer::operator->()
 {
-    auto [begin, end] = boost::adjacent_vertices(other.m_descriptor, s_graph);
-
-    std::for_each(begin, end, [this](Graph::vertex_descriptor node) {
-        boost::add_edge(m_descriptor, node, s_graph);
-        s_graph[node]->OnAttach();
-    });
+    return s_graph[m_descriptor].get();
 }
 
 } // Si
