@@ -47,7 +47,6 @@ endif()
 target_link_libraries(${PROJECT_NAME} PRIVATE
         SDL2::SDL2
         SDL2::SDL2main
-        SDL2::SDL2-static
         shaderc_combined
         Vulkan::Vulkan)
 
