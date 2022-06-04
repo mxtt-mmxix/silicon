@@ -41,17 +41,23 @@ public:
     explicit CustomNodeImpl(Si::String message)
         : m_message(std::move(message))
     {
+        SI_INFO("Constructing: {}", m_message);
     }
 
     CustomNodeImpl(const CustomNodeImpl&) = delete;
 
     bool OnAttach() override
     {
-        SI_INFO(m_message);
+        SI_INFO("Attaching: {}", m_message);
         return true;
     }
 
-    ~CustomNodeImpl() {
+    void OnDetach() override
+    {
+        SI_INFO("Detaching: {}", m_message);
+    }
+
+    ~CustomNodeImpl() override {
         SI_INFO("Destroying {}", m_message);
     };
 
@@ -73,7 +79,8 @@ int main(int argc, char** argv)
         "Node A"
     };
 
-    root->OnAttach();
+    root->Attach();
+    root->Detach();
 
     return EXIT_SUCCESS;
 }

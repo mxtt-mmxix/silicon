@@ -35,6 +35,8 @@
 
 namespace Si {
 
+class NodeContainer;
+
 /**
  * A Node is the building block of your game.
  *
@@ -49,9 +51,20 @@ namespace Si {
  * attached to a specific location in the tree nor should its behavior depend on where it is attached in the tree.
  */
 class Node {
+
+    friend NodeContainer;
+
 public:
+
+    /**
+     * Helper type used to define the Node tree. You do not need to use this type directly.
+     */
+    using Graph = Si::Graph<std::unique_ptr<Node>, GraphList>;
+
     Node(const Node&) = delete;
     Node(Node&&) = delete;
+
+    bool Attach();
 
     /**
      * Gets called when the Node is attached to the tree.
@@ -67,6 +80,8 @@ public:
      */
     virtual void OnTick(float deltaTime);
 
+    void Detach();
+
     /**
      * Gets called when the Node is removed from the tree.
      *
@@ -79,20 +94,21 @@ public:
      */
     virtual ~Node() = default;
 
+    bool IsAncestor(Node& ancestor);
+
     Node& operator=(const Node&) = delete;
     Node& operator=(Node&&) = delete;
 
 protected:
     Node() = default;
+
+private:
+    Node::Graph::vertex_descriptor m_descriptor;
+
 };
 
 class NodeContainer {
 public:
-    /**
-     * Helper type used to define the Node tree. You do not need to use this type directly.
-     */
-    using Graph = Si::Graph<std::unique_ptr<Node>, GraphList>;
-
     NodeContainer() = delete;
     NodeContainer(std::unique_ptr<Node>&&, std::initializer_list<NodeContainer>);
     NodeContainer(const NodeContainer&) = delete;
@@ -101,7 +117,7 @@ public:
     Node* operator->();
 
 private:
-    Graph::vertex_descriptor m_descriptor;
+    Node::Graph::vertex_descriptor m_descriptor;
 };
 
 } // Si

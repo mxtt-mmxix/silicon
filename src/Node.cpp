@@ -28,15 +28,44 @@
 
 #include <algorithm>
 
+#include <boost/current_function.hpp>
+
+#include "Silicon/Log.hpp"
 #include "Silicon/Node.hpp"
 
 namespace {
 
-Si::NodeContainer::Graph s_graph;
+Si::Node::Graph s_graph;
 
 }
 
 namespace Si {
+
+bool Node::Attach()
+{
+    String AttachFailError;
+
+    auto [parentBegin, parentEnd] = boost::in_edges(m_descriptor, s_graph);
+    auto [childrenBegin, childrenEnd] = boost::adjacent_vertices(m_descriptor, s_graph);
+
+    if (!this->OnAttach()) {
+        AttachFailError = "this->OnAttach() failed!";
+        goto NodeAttachFail;
+    }
+
+    for (auto i = childrenBegin; i != childrenEnd; ++i) {
+        if (!s_graph[*i]->Attach()) {
+            AttachFailError = "Child Node::OnAttach() failed!";
+            goto NodeAttachFail;
+        }
+    }
+
+    return true;
+
+NodeAttachFail:
+    SI_CORE_ERROR("{} failed: {}", BOOST_CURRENT_FUNCTION,  AttachFailError);
+    return false;
+}
 
 bool Node::OnAttach()
 {
@@ -47,18 +76,42 @@ void Node::OnTick(float deltaTime)
 {
 }
 
+void Node::Detach()
+{
+    auto [childrenBegin, childrenEnd] = boost::adjacent_vertices(m_descriptor, s_graph);
+
+    for (auto i = childrenBegin; i != childrenEnd; ++i) {
+        s_graph[*i]->Detach();
+    }
+
+    this->OnDetach();
+}
+
 void Node::OnDetach()
 {
+}
+
+bool Node::IsAncestor(Node& ancestor)
+{
+    if (m_descriptor == ancestor.m_descriptor) return true;
+
+    auto [begin, end] = boost::inv_adjacent_vertices(ancestor.m_descriptor, s_graph);
+
+    for (auto i = begin; i != end; ++i) {
+        if (s_graph[*i]->IsAncestor(ancestor)) return true;
+    }
+
+    return false;
 }
 
 NodeContainer::NodeContainer(std::unique_ptr<Node>&& ptr, std::initializer_list<NodeContainer> nodes)
 {
     m_descriptor = boost::add_vertex(s_graph);
     s_graph[m_descriptor] = std::move(ptr);
+    s_graph[m_descriptor]->m_descriptor = m_descriptor;
 
-    for (const NodeContainer& node: nodes) {
+    for (const NodeContainer& node : nodes) {
         boost::add_edge(m_descriptor, node.m_descriptor, s_graph);
-        s_graph[node.m_descriptor]->OnAttach();
     }
 }
 
