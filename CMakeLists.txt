@@ -6,20 +6,11 @@ set(
 
 project(Silicon)
 
-option(USE_WINDOWS_CI_VULKAN "Sets VulkanSDK to libs/VulkanSDK. Only for use in GitHub Actions" OFF)
-
 include(CTest)
 
 find_package(SDL2 CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(Boost REQUIRED)
-
-if (${CMAKE_SYSTEM_NAME} EQUAL "Windows")
-    if (${USE_WINDOWS_CI_VULKAN})
-        set(VULKAN_SDK "D:/VulkanSDK/")
-    endif()
-endif()
-
 find_package(Vulkan REQUIRED)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

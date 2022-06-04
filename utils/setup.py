@@ -42,7 +42,7 @@ def setup():
 --accept-licenses \
 --default-answer \
 --confirm-command install \
---root {os.path.abspath('/VulkanSDK/')} \
+--root {os.path.abspath(os.environ['VULKAN_SDK'])} \
 com.lunarg.vulkan.32bit \
 com.lunarg.vulkan.thirdparty \
 com.lunarg.vulkan.debug \
@@ -54,7 +54,6 @@ com.lunarg.vulkan.debug32",
             if distro.id() == "ubuntu":
                 r = requests.get("https://packages.lunarg.com/lunarg-signing-key-pub.asc")
                 subprocess.run("sudo apt-key add -", input=io.BytesIO(r.content).getvalue(), shell=True, check=True)
-
                 subprocess.run("./utils/Linux/Ubuntu/InstallVulkan.sh", check=True)
             else:
                 subprocess.run("./utils/Linux/InstallVulkan.sh", check=True)
