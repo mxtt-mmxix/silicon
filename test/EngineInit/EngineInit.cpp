@@ -26,59 +26,15 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define SDL_MAIN_HANDLED
-#include <SDL2/SDL.h>
+#include <cstdlib>
 
-#include <Silicon/Log.hpp>
-#include <Silicon/Engine.hpp>
+#include "Silicon/Engine.hpp"
 
-namespace {
 
-constexpr std::uint32_t SUBSYSTEM_MASK = SDL_INIT_VIDEO | SDL_INIT_AUDIO;
-
-}
-
-namespace Si::Engine {
-
-bool Initialize()
+int main(int argc, char** argv)
 {
-    if (SDL_WasInit(SUBSYSTEM_MASK) == SUBSYSTEM_MASK) {
-        SI_CORE_WARN("{}: Engine already initialized!", BOOST_CURRENT_FUNCTION);
-        return true;
-    }
+    if (!Si::Engine::Initialize()) return EXIT_FAILURE;
+    atexit(Si::Engine::DeInitialize);
 
-    SDL_SetMainReady();
-
-    if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) < 0) {
-        SI_CORE_CRITICAL("Failed to initialize SDL: {}", SDL_GetError());
-        return false;
-    }
-
-    SI_CORE_INFO("{}: Welcome to Silicon Engine!", BOOST_CURRENT_FUNCTION);
-
-    return true;
-}
-
-void Run()
-{
-}
-
-void Run(const std::function<void(float)>& func)
-{
-    func(0);
-    Run();
-}
-
-void DeInitialize()
-{
-    if (SDL_WasInit(SUBSYSTEM_MASK) == SUBSYSTEM_MASK) {
-        SDL_Quit();
-
-        SI_CORE_INFO("{}: Silicon Engine Shutdown.", BOOST_CURRENT_FUNCTION);
-        return;
-    }
-
-    SI_CORE_WARN("{}: Engine was not initialized!", BOOST_CURRENT_FUNCTION);
-}
-
+    return EXIT_SUCCESS;
 }

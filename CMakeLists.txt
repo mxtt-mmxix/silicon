@@ -52,3 +52,4 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 
 include(test/HelloWorld/HelloWorld.cmake)
 include(test/NodeTree/NodeTree.cmake)
+include(test/EngineInit/EngineInit.cmake)
