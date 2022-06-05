@@ -1,4 +1,7 @@
 # Silicon Engine
-[![Ubuntu Build](https://github.com/mxtt-mmxix/silicon/actions/workflows/cmake.yml/badge.svg)](https://github.com/mxtt-mmxix/silicon/actions/workflows/cmake.yml)
+| Platform | Build Status |
+| --- | --- |
+| Windows | [![Windows](https://github.com/mxtt-mmxix/silicon/actions/workflows/Windows.yml/badge.svg)](https://github.com/mxtt-mmxix/silicon/actions/workflows/Windows.yml) |
+| Linux | [![Linux](https://github.com/mxtt-mmxix/silicon/actions/workflows/Linux.yml/badge.svg)](https://github.com/mxtt-mmxix/silicon/actions/workflows/Linux.yml) |
 
 A realtime platform for developing interactive media.
