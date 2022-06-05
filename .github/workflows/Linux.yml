@@ -11,9 +11,6 @@ env:
 
 jobs:
   build:
-
-    concurrency: ci-${{ github.ref }}
-
     env:
       BUILD_TYPE: Debug
 
