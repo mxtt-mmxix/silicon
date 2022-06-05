@@ -26,69 +26,28 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#define SDL_MAIN_HANDLED
-#include <SDL2/SDL.h>
+#include <SDL2/SDL_timer.h>
 
-#include <Silicon/Log.hpp>
-#include <Silicon/Engine.hpp>
-#include <Silicon/StopWatch.hpp>
+#include "Silicon/StopWatch.hpp"
 
-namespace {
+namespace Si {
 
-constexpr std::uint32_t SUBSYSTEM_MASK = SDL_INIT_VIDEO | SDL_INIT_AUDIO;
-
-}
-
-namespace Si::Engine {
-
-bool Initialize()
+StopWatch::StopWatch()
+    : m_timestamp(SDL_GetTicks64())
 {
-    if (SDL_WasInit(SUBSYSTEM_MASK) == SUBSYSTEM_MASK) {
-        SI_CORE_WARN("{}: Engine already initialized!", BOOST_CURRENT_FUNCTION);
-        return true;
-    }
-
-    SDL_SetMainReady();
-
-    if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) < 0) {
-        SI_CORE_CRITICAL("Failed to initialize SDL: {}", SDL_GetError());
-        return false;
-    }
-
-    SI_CORE_INFO("{}: Welcome to Silicon Engine!", BOOST_CURRENT_FUNCTION);
-
-    return true;
 }
 
-void Run(const std::function<void(float)>& func)
+float StopWatch::GetElapsedTime() const
 {
-    SDL_Event e;
-    StopWatch stopWatch;
-
-    while (e.type != SDL_QUIT) {
-        while (SDL_PollEvent(&e)) {
-
-        }
-
-        func(stopWatch.Reset());
-    }
+    return (static_cast<float>(SDL_GetTicks64()) - static_cast<float>(m_timestamp)) * 1000.f;
 }
 
-void Run()
+float StopWatch::Reset()
 {
-    Run({});
+    const float time = GetElapsedTime();
+    m_timestamp = SDL_GetTicks64();
+
+    return time;
 }
 
-void DeInitialize()
-{
-    if (SDL_WasInit(SUBSYSTEM_MASK) == SUBSYSTEM_MASK) {
-        SDL_Quit();
-
-        SI_CORE_INFO("{}: Silicon Engine Shutdown.", BOOST_CURRENT_FUNCTION);
-        return;
-    }
-
-    SI_CORE_WARN("{}: Engine was not initialized!", BOOST_CURRENT_FUNCTION);
-}
-
-}
+} // Si

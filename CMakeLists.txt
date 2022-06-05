@@ -26,7 +26,9 @@ set(SRC
         include/Silicon/Node.hpp
         src/String.cpp
         include/Silicon/Allocator.hpp
-        include/Silicon/String.hpp)
+        include/Silicon/String.hpp
+        src/StopWatch.cpp
+        include/Silicon/StopWatch.hpp)
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SRC})
 
