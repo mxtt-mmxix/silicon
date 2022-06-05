@@ -29,6 +29,8 @@
 #ifndef SILICON_ENGINE_HPP
 #define SILICON_ENGINE_HPP
 
+#include <functional>
+
 namespace Si::Engine {
 
 /**
@@ -41,6 +43,8 @@ bool Initialize();
  * Execute the engine's main loop. This will exit when the engine is ready to shutdown.
  */
 void Run();
+
+void Run(const std::function<void(float)>&);
 
 /**
  * Shuts down the engine. Containers and logging will continue to work.

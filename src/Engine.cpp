@@ -26,11 +26,15 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#define SDL_MAIN_HANDLED
+#include <SDL2/SDL.h>
+
+#include <Silicon/Log.hpp>
 #include <Silicon/Engine.hpp>
 
 namespace {
 
-bool s_initialized;
+constexpr std::uint32_t SUBSYSTEM_MASK = SDL_INIT_VIDEO | SDL_INIT_AUDIO;
 
 }
 
@@ -38,25 +42,31 @@ namespace Si::Engine {
 
 bool Initialize()
 {
-    if (s_initialized)
-        return true;
+    if (SDL_WasInit(SUBSYSTEM_MASK) == SUBSYSTEM_MASK) return true;
 
-    return s_initialized = true;
+    SDL_SetMainReady();
+
+    if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) < 0) {
+        SI_CORE_CRITICAL("Failed to initialize SDL: {}", SDL_GetError());
+        return false;
+    }
+
+    return true;
 }
 
 void Run()
 {
+}
 
+void Run(const std::function<void(float)>& func)
+{
+    func(0);
+    Run();
 }
 
 void DeInitialize()
 {
-    if (!s_initialized)
-        return;
-
-
-
-    s_initialized = false;
+    if (SDL_WasInit(SUBSYSTEM_MASK) == SUBSYSTEM_MASK) SDL_Quit();
 }
 
 }
