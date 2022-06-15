@@ -21,14 +21,6 @@ if (BUILD_EMSCRIPTEN)
 
 endif()
 
-if(DEFINED ENV{VULKAN_SDK})
-    message(VERBOSE "VulkanSDK: $ENV{VULKAN_SDK}")
-endif()
-
-if(DEFINED ENV{EMSDK})
-    message(VERBOSE "Emscripten SDK: $ENV{EMSDK}")
-endif()
-
 project(Silicon)
 
 include(CTest)
@@ -49,7 +41,6 @@ if (NOT BUILD_EMSCRIPTEN)
 endif()
 
 find_package(fmt CONFIG REQUIRED)
-# find_package(Vulkan REQUIRED)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
@@ -74,18 +65,11 @@ add_library(${PROJECT_NAME} ${SRC})
 
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-if (${CMAKE_HOST_SYSTEM_NAME} EQUAL "Windows")
-    target_link_directories(${PROJECT_NAME} PUBLIC $ENV{VULKAN_SDK}/Lib)
-else()
-    target_link_directories(${PROJECT_NAME} PUBLIC $ENV{VULKAN_SDK}/lib)
-endif()
+target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt)
 
-if(BUILD_EMSCRIPTEN)
-    target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt-header-only)
-else()
+if(NOT BUILD_EMSCRIPTEN)
     target_link_libraries(${PROJECT_NAME} PUBLIC
-            Boost::boost
-            fmt::fmt)
+            Boost::boost)
     target_link_libraries(${PROJECT_NAME} PRIVATE
             SDL2::SDL2
             SDL2::SDL2main)
