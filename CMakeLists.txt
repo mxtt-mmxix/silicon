@@ -1,18 +1,54 @@
 cmake_minimum_required(VERSION 3.22)
 
+option(BUILD_EMSCRIPTEN "Builds Silicon Engine to target the Web using WASM and WebGL via Emscripten")
+
 set(
         CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/libs/vcpkg/scripts/buildsystems/vcpkg.cmake"
         CACHE STRING "Vcpkg toolchain file")
 
-project(Silicon)
+if (BUILD_EMSCRIPTEN)
+    if (NOT DEFINED ENV{EMSDK})
+        message(FATAL_ERROR "-DBUILD_EMSCRIPTEN is enabled but the Emscripten SDK was not found. Please set the EMSDK environment variable.")
+    endif()
 
-option(BUILD_EMSCRIPTEN "Builds Silicon Engine to target the Web using WASM and WebGL via Emscripten")
+    set(
+            VCPKG_CHAINLOAD_TOOLCHAIN_FILE "$ENV{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake"
+            CACHE STRING "Emscripten toolchain file")
+    set(VCPKG_TARGET_TRIPLET "wasm32-emscripten")
+
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -sUSE_SDL=2 -sUSE_BOOST_HEADERS=1")
+    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -sUSE_SDL=2 -sUSE_BOOST_HEADERS=1")
+
+endif()
+
+if(DEFINED ENV{VULKAN_SDK})
+    message(VERBOSE "VulkanSDK: $ENV{VULKAN_SDK}")
+endif()
+
+if(DEFINED ENV{EMSDK})
+    message(VERBOSE "Emscripten SDK: $ENV{EMSDK}")
+endif()
+
+project(Silicon)
 
 include(CTest)
 
-find_package(SDL2 CONFIG REQUIRED)
+if (${CMAKE_SYSTEM_NAME} EQUAL "Windows")
+    set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_install/x64-windows")
+elseif(${CMAKE_SYSTEM_NAME} EQUAL "Darwin")
+    set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_install/x64-osx")
+elseif(${CMAKE_SYSTEM_NAME} EQUAL "Linux")
+    set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_install/x64-linux")
+elseif(${CMAKE_SYSTEM_NAME} EQUAL "Emscripten")
+    set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_install/wasm32-emscripten")
+endif()
+
+if (NOT BUILD_EMSCRIPTEN)
+    find_package(SDL2 CONFIG REQUIRED)
+    find_package(Boost REQUIRED)
+endif()
+
 find_package(fmt CONFIG REQUIRED)
-find_package(Boost REQUIRED)
 # find_package(Vulkan REQUIRED)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -38,22 +74,21 @@ add_library(${PROJECT_NAME} ${SRC})
 
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-if (${CMAKE_SYSTEM_NAME} EQUAL "Windows")
+if (${CMAKE_HOST_SYSTEM_NAME} EQUAL "Windows")
     target_link_directories(${PROJECT_NAME} PUBLIC $ENV{VULKAN_SDK}/Lib)
 else()
     target_link_directories(${PROJECT_NAME} PUBLIC $ENV{VULKAN_SDK}/lib)
 endif()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
-        SDL2::SDL2
-        SDL2::SDL2main)
-
-target_link_libraries(${PROJECT_NAME} PUBLIC Boost::boost)
-        
 if(BUILD_EMSCRIPTEN)
     target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt-header-only)
 else()
-    target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt)
+    target_link_libraries(${PROJECT_NAME} PUBLIC
+            Boost::boost
+            fmt::fmt)
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+            SDL2::SDL2
+            SDL2::SDL2main)
 endif()
 
 include(test/HelloWorld/HelloWorld.cmake)
