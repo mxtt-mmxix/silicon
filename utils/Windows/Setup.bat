@@ -1,6 +1,6 @@
 git submodule update --init --recursive
 
-.\libs\vcpkg\bootstrap-vcpkg.sh
+.\libs\vcpkg\bootstrap-vcpkg.bat
 
 .\libs\vcpkg\vcpkg install "sdl2[vulkan]"
 .\libs\vcpkg\vcpkg install "fmt"
@@ -10,4 +10,4 @@ git submodule update --init --recursive
 .\libs\vcpkg\vcpkg install "sdl2[vulkan]:x64-windows"
 .\libs\vcpkg\vcpkg install "fmt:x64-windows"
 .\libs\vcpkg\vcpkg install "boost-pool:x64-windows"
-.\libs\vcpkg\vcpkg install "boost-graph:64-windows"
+.\libs\vcpkg\vcpkg install "boost-graph:x64-windows"
