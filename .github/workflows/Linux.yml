@@ -31,6 +31,7 @@ jobs:
           ${{ runner.os }}-build-${{ env.cache-name }}-
         path: |
           /home/runner/.cache/vcpkg/archives
+          ./vcpkg_installed
       
     - name: Setup Script
       run: pip3 install distro requests && python3 ./utils/setup.py --install-vulkan

@@ -9,14 +9,6 @@ import platform
 import requests
 import subprocess
 
-dependencies = [
-    "sdl2[vulkan]",
-    "fmt",
-    "boost-pool",
-    "boost-graph"
-]
-
-
 def setup():
 
     parser = argparse.ArgumentParser(
@@ -67,16 +59,13 @@ com.lunarg.vulkan.debug32",
 
     subprocess.run([vcpkg_bootstrap], check=True)
 
-    for dependency in dependencies:
-        subprocess.run(f"{vcpkg} install {dependency}", shell=True, check=True)
+    subprocess.run(f"{vcpkg} install", shell=True, check=True)
 
     if platform.system() == "Windows":
-        for dependency in dependencies:
-            subprocess.run(
-                f"{vcpkg} install {dependency} --triplet=x64-windows",
-                shell=True,
-                check=True)
-
+        subprocess.run(
+            f"{vcpkg} install --triplet=x64-windows",
+            shell=True,
+            check=True)
 
 if __name__ == "__main__":
     setup()
