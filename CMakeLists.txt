@@ -6,12 +6,14 @@ set(
 
 project(Silicon)
 
+option(BUILD_EMSCRIPTEN "Builds Silicon Engine to target the Web using WASM and WebGL via Emscripten")
+
 include(CTest)
 
 find_package(SDL2 CONFIG REQUIRED)
 find_package(fmt CONFIG REQUIRED)
 find_package(Boost REQUIRED)
-find_package(Vulkan REQUIRED)
+# find_package(Vulkan REQUIRED)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
@@ -28,7 +30,7 @@ set(SRC
         include/Silicon/Allocator.hpp
         include/Silicon/String.hpp
         src/StopWatch.cpp
-        include/Silicon/StopWatch.hpp)
+        include/Silicon/StopWatch.hpp src/Window.cpp include/Silicon/Window.hpp)
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SRC})
 
@@ -44,13 +46,15 @@ endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
         SDL2::SDL2
-        SDL2::SDL2main
-        shaderc_combined
-        Vulkan::Vulkan)
+        SDL2::SDL2main)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC
-        Boost::boost
-        fmt::fmt)
+target_link_libraries(${PROJECT_NAME} PUBLIC Boost::boost)
+        
+if(BUILD_EMSCRIPTEN)
+    target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt-header-only)
+else()
+    target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt)
+endif()
 
 include(test/HelloWorld/HelloWorld.cmake)
 include(test/NodeTree/NodeTree.cmake)
