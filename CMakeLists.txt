@@ -17,8 +17,7 @@ if (BUILD_EMSCRIPTEN)
             CACHE STRING "Emscripten toolchain file")
     set(VCPKG_TARGET_TRIPLET "wasm32-emscripten")
 
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -sUSE_SDL=2 -sUSE_BOOST_HEADERS=1 -sMAX_WEBGL_VERSION=2 -Wno-unused-command-line-argument")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -sUSE_SDL=2 -sUSE_BOOST_HEADERS=1 -sMAX_WEBGL_VERSION=2 -Wno-unused-command-line-argument")
+    add_compile_definitions(BUILD_EMSCRIPTEN)
 endif()
 
 project(Silicon)
@@ -65,6 +64,11 @@ set(SRC
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SRC})
 
+if (BUILD_EMSCRIPTEN)
+    set(CMAKE_EXECUTABLE_SUFFIX ".html")
+    add_link_options("--emrun" "-sALLOW_MEMORY_GROWTH" "-sUSE_SDL=2" "-sUSE_BOOST_HEADERS=1" "-sMAX_WEBGL_VERSION=2")
+endif()
+
 add_library(${PROJECT_NAME} ${SRC})
 
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" "${CMAKE_CURRENT_BINARY_DIR}/include")
@@ -79,11 +83,6 @@ if(NOT BUILD_EMSCRIPTEN)
     target_link_libraries(${PROJECT_NAME} PRIVATE
             SDL2::SDL2
             SDL2::SDL2main)
-endif()
-
-if (BUILD_EMSCRIPTEN)
-    set(CMAKE_EXECUTABLE_SUFFIX ".html")
-    add_link_options("--emrun" "-sALLOW_MEMORY_GROWTH")
 endif()
 
 include(test/HelloWorld/HelloWorld.cmake)

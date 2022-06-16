@@ -27,11 +27,11 @@
  */
 
 #include "Silicon/Log.hpp"
+#include "Silicon/StopWatch.hpp"
 
 #include <sstream>
 #include <thread>
 
-#include <SDL_timer.h>
 #include <fmt/color.h>
 
 namespace {
@@ -42,6 +42,8 @@ namespace Si {
 
 void Log(const LogEntry& entry)
 {
+    static Si::StopWatch s_stopwatch;
+    
     std::stringstream ss;
     ss << std::this_thread::get_id();
 
@@ -49,10 +51,10 @@ void Log(const LogEntry& entry)
 
     switch (entry.type) {
     case LogEntry::Type::Engine:
-        fmt::print("[{:>12.3f}][{:>16}][Engine][", static_cast<float>(SDL_GetTicks64()) / 1000.0f, ss.str());
+        fmt::print("[{:>12.3f}][{:>16}][Engine][", s_stopwatch.GetElapsedTime(), ss.str());
         break;
     case LogEntry::Type::Client:
-        fmt::print("[{:>12.3f}][{:>16}][Client][", static_cast<float>(SDL_GetTicks64()) / 1000.0f, ss.str());
+        fmt::print("[{:>12.3f}][{:>16}][Client][", s_stopwatch.GetElapsedTime(), ss.str());
         break;
     }
 

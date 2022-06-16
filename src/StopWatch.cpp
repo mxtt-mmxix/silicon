@@ -39,7 +39,7 @@ StopWatch::StopWatch()
 
 float StopWatch::GetElapsedTime() const
 {
-    return (static_cast<float>(SDL_GetTicks64()) - static_cast<float>(m_timestamp)) * 1000.f;
+    return (static_cast<float>(SDL_GetTicks64()) - static_cast<float>(m_timestamp)) / 1000.f;
 }
 
 float StopWatch::Reset()

@@ -26,6 +26,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#ifdef BUILD_EMSCRIPTEN
+#include <emscripten.h>
+#endif
+
 #define SDL_MAIN_HANDLED
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_syswm.h>
@@ -41,7 +45,17 @@
 namespace {
 
 constexpr std::uint32_t SUBSYSTEM_MASK = SDL_INIT_VIDEO | SDL_INIT_AUDIO;
+
+SDL_Event s_event;
 Si::Window s_applicationWindow;
+
+void Loop()
+{
+    Si::StopWatch stopWatch;
+
+    while (SDL_PollEvent(&s_event)) {
+    }
+}
 
 }
 
@@ -63,14 +77,14 @@ bool Initialize()
 
     s_applicationWindow.Open("Si Engine");
 
-    SDL_SysWMinfo info;
-    SDL_VERSION(&info.version);
-
-    SDL_Window* window = SDL_GetWindowFromID(s_applicationWindow.getID());
-
     int windowWidth = 800, windowHeight = 600;
 
+    SDL_SysWMinfo info;
+    SDL_Window* window = SDL_GetWindowFromID(s_applicationWindow.getID());
+
     bgfx::PlatformData bgfxPD;
+
+    SDL_VERSION(&info.version);
 
     if (window == nullptr) {
         SI_CORE_ERROR("Failed to get window!: {}", SDL_GetError());
@@ -126,20 +140,14 @@ bool Initialize()
 
 void Run(const std::function<void(float)>& func)
 {
-    SDL_Event e;
-    StopWatch stopWatch;
+#ifdef __EMSCRIPTEN__
+    emscripten_set_main_loop(Loop, 0, true);
+    return;
+#endif
 
-    while (e.type != SDL_QUIT) {
-        while (SDL_PollEvent(&e)) {
-        }
-
-        func(stopWatch.Reset());
+    while (s_event.type != SDL_QUIT) {
+        Loop();
     }
-}
-
-void Run()
-{
-    Run({});
 }
 
 void DeInitialize()
