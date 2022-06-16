@@ -32,15 +32,18 @@
 #include <cstdint>
 
 #include "Silicon/String.hpp"
+#include "Silicon/Config.hpp"
 
 namespace Si {
 
 class Window {
 public:
+    Window() = default;
     explicit Window(const String& name, std::uint32_t width = 800, std::uint32_t height = 600);
 
     bool Open(const String& name, std::uint32_t width = 800, uint32_t height = 600);
     void Close();
+    uint32_t getID() const;
 
     ~Window();
 

@@ -47,13 +47,19 @@ bool Window::Open(const String& name, std::uint32_t width, uint32_t height)
         return false;
     }
 
+    std::uint32_t flags = SDL_WINDOW_ALLOW_HIGHDPI;
+
+    if constexpr (Si::PLATFORM_NAME == "Darwin") {
+        flags |= SDL_WINDOW_METAL;
+    }
+
     window = SDL_CreateWindow(
         name.c_str(),
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
         static_cast<int>(width),
         static_cast<int>(height),
-        SDL_WINDOW_VULKAN);
+        flags);
 
     if (window == nullptr) {
         SI_CORE_ERROR("{}: Failed to open window: {}", BOOST_CURRENT_FUNCTION, SDL_GetError());
@@ -74,6 +80,11 @@ void Window::Close()
 Window::~Window()
 {
     Close();
+}
+
+uint32_t Window::getID() const
+{
+    return m_id;
 }
 
 } // Si

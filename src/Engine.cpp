@@ -28,14 +28,20 @@
 
 #define SDL_MAIN_HANDLED
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_syswm.h>
 
-#include <Silicon/Log.hpp>
+#include <bgfx/bgfx.h>
+#include <bgfx/platform.h>
+
 #include <Silicon/Engine.hpp>
+#include <Silicon/Log.hpp>
 #include <Silicon/StopWatch.hpp>
+#include <Silicon/Window.hpp>
 
 namespace {
 
 constexpr std::uint32_t SUBSYSTEM_MASK = SDL_INIT_VIDEO | SDL_INIT_AUDIO;
+Si::Window s_applicationWindow;
 
 }
 
@@ -50,10 +56,68 @@ bool Initialize()
 
     SDL_SetMainReady();
 
-    if (SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) < 0) {
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
         SI_CORE_CRITICAL("Failed to initialize SDL: {}", SDL_GetError());
         return false;
     }
+
+    s_applicationWindow.Open("Si Engine");
+
+    SDL_SysWMinfo info;
+    SDL_VERSION(&info.version);
+
+    SDL_Window* window = SDL_GetWindowFromID(s_applicationWindow.getID());
+
+    int windowWidth = 800, windowHeight = 600;
+
+    bgfx::PlatformData bgfxPD;
+
+    if (window == nullptr) {
+        SI_CORE_ERROR("Failed to get window!: {}", SDL_GetError());
+        return false;
+    }
+
+    if constexpr (Si::PLATFORM_NAME != "Emscripten") {
+
+        if (!SDL_GetWindowWMInfo(window, &info)) {
+            SI_CORE_ERROR("Failed to get window manager information: {}", SDL_GetError());
+            return false;
+        }
+
+    } else {
+        bgfxPD.nwh = (void*)"#canvas";
+    }
+
+#ifdef __APPLE__
+
+    bgfxPD.nwh = info.info.cocoa.window;
+
+#endif
+
+    bgfx::setPlatformData(bgfxPD);
+
+    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+
+    if (renderer == nullptr) {
+        SI_CORE_ERROR("Failed to create temporary renderer: {}", SDL_GetError());
+        return false;
+    }
+
+    if (SDL_GetRendererOutputSize(renderer, &windowWidth, &windowHeight) < 0) {
+        SI_CORE_ERROR("Failed to get window size: {}", SDL_GetError());
+        return false;
+    }
+
+    SDL_DestroyRenderer(renderer);
+
+    bgfx::Init bgfxInit;
+    bgfxInit.type = bgfx::RendererType::Count;
+    bgfxInit.resolution.width = windowWidth;
+    bgfxInit.resolution.height = windowHeight;
+    bgfxInit.resolution.reset = BGFX_RESET_VSYNC;
+
+    bgfx::renderFrame();
+    bgfx::init(bgfxInit);
 
     SI_CORE_INFO("{}: Welcome to Silicon Engine!", BOOST_CURRENT_FUNCTION);
 
@@ -67,7 +131,6 @@ void Run(const std::function<void(float)>& func)
 
     while (e.type != SDL_QUIT) {
         while (SDL_PollEvent(&e)) {
-
         }
 
         func(stopWatch.Reset());

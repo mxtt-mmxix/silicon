@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 option(BUILD_EMSCRIPTEN "Builds Silicon Engine to target the Web using WASM and WebGL via Emscripten")
+option(SKIP_ENGINE_TESTS "Skips engine tests which require a browser environment")
 
 set(
         CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/libs/vcpkg/scripts/buildsystems/vcpkg.cmake"
@@ -16,9 +17,8 @@ if (BUILD_EMSCRIPTEN)
             CACHE STRING "Emscripten toolchain file")
     set(VCPKG_TARGET_TRIPLET "wasm32-emscripten")
 
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -sUSE_SDL=2 -sUSE_BOOST_HEADERS=1")
-    SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -sUSE_SDL=2 -sUSE_BOOST_HEADERS=1")
-
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -sUSE_SDL=2 -sUSE_BOOST_HEADERS=1 -sMAX_WEBGL_VERSION=2 -Wno-unused-command-line-argument")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -sUSE_SDL=2 -sUSE_BOOST_HEADERS=1 -sMAX_WEBGL_VERSION=2 -Wno-unused-command-line-argument")
 endif()
 
 project(Silicon)
@@ -42,8 +42,12 @@ endif()
 
 find_package(fmt CONFIG REQUIRED)
 
+add_subdirectory(libs/bgfx)
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
+
+configure_file(include/Silicon/Config.hpp.in include/Silicon/Config.hpp)
 
 set(SRC
         src/Log.cpp
@@ -63,9 +67,11 @@ source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SRC})
 
 add_library(${PROJECT_NAME} ${SRC})
 
-target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" "${CMAKE_CURRENT_BINARY_DIR}/include")
 
 target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE bgfx bx)
 
 if(NOT BUILD_EMSCRIPTEN)
     target_link_libraries(${PROJECT_NAME} PUBLIC
@@ -73,6 +79,11 @@ if(NOT BUILD_EMSCRIPTEN)
     target_link_libraries(${PROJECT_NAME} PRIVATE
             SDL2::SDL2
             SDL2::SDL2main)
+endif()
+
+if (BUILD_EMSCRIPTEN)
+    set(CMAKE_EXECUTABLE_SUFFIX ".html")
+    add_link_options("--emrun" "-sALLOW_MEMORY_GROWTH")
 endif()
 
 include(test/HelloWorld/HelloWorld.cmake)

@@ -1,0 +1,12 @@
+#ifndef SILICON_CONFIG_HPP
+#define SILICON_CONFIG_HPP
+
+#include <string_view>
+
+namespace Si {
+
+constexpr std::string_view PLATFORM_NAME { "@CMAKE_SYSTEM_NAME@" };
+
+}
+
+#endif

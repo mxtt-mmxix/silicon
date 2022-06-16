@@ -2,6 +2,10 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/libs/bgfx" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/libs/bgfx/bgfx" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/libs/bgfx/bimg" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/libs/bgfx/bx" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/libs/doxygen-awesome-css" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/libs/vcpkg" vcs="Git" />
   </component>
