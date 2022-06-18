@@ -1,0 +1,51 @@
+\hypertarget{_engine_8cpp}{}\doxysection{src/\+Engine.cpp File Reference}
+\label{_engine_8cpp}\index{src/Engine.cpp@{src/Engine.cpp}}
+{\ttfamily \#include $<$mutex$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+syswm.\+h$>$}\newline
+{\ttfamily \#include $<$bgfx/bgfx.\+h$>$}\newline
+{\ttfamily \#include $<$bgfx/platform.\+h$>$}\newline
+{\ttfamily \#include $<$Silicon/\+Engine.\+hpp$>$}\newline
+{\ttfamily \#include $<$Silicon/\+Log.\+hpp$>$}\newline
+{\ttfamily \#include $<$Silicon/\+Stop\+Watch.\+hpp$>$}\newline
+{\ttfamily \#include $<$Silicon/\+Window.\+hpp$>$}\newline
+Include dependency graph for Engine.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_engine_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_si}{Si}}
+\item 
+namespace \mbox{\hyperlink{namespace_si_1_1_engine}{Si\+::\+Engine}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_engine_8cpp_a51f528deaaeb973f417b46a2ec36f850}{SDL\+\_\+\+MAIN\+\_\+\+HANDLED}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespace_si_1_1_engine_af1949482d1047d6b783cc35c7390b6c9}{Si\+::\+Engine\+::\+Initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the engine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_si_1_1_engine_ae104fbb9f1f9ee756292587dbd249cf4}{Si\+::\+Engine\+::\+Loop}} (void $\ast$out\+Loop\+Return=nullptr)
+\begin{DoxyCompactList}\small\item\em Runs the loop once. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_si_1_1_engine_ae3417b6ed7cd2a9d1799d0d4c3287972}{Si\+::\+Engine\+::\+Run}} ()
+\begin{DoxyCompactList}\small\item\em Enters the main loop and does not return until the \mbox{\hyperlink{namespace_si_1_1_engine}{Engine}} is ready to shutdown. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_si_1_1_engine_addd70ff48a09a3709e1fa5299983722b}{Si\+::\+Engine\+::\+De\+Initialize}} ()
+\begin{DoxyCompactList}\small\item\em Shuts down the engine. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_engine_8cpp_a51f528deaaeb973f417b46a2ec36f850}\label{_engine_8cpp_a51f528deaaeb973f417b46a2ec36f850}} 
+\index{Engine.cpp@{Engine.cpp}!SDL\_MAIN\_HANDLED@{SDL\_MAIN\_HANDLED}}
+\index{SDL\_MAIN\_HANDLED@{SDL\_MAIN\_HANDLED}!Engine.cpp@{Engine.cpp}}
+\doxysubsubsection{\texorpdfstring{SDL\_MAIN\_HANDLED}{SDL\_MAIN\_HANDLED}}
+{\footnotesize\ttfamily \#define SDL\+\_\+\+MAIN\+\_\+\+HANDLED}
+

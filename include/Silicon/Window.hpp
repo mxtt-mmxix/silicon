@@ -36,6 +36,9 @@
 
 namespace Si {
 
+/**
+ * A Window to which you can draw graphics to and process events from.
+ */
 class Window {
 public:
     Window() = default;

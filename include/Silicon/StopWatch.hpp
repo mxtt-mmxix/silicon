@@ -33,6 +33,9 @@
 
 namespace Si {
 
+/**
+ * A StopWatch counts time.
+ */
 class StopWatch {
 public:
     StopWatch();

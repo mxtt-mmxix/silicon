@@ -1,0 +1,41 @@
+\hypertarget{_string_8hpp}{}\doxysection{include/\+Silicon/\+String.hpp File Reference}
+\label{_string_8hpp}\index{include/Silicon/String.hpp@{include/Silicon/String.hpp}}
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include \char`\"{}Allocator.\+hpp\char`\"{}}\newline
+Include dependency graph for String.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{_string_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_string_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_si_1_1_string}{Si\+::\+String}}
+\begin{DoxyCompactList}\small\item\em Stores char type strings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_si}{Si}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\using \mbox{\hyperlink{namespace_si_a06ace457fe552a6108d3fb729048eeca}{Si\+::\+IString}} = std\+::basic\+\_\+string$<$ T, std\+::char\+\_\+traits$<$ T $>$, Allocator$<$ T $>$ $>$
+\begin{DoxyCompactList}\small\item\em Template class for storing strings with a custom underlying datatype. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespace_si_a0b8291a5ad899b4eb86014a8a950df97}{Si\+::\+Wide\+String}} = IString$<$ wchar\+\_\+t $>$
+\begin{DoxyCompactList}\small\item\em Stores wide-\/char strings. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespace_si_a641f4dad0dc694a3781a0a6e8018feae}{Si\+::\+U8\+String}} = IString$<$ char8\+\_\+t $>$
+\begin{DoxyCompactList}\small\item\em Stores UTF-\/8 strings. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespace_si_aaa22a0ceff62044bde5666496bdcd696}{Si\+::\+U16\+String}} = IString$<$ char16\+\_\+t $>$
+\begin{DoxyCompactList}\small\item\em Stores UTF-\/16 strings. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespace_si_a45f60ec6db8770ede573d7ec2ea3476b}{Si\+::\+U32\+String}} = IString$<$ char32\+\_\+t $>$
+\begin{DoxyCompactList}\small\item\em Stores UTF-\/32 strings. \end{DoxyCompactList}\end{DoxyCompactItemize}

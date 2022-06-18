@@ -48,43 +48,6 @@ template <typename T>
 using Ref = std::reference_wrapper<T>;
 
 /**
- * A utility which allows us to implicitly cast references to pointers for use in containers.
- *
- * This type allows us to use stack-allocated, discarded values that can be passed to functions as references be used
- * in an STL container.
- *
- * @tparam T
- */
-template <typename T>
-class MoveIfRVal {
-public:
-    MoveIfRVal(T& object)
-        : x(&object)
-    {
-        SI_CORE_TRACE("Pointer to lvalue");
-    }
-
-    MoveIfRVal(T&& object)
-        : x(std::move(object))
-    {
-        SI_CORE_TRACE("Moving rvalue");
-    }
-
-    operator T&()
-    {
-        return std::holds_alternative<T*>(x) ? *std::get<T*>(x) : std::get<T>(x);
-    }
-
-    operator T&() const
-    {
-        return std::holds_alternative<T*>(x) ? *std::get<T*>(x) : const_cast<T&>(std::get<T>(x));
-    }
-
-private:
-    std::variant<T, T*> x;
-};
-
-/**
  * STL compliant data structure for contiguously storing an arbitrary amount of data.
  */
 template <typename T>

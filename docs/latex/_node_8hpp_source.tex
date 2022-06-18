@@ -77,31 +77,31 @@
 \DoxyCodeLine{107 }
 \DoxyCodeLine{108 \};}
 \DoxyCodeLine{109 }
-\DoxyCodeLine{110 \textcolor{keyword}{class }\mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}} \{}
-\DoxyCodeLine{111 \textcolor{keyword}{public}:}
-\DoxyCodeLine{112     \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}() = \textcolor{keyword}{delete};}
-\DoxyCodeLine{113     \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}(std::unique\_ptr<Node>\&\&, std::initializer\_list<NodeContainer>);}
-\DoxyCodeLine{114     \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}\&) = \textcolor{keyword}{delete};}
-\DoxyCodeLine{115     \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}(\mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}\&\& other) \textcolor{keyword}{noexcept};}
-\DoxyCodeLine{116 }
-\DoxyCodeLine{117     \mbox{\hyperlink{class_si_1_1_node}{Node}}* operator-\/>();}
-\DoxyCodeLine{118 }
-\DoxyCodeLine{119 \textcolor{keyword}{private}:}
-\DoxyCodeLine{120     Node::Graph::vertex\_descriptor m\_descriptor;}
-\DoxyCodeLine{121 \};}
-\DoxyCodeLine{122 }
-\DoxyCodeLine{123 \} \textcolor{comment}{// Si}}
-\DoxyCodeLine{124 }
-\DoxyCodeLine{125 \textcolor{preprocessor}{\#define SI\_DECL\_NODE(NODE, INODE)                                                            \(\backslash\)}}
-\DoxyCodeLine{126 \textcolor{preprocessor}{    template <typename... Args>                                                              \(\backslash\)}}
-\DoxyCodeLine{127 \textcolor{preprocessor}{    class NODE : public Si::NodeContainer \{                                                  \(\backslash\)}}
-\DoxyCodeLine{128 \textcolor{preprocessor}{    public:                                                                                  \(\backslash\)}}
-\DoxyCodeLine{129 \textcolor{preprocessor}{        NODE(std::initializer\_list<NodeContainer> nodes, Args... args)                       \(\backslash\)}}
-\DoxyCodeLine{130 \textcolor{preprocessor}{            : Si::NodeContainer(std::make\_unique<INODE>(std::forward<Args>(args)...), nodes) \(\backslash\)}}
-\DoxyCodeLine{131 \textcolor{preprocessor}{        \{                                                                                    \(\backslash\)}}
-\DoxyCodeLine{132 \textcolor{preprocessor}{        \}                                                                                    \(\backslash\)}}
-\DoxyCodeLine{133 \textcolor{preprocessor}{    \};}}
-\DoxyCodeLine{134 }
-\DoxyCodeLine{135 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_NODE\_HPP}}
+\DoxyCodeLine{113 \textcolor{keyword}{class }\mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}} \{}
+\DoxyCodeLine{114 \textcolor{keyword}{public}:}
+\DoxyCodeLine{115     \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{116     \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}(std::unique\_ptr<Node>\&\&, std::initializer\_list<NodeContainer>);}
+\DoxyCodeLine{117     \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{118     \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}(\mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}\&\& other) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120     \mbox{\hyperlink{class_si_1_1_node}{Node}}* operator-\/>();}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122 \textcolor{keyword}{private}:}
+\DoxyCodeLine{123     Node::Graph::vertex\_descriptor m\_descriptor;}
+\DoxyCodeLine{124 \};}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 \} \textcolor{comment}{// Si}}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#define SI\_DECL\_NODE(NODE, INODE)                                                            \(\backslash\)}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{    template <typename... Args>                                                              \(\backslash\)}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{    class NODE : public Si::NodeContainer \{                                                  \(\backslash\)}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{    public:                                                                                  \(\backslash\)}}
+\DoxyCodeLine{132 \textcolor{preprocessor}{        NODE(std::initializer\_list<NodeContainer> nodes, Args... args)                       \(\backslash\)}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{            : Si::NodeContainer(std::make\_unique<INODE>(std::forward<Args>(args)...), nodes) \(\backslash\)}}
+\DoxyCodeLine{134 \textcolor{preprocessor}{        \{                                                                                    \(\backslash\)}}
+\DoxyCodeLine{135 \textcolor{preprocessor}{        \}                                                                                    \(\backslash\)}}
+\DoxyCodeLine{136 \textcolor{preprocessor}{    \};}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_NODE\_HPP}}
 
 \end{DoxyCode}

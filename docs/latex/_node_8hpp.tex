@@ -1,0 +1,56 @@
+\hypertarget{_node_8hpp}{}\doxysection{include/\+Silicon/\+Node.hpp File Reference}
+\label{_node_8hpp}\index{include/Silicon/Node.hpp@{include/Silicon/Node.hpp}}
+{\ttfamily \#include $<$initializer\+\_\+list$>$}\newline
+{\ttfamily \#include \char`\"{}Types.\+hpp\char`\"{}}\newline
+Include dependency graph for Node.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_node_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{_node_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_si_1_1_node}{Si\+::\+Node}}
+\begin{DoxyCompactList}\small\item\em A \mbox{\hyperlink{class_si_1_1_node}{Node}} is the building block of your game. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_si_1_1_node_container}{Si\+::\+Node\+Container}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_si}{Si}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_node_8hpp_a99ba94b4803746a5afa7490852c4779c}{SI\+\_\+\+DECL\+\_\+\+NODE}}(NODE,  INODE)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_node_8hpp_a99ba94b4803746a5afa7490852c4779c}\label{_node_8hpp_a99ba94b4803746a5afa7490852c4779c}} 
+\index{Node.hpp@{Node.hpp}!SI\_DECL\_NODE@{SI\_DECL\_NODE}}
+\index{SI\_DECL\_NODE@{SI\_DECL\_NODE}!Node.hpp@{Node.hpp}}
+\doxysubsubsection{\texorpdfstring{SI\_DECL\_NODE}{SI\_DECL\_NODE}}
+{\footnotesize\ttfamily \#define SI\+\_\+\+DECL\+\_\+\+NODE(\begin{DoxyParamCaption}\item[{}]{NODE,  }\item[{}]{INODE }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \textcolor{keyword}{template} <\textcolor{keyword}{typename}... Args>                                                              \(\backslash\)}
+\DoxyCodeLine{    class NODE : \textcolor{keyword}{public} \mbox{\hyperlink{class_si_1_1_node_container}{Si::NodeContainer}} \{                                                  \(\backslash\)}
+\DoxyCodeLine{    public:                                                                                  \(\backslash\)}
+\DoxyCodeLine{        NODE(std::initializer\_list<NodeContainer> nodes, Args... args)                       \(\backslash\)}
+\DoxyCodeLine{            : \mbox{\hyperlink{class_si_1_1_node_container}{Si::NodeContainer}}(std::make\_unique<INODE>(std::forward<Args>(args)...), nodes) \(\backslash\)}
+\DoxyCodeLine{        \{                                                                                    \(\backslash\)}
+\DoxyCodeLine{        \}                                                                                    \(\backslash\)}
+\DoxyCodeLine{    \};}
+
+\end{DoxyCode}

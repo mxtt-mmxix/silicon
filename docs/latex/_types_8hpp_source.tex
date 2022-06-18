@@ -48,82 +48,53 @@
 \DoxyCodeLine{47 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
 \DoxyCodeLine{48 \textcolor{keyword}{using} Ref = std::reference\_wrapper<T>;}
 \DoxyCodeLine{49 }
-\DoxyCodeLine{58 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{59 \textcolor{keyword}{class }\mbox{\hyperlink{class_si_1_1_move_if_r_val}{MoveIfRVal}} \{}
-\DoxyCodeLine{60 \textcolor{keyword}{public}:}
-\DoxyCodeLine{61     \mbox{\hyperlink{class_si_1_1_move_if_r_val}{MoveIfRVal}}(T\& \textcolor{keywordtype}{object})}
-\DoxyCodeLine{62         : x(\&\textcolor{keywordtype}{object})}
-\DoxyCodeLine{63     \{}
-\DoxyCodeLine{64         SI\_CORE\_TRACE(\textcolor{stringliteral}{"{}Pointer to lvalue"{}});}
-\DoxyCodeLine{65     \}}
+\DoxyCodeLine{53 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{54 \textcolor{keyword}{using} Vector = std::vector<T, Allocator<T>>;}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{59 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{60 \textcolor{keyword}{using} List = std::list<T, Allocator<T>>;}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{65 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_si_1_1_graph_vector}{GraphVector}} \{\};}
 \DoxyCodeLine{66 }
-\DoxyCodeLine{67     \mbox{\hyperlink{class_si_1_1_move_if_r_val}{MoveIfRVal}}(T\&\& \textcolor{keywordtype}{object})}
-\DoxyCodeLine{68         : x(std::move(\textcolor{keywordtype}{object}))}
-\DoxyCodeLine{69     \{}
-\DoxyCodeLine{70         SI\_CORE\_TRACE(\textcolor{stringliteral}{"{}Moving rvalue"{}});}
-\DoxyCodeLine{71     \}}
-\DoxyCodeLine{72 }
-\DoxyCodeLine{73     \textcolor{keyword}{operator} T\&()}
-\DoxyCodeLine{74     \{}
-\DoxyCodeLine{75         \textcolor{keywordflow}{return} std::holds\_alternative<T*>(x) ? *std::get<T*>(x) : std::get<T>(x);}
-\DoxyCodeLine{76     \}}
-\DoxyCodeLine{77 }
-\DoxyCodeLine{78     \textcolor{keyword}{operator} T\&() \textcolor{keyword}{const}}
-\DoxyCodeLine{79     \{}
-\DoxyCodeLine{80         \textcolor{keywordflow}{return} std::holds\_alternative<T*>(x) ? *std::get<T*>(x) : \textcolor{keyword}{const\_cast<}T\&\textcolor{keyword}{>}(std::get<T>(x));}
-\DoxyCodeLine{81     \}}
-\DoxyCodeLine{82 }
-\DoxyCodeLine{83 \textcolor{keyword}{private}:}
-\DoxyCodeLine{84     std::variant<T, T*> x;}
-\DoxyCodeLine{85 \};}
-\DoxyCodeLine{86 }
-\DoxyCodeLine{90 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{91 \textcolor{keyword}{using} Vector = std::vector<T, Allocator<T>>;}
-\DoxyCodeLine{92 }
-\DoxyCodeLine{96 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{97 \textcolor{keyword}{using} List = std::list<T, Allocator<T>>;}
+\DoxyCodeLine{70 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_si_1_1_graph_list}{GraphList}} \{\};}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \textcolor{keyword}{namespace }boost}
+\DoxyCodeLine{77 \{}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{80 \textcolor{keyword}{struct }container\_gen<Si::GraphVector, T> \{}
+\DoxyCodeLine{81     \textcolor{keyword}{typedef} Si::Vector<T> type;}
+\DoxyCodeLine{82 \};}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{keyword}{template} <>}
+\DoxyCodeLine{85 \textcolor{keyword}{struct }parallel\_edge\_traits<Si::GraphVector> \{}
+\DoxyCodeLine{86     \textcolor{keyword}{typedef} allow\_parallel\_edge\_tag type;}
+\DoxyCodeLine{87 \};}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{90 \textcolor{keyword}{struct }container\_gen<Si::GraphList, T> \{}
+\DoxyCodeLine{91     \textcolor{keyword}{typedef} Si::List<T> type;}
+\DoxyCodeLine{92 \};}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \textcolor{keyword}{template} <>}
+\DoxyCodeLine{95 \textcolor{keyword}{struct }parallel\_edge\_traits<Si::GraphList> \{}
+\DoxyCodeLine{96     \textcolor{keyword}{typedef} allow\_parallel\_edge\_tag type;}
+\DoxyCodeLine{97 \};}
 \DoxyCodeLine{98 }
-\DoxyCodeLine{102 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_si_1_1_graph_vector}{GraphVector}} \{\};}
-\DoxyCodeLine{103 }
-\DoxyCodeLine{107 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_si_1_1_graph_list}{GraphList}} \{\};}
-\DoxyCodeLine{108 }
-\DoxyCodeLine{109 \}}
-\DoxyCodeLine{110 }
-\DoxyCodeLine{112 }
-\DoxyCodeLine{113 \textcolor{keyword}{namespace }boost}
-\DoxyCodeLine{114 \{}
-\DoxyCodeLine{115 }
-\DoxyCodeLine{116 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
-\DoxyCodeLine{117 \textcolor{keyword}{struct }container\_gen<Si::GraphVector, T> \{}
-\DoxyCodeLine{118     \textcolor{keyword}{typedef} Si::Vector<T> type;}
-\DoxyCodeLine{119 \};}
-\DoxyCodeLine{120 }
-\DoxyCodeLine{121 \textcolor{keyword}{template} <>}
-\DoxyCodeLine{122 \textcolor{keyword}{struct }parallel\_edge\_traits<Si::GraphVector> \{}
-\DoxyCodeLine{123     \textcolor{keyword}{typedef} allow\_parallel\_edge\_tag type;}
-\DoxyCodeLine{124 \};}
-\DoxyCodeLine{125 }
-\DoxyCodeLine{126 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
-\DoxyCodeLine{127 \textcolor{keyword}{struct }container\_gen<Si::GraphList, T> \{}
-\DoxyCodeLine{128     \textcolor{keyword}{typedef} Si::List<T> type;}
-\DoxyCodeLine{129 \};}
-\DoxyCodeLine{130 }
-\DoxyCodeLine{131 \textcolor{keyword}{template} <>}
-\DoxyCodeLine{132 \textcolor{keyword}{struct }parallel\_edge\_traits<Si::GraphList> \{}
-\DoxyCodeLine{133     \textcolor{keyword}{typedef} allow\_parallel\_edge\_tag type;}
-\DoxyCodeLine{134 \};}
-\DoxyCodeLine{135 }
-\DoxyCodeLine{136 \}}
-\DoxyCodeLine{137 }
-\DoxyCodeLine{139 }
-\DoxyCodeLine{140 \textcolor{keyword}{namespace }Si}
-\DoxyCodeLine{141 \{}
-\DoxyCodeLine{142 }
-\DoxyCodeLine{146 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} ContainerT = GraphVector>}
-\DoxyCodeLine{147 \textcolor{keyword}{using} Graph = boost::adjacency\_list<ContainerT, ContainerT, boost::bidirectionalS, T>;}
-\DoxyCodeLine{148 }
-\DoxyCodeLine{149 \}}
-\DoxyCodeLine{150 }
-\DoxyCodeLine{151 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_TYPES\_HPP}}
+\DoxyCodeLine{99 \}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 \textcolor{keyword}{namespace }Si}
+\DoxyCodeLine{104 \{}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{109 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} ContainerT = GraphVector>}
+\DoxyCodeLine{110 \textcolor{keyword}{using} Graph = boost::adjacency\_list<ContainerT, ContainerT, boost::bidirectionalS, T>;}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 \}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_TYPES\_HPP}}
 
 \end{DoxyCode}

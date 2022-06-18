@@ -1,0 +1,47 @@
+\hypertarget{_engine_8hpp}{}\doxysection{include/\+Silicon/\+Engine.hpp File Reference}
+\label{_engine_8hpp}\index{include/Silicon/Engine.hpp@{include/Silicon/Engine.hpp}}
+{\ttfamily \#include $<$cstdint$>$}\newline
+Include dependency graph for Engine.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{_engine_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{_engine_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_si}{Si}}
+\item 
+namespace \mbox{\hyperlink{namespace_si_1_1_engine}{Si\+::\+Engine}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \+: std\+::uint32\+\_\+t \{ \newline
+\mbox{\hyperlink{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba289fabece39bc9ed5f1b07f06751b9d6}{Si\+::\+Engine\+::\+SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+\+CONTINUE}} = 0
+, \mbox{\hyperlink{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fbaaaa051d90b504acb2a146902569940b9}{Si\+::\+Engine\+::\+SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+\+USER\+\_\+\+QUIT}}
+, \mbox{\hyperlink{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba1c924a939191a06a8bf5537acd0f55b9}{Si\+::\+Engine\+::\+SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+\+ENGINE\+\_\+\+NOT\+\_\+\+INITIALIZED}}
+, \mbox{\hyperlink{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fbad5e624c78ac8de0104e36f2b25fd44ec}{Si\+::\+Engine\+::\+SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+\+LOOP\+\_\+\+ALREADY\+\_\+\+RUNNING}}
+, \newline
+\mbox{\hyperlink{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba674f47c70c543480848af79f87e8882c}{Si\+::\+Engine\+::\+SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+\+UNKNOWN\+\_\+\+ERROR}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{namespace_si_1_1_engine_af1949482d1047d6b783cc35c7390b6c9}{Si\+::\+Engine\+::\+Initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the engine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_si_1_1_engine_ae104fbb9f1f9ee756292587dbd249cf4}{Si\+::\+Engine\+::\+Loop}} (void $\ast$out\+Loop\+Return=nullptr)
+\begin{DoxyCompactList}\small\item\em Runs the loop once. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_si_1_1_engine_ae3417b6ed7cd2a9d1799d0d4c3287972}{Si\+::\+Engine\+::\+Run}} ()
+\begin{DoxyCompactList}\small\item\em Enters the main loop and does not return until the \mbox{\hyperlink{namespace_si_1_1_engine}{Engine}} is ready to shutdown. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{namespace_si_1_1_engine_addd70ff48a09a3709e1fa5299983722b}{Si\+::\+Engine\+::\+De\+Initialize}} ()
+\begin{DoxyCompactList}\small\item\em Shuts down the engine. \end{DoxyCompactList}\end{DoxyCompactItemize}

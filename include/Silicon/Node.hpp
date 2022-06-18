@@ -107,6 +107,9 @@ private:
 
 };
 
+/**
+ * Node Container is a helper type to make declarative programming with nodes easier.
+ */
 class NodeContainer {
 public:
     NodeContainer() = delete;

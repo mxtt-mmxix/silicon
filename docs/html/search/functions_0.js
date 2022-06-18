@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getelapsedtime_0',['GetElapsedTime',['../class_si_1_1_stop_watch.html#a46ad7a33152b737f506ebaf7c5e824d8',1,'Si::StopWatch']]]
+  ['deinitialize_0',['DeInitialize',['../namespace_si_1_1_engine.html#addd70ff48a09a3709e1fa5299983722b',1,'Si::Engine']]]
 ];

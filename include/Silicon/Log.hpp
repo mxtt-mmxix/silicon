@@ -66,6 +66,9 @@ struct LogEntry {
     String message;
 };
 
+/**
+ * Logs a log entry. See macros
+ */
 void Log(const LogEntry&);
 
 } // Si

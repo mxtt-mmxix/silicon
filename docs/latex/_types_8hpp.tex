@@ -1,0 +1,46 @@
+\hypertarget{_types_8hpp}{}\doxysection{include/\+Silicon/\+Types.hpp File Reference}
+\label{_types_8hpp}\index{include/Silicon/Types.hpp@{include/Silicon/Types.hpp}}
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include $<$variant$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$boost/graph/adjacency\+\_\+list.\+hpp$>$}\newline
+{\ttfamily \#include \char`\"{}Allocator.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Log.\+hpp\char`\"{}}\newline
+Include dependency graph for Types.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_types_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{_types_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_si_1_1_graph_vector}{Si\+::\+Graph\+Vector}}
+\begin{DoxyCompactList}\small\item\em Vector for use in Graphs. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_si_1_1_graph_list}{Si\+::\+Graph\+List}}
+\begin{DoxyCompactList}\small\item\em List for use in Graphs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespace_si}{Si}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\using \mbox{\hyperlink{namespace_si_a297cd679b837aff2972a6f273b6b3262}{Si\+::\+Ref}} = std\+::reference\+\_\+wrapper$<$ T $>$
+\begin{DoxyCompactList}\small\item\em Static, compile-\/time, assignable, copyable, movable reference that can\textquotesingle{}t be null. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\using \mbox{\hyperlink{namespace_si_a7534b02763f081ef6842717ef20461d5}{Si\+::\+Vector}} = std\+::vector$<$ T, Allocator$<$ T $>$ $>$
+\begin{DoxyCompactList}\small\item\em STL compliant data structure for contiguously storing an arbitrary amount of data. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\using \mbox{\hyperlink{namespace_si_a348a16a045d948c394dc39c591461b5b}{Si\+::\+List}} = std\+::list$<$ T, Allocator$<$ T $>$ $>$
+\begin{DoxyCompactList}\small\item\em STL compliant data structure for storing an arbitrary amount of data. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T , typename ContainerT  = Graph\+Vector$>$ }\\using \mbox{\hyperlink{namespace_si_a87ce97f3dd4e3ea730d9c8417ac9fc72}{Si\+::\+Graph}} = boost\+::adjacency\+\_\+list$<$ ContainerT, ContainerT, boost\+::bidirectionalS, T $>$
+\begin{DoxyCompactList}\small\item\em Container for representing relationships between objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
