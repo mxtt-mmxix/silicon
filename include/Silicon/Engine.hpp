@@ -37,11 +37,11 @@
 namespace Si::Engine {
 
 enum : std::uint32_t {
-    SI_ENGINE_LOOP_CONTINUE = 0,           /**< The loop should continue running. */
-    SI_ENGINE_LOOP_USER_QUIT,              /**< The user requested a quit, i.e window close. */
-    SI_ENGINE_LOOP_ENGINE_NOT_INITIALIZED, /**< The engine was not initialized. */
-    SI_ENGINE_LOOP_LOOP_ALREADY_RUNNING,   /**< Engine::Loop() is being called elsewhere. */
-    SI_ENGINE_LOOP_UNKNOWN_ERROR           /**< Some other error occurred. */
+    LOOP_CONTINUE = 0, /**< The loop should continue running. */
+    LOOP_USER_QUIT, /**< The user requested a quit, i.e window close. */
+    LOOP_ENGINE_NOT_INITIALIZED, /**< The engine was not initialized. */
+    LOOP_ALREADY_RUNNING, /**< Engine::Loop() is being called elsewhere. */
+    LOOP_UNKNOWN_ERROR /**< Some other error occurred. */
 };
 
 /**
@@ -51,7 +51,7 @@ enum : std::uint32_t {
 bool Initialize();
 
 /**
- * Runs the loop once. If you do need control of the main loop, please see Engine::Run().
+ * Runs the loop once; If you do need control of the main loop, please see Engine::Run().
  * @param outLoopReturn A pointer to a std::uint32_t to store the exit code. For Emscripten builds, control is passed to the
  * browser with no way to return a value, thus an out variable is used. 0 indicates the loop should continue running while a
  * non-zero exit code indicates a user quit event (i.e. window closed), or an error. See SI_ENGINE_LOOP_* enums for details.

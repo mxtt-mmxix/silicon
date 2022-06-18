@@ -51,35 +51,35 @@ void Log(const LogEntry& entry)
 
     switch (entry.type) {
     case LogEntry::Type::Engine:
-        fmt::print("[{:>12.3f}][{:>16}][Engine][", s_stopwatch.GetElapsedTime(), ss.str());
+        fmt::print("{:>12.3f} {:>16} (Engine) ", s_stopwatch.GetElapsedTime(), ss.str());
         break;
     case LogEntry::Type::Client:
-        fmt::print("[{:>12.3f}][{:>16}][Client][", s_stopwatch.GetElapsedTime(), ss.str());
+        fmt::print(" {:>12.3f} {:>16} ", s_stopwatch.GetElapsedTime(), ss.str());
         break;
     }
 
     switch (entry.level) {
     case LogEntry::Level::Trace:
-        fmt::print(fmt::fg(fmt::color::gray), "{:>8}", "trace");
+        fmt::print(fmt::bg(fmt::color::gray), "{:>10}", "TRACE ");
         break;
     case LogEntry::Level::Information:
-        fmt::print("{:>8}", "info");
+        fmt::print(bg(fmt::color::white) | fg(fmt::color::black), "{:>10}", "INFO ");
         break;
     case LogEntry::Level::Debug:
-        fmt::print(fmt::fg(fmt::color::cyan), "{:>8}", "debug");
+        fmt::print(fmt::bg(fmt::color::cyan) | fg(fmt::color::black), "{:>10}", "DEBUG ");
         break;
     case LogEntry::Level::Warning:
-        fmt::print(fmt::fg(fmt::color::yellow), "{:>8}", "warning");
+        fmt::print(fmt::bg(fmt::color::yellow) | fg(fmt::color::black), "{:>10}", "WARNING ");
         break;
     case LogEntry::Level::Error:
-        fmt::print(fmt::fg(fmt::color::orange), "{:>8}", "error");
+        fmt::print(fmt::bg(fmt::color::orange), "{:>10}", "ERROR ");
         break;
     case LogEntry::Level::Critical:
-        fmt::print(fmt::fg(fmt::color::red), "{:>8}", "critical");
+        fmt::print(fmt::bg(fmt::color::red), "{:>10}", "CRITICAL ");
         break;
     }
 
-    fmt::print("] {}\n", entry.message);
+    fmt::print(" {}\n", entry.message);
 }
 
 } // Si

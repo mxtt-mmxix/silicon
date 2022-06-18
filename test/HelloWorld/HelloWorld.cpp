@@ -36,7 +36,12 @@
 
 int main(int argc, char** argv)
 {
+    SI_TRACE("Accessing memory");
     SI_INFO("Hello, World!");
+    SI_DEBUG("loop");
+    SI_WARN("400 Bad Request")
+    SI_ERROR("NullPointerException");
+    SI_CRITICAL("MAYDAY");
 
     return EXIT_SUCCESS;
 }

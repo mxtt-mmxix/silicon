@@ -27,7 +27,6 @@
  */
 
 #include <mutex>
-#include <limits>
 
 #ifdef BUILD_EMSCRIPTEN
 #include <emscripten.h>
@@ -42,7 +41,6 @@
 
 #include <Silicon/Engine.hpp>
 #include <Silicon/Log.hpp>
-#include <Silicon/StopWatch.hpp>
 #include <Silicon/Window.hpp>
 
 namespace {
@@ -75,36 +73,37 @@ bool Initialize()
     s_applicationWindow.Open("Si Engine");
 
     int windowWidth = 800, windowHeight = 600;
-
-    SDL_SysWMinfo info;
     SDL_Window* window = SDL_GetWindowFromID(s_applicationWindow.getID());
+
+    SDL_GL_GetDrawableSize(window, &windowWidth, &windowHeight);
+
+    if (!windowWidth || !windowHeight) {
+        SI_CORE_ERROR("Failed to get window size!");
+    }
 
     bgfx::PlatformData bgfxPD;
 
-    SDL_VERSION(&info.version);
+    SDL_SysWMinfo info;
+    SDL_VERSION(&info.version)
 
     if (window == nullptr) {
         SI_CORE_ERROR("Failed to get window!: {}", SDL_GetError());
         return false;
     }
 
-    if constexpr (Si::PLATFORM_NAME != "Emscripten") {
-
-        if (!SDL_GetWindowWMInfo(window, &info)) {
-            SI_CORE_ERROR("Failed to get window manager information: {}", SDL_GetError());
-            return false;
-        }
-
-        bgfx::renderFrame();
-
-    } else {
-        bgfxPD.nwh = (void*)"#canvas";
+#ifdef SI_PLATFORM_EMSCRIPTEN
+    bgfxPD.nwh = (void*)"#canvas";
+#else
+    if (!SDL_GetWindowWMInfo(window, &info)) {
+        SI_CORE_ERROR("Failed to get window manager information: {}", SDL_GetError());
+        return false;
     }
 
-#ifdef __APPLE__
-
+#ifdef SI_PLATFROM_APPLE
     bgfxPD.nwh = info.info.cocoa.window;
+#endif
 
+    bgfx::renderFrame();
 #endif
 
     bgfx::setPlatformData(bgfxPD);
@@ -134,7 +133,7 @@ void Loop(void* outLoopReturn)
 
     if (SDL_WasInit(SUBSYSTEM_MASK) != SUBSYSTEM_MASK) {
         SI_CORE_ERROR("{}: Engine was not initialized!", BOOST_CURRENT_FUNCTION);
-        *outLoopReturnInt = SI_ENGINE_LOOP_ENGINE_NOT_INITIALIZED;
+        *outLoopReturnInt = LOOP_ENGINE_NOT_INITIALIZED;
         return ;
     }
 
@@ -142,13 +141,13 @@ void Loop(void* outLoopReturn)
 
     if (!lock.try_lock()) {
         SI_CORE_ERROR("{}: Failed to take control of loop! Please do not call this if Engine::Run() is running.", BOOST_CURRENT_FUNCTION);
-        *outLoopReturnInt = SI_ENGINE_LOOP_LOOP_ALREADY_RUNNING;
+        *outLoopReturnInt = LOOP_ALREADY_RUNNING;
         return ;
     }
 
     while (SDL_PollEvent(&s_event)) {
         if (s_event.type == SDL_QUIT) {
-            *outLoopReturnInt = SI_ENGINE_LOOP_USER_QUIT;
+            *outLoopReturnInt = LOOP_USER_QUIT;
 
 #ifdef __EMSCRIPTEN__
             emscripten_cancel_main_loop();
@@ -160,7 +159,7 @@ void Loop(void* outLoopReturn)
     bgfx::touch(0);
     bgfx::frame();
 
-    *outLoopReturnInt = SI_ENGINE_LOOP_CONTINUE;
+    *outLoopReturnInt = LOOP_CONTINUE;
 }
 
 void Run()

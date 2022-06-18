@@ -48,17 +48,17 @@ struct LogEntry {
      * The type of log
      */
     enum class Type {
-        Engine,    /**< Logs from the engine. Please refrain from using in your application. */
-        Client    /**< Logs from the client. Use this to for your logging. */
+        Engine, /**< Logs from the engine. Please refrain from using in your application. */
+        Client /**< Logs from the client. Use this to for your logging. */
     };
 
     enum class Level {
-        Trace,          /**< Verbose information, not informative to the end-user. */
-        Information,    /**< Information that maybe relevant to the end user. */
-        Debug,          /**< Debug, technical information. */
-        Warning,        /**< Information that could suggest an error but does not affect application. */
-        Error,          /**< Information that may affect the engine and may cause a crash. */
-        Critical        /**< Information pertaining to a crash. */
+        Trace, /**< Verbose information, not informative to the end-user. */
+        Information, /**< Information that maybe relevant to the end user. */
+        Debug, /**< Debug, technical information. */
+        Warning, /**< Information that could suggest an error but does not affect application. */
+        Error, /**< Information that may affect the engine and may cause a crash. */
+        Critical /**< Information pertaining to a crash. */
     };
 
     Type type = Type::Client;

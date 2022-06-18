@@ -29,6 +29,7 @@
 #ifndef SILICON_STRING_HPP
 #define SILICON_STRING_HPP
 
+#include <format>
 #include <string>
 
 #include "Allocator.hpp"
@@ -75,5 +76,18 @@ using U16String = IString<char16_t>;
 using U32String = IString<char32_t>;
 
 }
+
+#if 0 // TODO: Enable when C++20 text formatting features are available in Clang and GCC.
+
+template <>
+struct std::formatter<Si::String> : std::formatter<std::string> {
+
+    template<class FormatContext>
+    auto format(const Si::String& str, FormatContext& ctx) {
+        return std::formatter<std::string>::format(static_cast<std::string>(str), ctx);
+    }
+};
+
+#endif
 
 #endif // SILICON_STRING_HPP
