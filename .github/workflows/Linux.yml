@@ -13,6 +13,7 @@ jobs:
   build:
     env:
       BUILD_TYPE: Debug
+      VULKAN_SDK: VulkanSDK/x86_64
 
     runs-on: ubuntu-20.04
 

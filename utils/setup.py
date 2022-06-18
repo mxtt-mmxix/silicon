@@ -9,8 +9,8 @@ import platform
 import requests
 import subprocess
 
-def setup():
 
+def setup():
     parser = argparse.ArgumentParser(
         description='Bootstrap the environment for building Silicon Engine')
 
@@ -66,6 +66,7 @@ com.lunarg.vulkan.debug32",
             f"{vcpkg} install --triplet=x64-windows",
             shell=True,
             check=True)
+
 
 if __name__ == "__main__":
     setup()
