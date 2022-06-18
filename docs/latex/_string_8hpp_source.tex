@@ -1,0 +1,67 @@
+\hypertarget{_string_8hpp_source}{}\doxysection{String.\+hpp}
+\label{_string_8hpp_source}\index{include/Silicon/String.hpp@{include/Silicon/String.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * BSD 2-\/Clause License}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Copyright (c) 2022, Matthew McCall}}
+\DoxyCodeLine{5 \textcolor{comment}{ * All rights reserved.}}
+\DoxyCodeLine{6 \textcolor{comment}{ *}}
+\DoxyCodeLine{7 \textcolor{comment}{ * Redistribution and use in source and binary forms, with or without}}
+\DoxyCodeLine{8 \textcolor{comment}{ * modification, are permitted provided that the following conditions are met:}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * 1. Redistributions of source code must retain the above copyright notice, this}}
+\DoxyCodeLine{11 \textcolor{comment}{ *    list of conditions and the following disclaimer.}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * 2. Redistributions in binary form must reproduce the above copyright notice,}}
+\DoxyCodeLine{14 \textcolor{comment}{ *    this list of conditions and the following disclaimer in the documentation}}
+\DoxyCodeLine{15 \textcolor{comment}{ *    and/or other materials provided with the distribution.}}
+\DoxyCodeLine{16 \textcolor{comment}{ *}}
+\DoxyCodeLine{17 \textcolor{comment}{ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "{}AS IS"{}}}
+\DoxyCodeLine{18 \textcolor{comment}{ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE}}
+\DoxyCodeLine{19 \textcolor{comment}{ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE}}
+\DoxyCodeLine{20 \textcolor{comment}{ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE}}
+\DoxyCodeLine{21 \textcolor{comment}{ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL}}
+\DoxyCodeLine{22 \textcolor{comment}{ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR}}
+\DoxyCodeLine{23 \textcolor{comment}{ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER}}
+\DoxyCodeLine{24 \textcolor{comment}{ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,}}
+\DoxyCodeLine{25 \textcolor{comment}{ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE}}
+\DoxyCodeLine{26 \textcolor{comment}{ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.}}
+\DoxyCodeLine{27 \textcolor{comment}{ */}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#ifndef SILICON\_STRING\_HPP}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define SILICON\_STRING\_HPP}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include "{}Allocator.hpp"{}}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{keyword}{namespace }Si \{}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{41 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{42 \textcolor{keyword}{using} IString = std::basic\_string<T, std::char\_traits<T>, Allocator<T>>;}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{47 \textcolor{keyword}{class }\mbox{\hyperlink{class_si_1_1_string}{String}} : \textcolor{keyword}{public} IString<char>}
+\DoxyCodeLine{48 \{}
+\DoxyCodeLine{49 \textcolor{keyword}{public}:}
+\DoxyCodeLine{50     \mbox{\hyperlink{class_si_1_1_string}{String}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{51     \mbox{\hyperlink{class_si_1_1_string}{String}}(std::string\&\& other);}
+\DoxyCodeLine{52     \mbox{\hyperlink{class_si_1_1_string}{String}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* other);}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     \textcolor{keyword}{operator} std::string();}
+\DoxyCodeLine{55 \};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{60 \textcolor{keyword}{using} WideString = IString<wchar\_t>;}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{65 \textcolor{keyword}{using} U8String = IString<char8\_t>;}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{70 \textcolor{keyword}{using} U16String = IString<char16\_t>;}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{75 \textcolor{keyword}{using} U32String = IString<char32\_t>;}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_STRING\_HPP}}
+
+\end{DoxyCode}

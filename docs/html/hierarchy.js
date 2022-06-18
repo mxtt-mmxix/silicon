@@ -6,5 +6,9 @@ var hierarchy =
       [ "Si::String", "class_si_1_1_string.html", null ]
     ] ],
     [ "Si::LogEntry", "struct_si_1_1_log_entry.html", null ],
-    [ "Si::Node", "class_si_1_1_node.html", null ]
+    [ "Si::MoveIfRVal< T >", "class_si_1_1_move_if_r_val.html", null ],
+    [ "Si::Node", "class_si_1_1_node.html", null ],
+    [ "Si::NodeContainer", "class_si_1_1_node_container.html", null ],
+    [ "Si::StopWatch", "class_si_1_1_stop_watch.html", null ],
+    [ "Si::Window", "class_si_1_1_window.html", null ]
 ];

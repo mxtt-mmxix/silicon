@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['node_0',['Node',['../class_si_1_1_node.html#ab079ebcac2cf870469b8cd67824f1fc0',1,'Si::Node']]]
+  ['getelapsedtime_0',['GetElapsedTime',['../class_si_1_1_stop_watch.html#a46ad7a33152b737f506ebaf7c5e824d8',1,'Si::StopWatch']]]
 ];

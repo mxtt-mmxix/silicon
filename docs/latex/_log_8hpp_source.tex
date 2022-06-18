@@ -35,73 +35,75 @@
 \DoxyCodeLine{31 }
 \DoxyCodeLine{32 \textcolor{preprocessor}{\#include <fmt/core.h>}}
 \DoxyCodeLine{33 }
-\DoxyCodeLine{34 \textcolor{preprocessor}{\#include "{}Types.hpp"{}}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include "{}Silicon/String.hpp"{}}}
 \DoxyCodeLine{35 }
 \DoxyCodeLine{36 \textcolor{keyword}{namespace }Si \{}
 \DoxyCodeLine{37 }
-\DoxyCodeLine{43 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_si_1_1_log_entry}{LogEntry}} \{}
-\DoxyCodeLine{44 }
-\DoxyCodeLine{48     \textcolor{keyword}{enum class} \mbox{\hyperlink{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324c}{Type}} \{}
-\DoxyCodeLine{49         Engine,    }
-\DoxyCodeLine{50         Client    }
-\DoxyCodeLine{51     \};}
-\DoxyCodeLine{52 }
-\DoxyCodeLine{53     \textcolor{keyword}{enum class} \mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936a}{Level}} \{}
-\DoxyCodeLine{54         Trace,          }
-\DoxyCodeLine{55         Information,    }
-\DoxyCodeLine{56         Debug,          }
-\DoxyCodeLine{57         Warning,        }
-\DoxyCodeLine{58         Error,          }
-\DoxyCodeLine{59         Critical        }
-\DoxyCodeLine{60     \};}
-\DoxyCodeLine{61 }
-\DoxyCodeLine{62     \mbox{\hyperlink{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324c}{Type}} type = \mbox{\hyperlink{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324ca577d7068826de925ea2aec01dbadf5e4}{Type::Client}};}
-\DoxyCodeLine{63     \mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936a}{Level}} level = \mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aaa82be0f551b8708bc08eb33cd9ded0cf}{Level::Information}};}
-\DoxyCodeLine{64     \mbox{\hyperlink{class_si_1_1_string}{String}} message;}
-\DoxyCodeLine{65 \};}
-\DoxyCodeLine{66 }
-\DoxyCodeLine{67 \textcolor{keywordtype}{void} Log(\textcolor{keyword}{const} LogEntry\&);}
+\DoxyCodeLine{38 \textcolor{keyword}{class }String;}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{45 \textcolor{keyword}{struct }\mbox{\hyperlink{struct_si_1_1_log_entry}{LogEntry}} \{}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{50     \textcolor{keyword}{enum class} \mbox{\hyperlink{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324c}{Type}} \{}
+\DoxyCodeLine{51         Engine,    }
+\DoxyCodeLine{52         Client    }
+\DoxyCodeLine{53     \};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \textcolor{keyword}{enum class} \mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936a}{Level}} \{}
+\DoxyCodeLine{56         Trace,          }
+\DoxyCodeLine{57         Information,    }
+\DoxyCodeLine{58         Debug,          }
+\DoxyCodeLine{59         Warning,        }
+\DoxyCodeLine{60         Error,          }
+\DoxyCodeLine{61         Critical        }
+\DoxyCodeLine{62     \};}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64     \mbox{\hyperlink{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324c}{Type}} type = \mbox{\hyperlink{struct_si_1_1_log_entry_ac842b800c8dde89df7b1f35c2d80324ca577d7068826de925ea2aec01dbadf5e4}{Type::Client}};}
+\DoxyCodeLine{65     \mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936a}{Level}} level = \mbox{\hyperlink{struct_si_1_1_log_entry_a3c3b9baa1ec6fc9c8e2d77a40c61936aaa82be0f551b8708bc08eb33cd9ded0cf}{Level::Information}};}
+\DoxyCodeLine{66     \mbox{\hyperlink{class_si_1_1_string}{String}} message;}
+\DoxyCodeLine{67 \};}
 \DoxyCodeLine{68 }
-\DoxyCodeLine{69 \} \textcolor{comment}{// Si}}
+\DoxyCodeLine{69 \textcolor{keywordtype}{void} Log(\textcolor{keyword}{const} LogEntry\&);}
 \DoxyCodeLine{70 }
-\DoxyCodeLine{74 \textcolor{preprocessor}{\#define SI\_WARN(...) Si::Log(\{ Si::LogEntry::Type::Client, Si::LogEntry::Level::Warning, fmt::format(\_\_VA\_ARGS\_\_) \});}}
-\DoxyCodeLine{75 }
-\DoxyCodeLine{79 \textcolor{preprocessor}{\#define SI\_ERROR(...) Si::Log(\{ Si::LogEntry::Type::Client, Si::LogEntry::Level::Error, fmt::format(\_\_VA\_ARGS\_\_) \})}}
-\DoxyCodeLine{80 }
-\DoxyCodeLine{84 \textcolor{preprocessor}{\#define SI\_CRITICAL(...) Si::Log(\{ Si::LogEntry::Type::Client, Si::LogEntry::Level::Critical, fmt::format(\_\_VA\_ARGS\_\_) \})}}
-\DoxyCodeLine{85 }
-\DoxyCodeLine{89 \textcolor{preprocessor}{\#define SI\_CORE\_WARN(...) Si::Log(\{ Si::LogEntry::Type::Engine, Si::LogEntry::Level::Warning, fmt::format(\_\_VA\_ARGS\_\_) \})}}
-\DoxyCodeLine{90 }
-\DoxyCodeLine{94 \textcolor{preprocessor}{\#define SI\_CORE\_ERROR(...) Si::Log(\{ Si::LogEntry::Type::Engine, Si::LogEntry::Level::Error, fmt::format(\_\_VA\_ARGS\_\_) \})}}
-\DoxyCodeLine{95 }
-\DoxyCodeLine{99 \textcolor{preprocessor}{\#define SI\_CORE\_CRITICAL(...) Si::Log(\{ Si::LogEntry::Type::Engine, Si::LogEntry::Level::Critical, fmt::format(\_\_VA\_ARGS\_\_) \})}}
-\DoxyCodeLine{100 }
-\DoxyCodeLine{101 \textcolor{preprocessor}{\#ifdef NDEBUG}}
+\DoxyCodeLine{71 \} \textcolor{comment}{// Si}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{76 \textcolor{preprocessor}{\#define SI\_WARN(...) Si::Log(\{ Si::LogEntry::Type::Client, Si::LogEntry::Level::Warning, fmt::format(\_\_VA\_ARGS\_\_) \});}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#define SI\_ERROR(...) Si::Log(\{ Si::LogEntry::Type::Client, Si::LogEntry::Level::Error, fmt::format(\_\_VA\_ARGS\_\_) \})}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#define SI\_CRITICAL(...) Si::Log(\{ Si::LogEntry::Type::Client, Si::LogEntry::Level::Critical, fmt::format(\_\_VA\_ARGS\_\_) \})}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#define SI\_CORE\_WARN(...) Si::Log(\{ Si::LogEntry::Type::Engine, Si::LogEntry::Level::Warning, fmt::format(\_\_VA\_ARGS\_\_) \})}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{96 \textcolor{preprocessor}{\#define SI\_CORE\_ERROR(...) Si::Log(\{ Si::LogEntry::Type::Engine, Si::LogEntry::Level::Error, fmt::format(\_\_VA\_ARGS\_\_) \})}}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#define SI\_CORE\_CRITICAL(...) Si::Log(\{ Si::LogEntry::Type::Engine, Si::LogEntry::Level::Critical, fmt::format(\_\_VA\_ARGS\_\_) \})}}
 \DoxyCodeLine{102 }
-\DoxyCodeLine{103 \textcolor{preprocessor}{\#define SI\_TRACE}}
-\DoxyCodeLine{104 \textcolor{preprocessor}{\#define SI\_INFO}}
-\DoxyCodeLine{105 \textcolor{preprocessor}{\#define SI\_DEBUG}}
-\DoxyCodeLine{106 }
-\DoxyCodeLine{107 \textcolor{preprocessor}{\#define SI\_CORE\_TRACE}}
-\DoxyCodeLine{108 \textcolor{preprocessor}{\#define SI\_CORE\_INFO}}
-\DoxyCodeLine{109 \textcolor{preprocessor}{\#define SI\_CORE\_DEBUG}}
-\DoxyCodeLine{110 }
-\DoxyCodeLine{111 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#ifdef NDEBUG}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#define SI\_TRACE}}
+\DoxyCodeLine{106 \textcolor{preprocessor}{\#define SI\_INFO}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#define SI\_DEBUG}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#define SI\_CORE\_TRACE}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{\#define SI\_CORE\_INFO}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#define SI\_CORE\_DEBUG}}
 \DoxyCodeLine{112 }
-\DoxyCodeLine{116 \textcolor{preprocessor}{\#define SI\_TRACE(...) Si::Log(\{ Si::LogEntry::Type::Client, Si::LogEntry::Level::Trace, fmt::format(\_\_VA\_ARGS\_\_) \})}}
-\DoxyCodeLine{117 }
-\DoxyCodeLine{121 \textcolor{preprocessor}{\#define SI\_INFO(...) Si::Log(\{ Si::LogEntry::Type::Client, Si::LogEntry::Level::Information, fmt::format(\_\_VA\_ARGS\_\_) \})}}
-\DoxyCodeLine{122 }
-\DoxyCodeLine{126 \textcolor{preprocessor}{\#define SI\_DEBUG(...) Si::Log(\{ Si::LogEntry::Type::Client, Si::LogEntry::Level::Debug, fmt::format(\_\_VA\_ARGS\_\_) \})}}
-\DoxyCodeLine{127 }
-\DoxyCodeLine{131 \textcolor{preprocessor}{\#define SI\_CORE\_TRACE(...) Si::Log(\{ Si::LogEntry::Type::Engine, Si::LogEntry::Level::Trace, fmt::format(\_\_VA\_ARGS\_\_) \})}}
-\DoxyCodeLine{132 }
-\DoxyCodeLine{136 \textcolor{preprocessor}{\#define SI\_CORE\_INFO(...) Si::Log(\{ Si::LogEntry::Type::Engine, Si::LogEntry::Level::Information, fmt::format(\_\_VA\_ARGS\_\_) \})}}
-\DoxyCodeLine{137 }
-\DoxyCodeLine{141 \textcolor{preprocessor}{\#define SI\_CORE\_DEBUG(...) Si::Log(\{ Si::LogEntry::Type::Engine, Si::LogEntry::Level::Debug, fmt::format(\_\_VA\_ARGS\_\_) \})}}
-\DoxyCodeLine{142 }
-\DoxyCodeLine{143 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#define SI\_TRACE(...) Si::Log(\{ Si::LogEntry::Type::Client, Si::LogEntry::Level::Trace, fmt::format(\_\_VA\_ARGS\_\_) \})}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#define SI\_INFO(...) Si::Log(\{ Si::LogEntry::Type::Client, Si::LogEntry::Level::Information, fmt::format(\_\_VA\_ARGS\_\_) \})}}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#define SI\_DEBUG(...) Si::Log(\{ Si::LogEntry::Type::Client, Si::LogEntry::Level::Debug, fmt::format(\_\_VA\_ARGS\_\_) \})}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#define SI\_CORE\_TRACE(...) Si::Log(\{ Si::LogEntry::Type::Engine, Si::LogEntry::Level::Trace, fmt::format(\_\_VA\_ARGS\_\_) \})}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{138 \textcolor{preprocessor}{\#define SI\_CORE\_INFO(...) Si::Log(\{ Si::LogEntry::Type::Engine, Si::LogEntry::Level::Information, fmt::format(\_\_VA\_ARGS\_\_) \})}}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{143 \textcolor{preprocessor}{\#define SI\_CORE\_DEBUG(...) Si::Log(\{ Si::LogEntry::Type::Engine, Si::LogEntry::Level::Debug, fmt::format(\_\_VA\_ARGS\_\_) \})}}
 \DoxyCodeLine{144 }
-\DoxyCodeLine{145 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_LOG\_HPP}}
+\DoxyCodeLine{145 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_LOG\_HPP}}
 
 \end{DoxyCode}

@@ -39,26 +39,69 @@
 \DoxyCodeLine{35 }
 \DoxyCodeLine{36 \textcolor{keyword}{namespace }Si \{}
 \DoxyCodeLine{37 }
-\DoxyCodeLine{51 \textcolor{keyword}{class }\mbox{\hyperlink{class_si_1_1_node}{Node}} \{}
-\DoxyCodeLine{52 \textcolor{keyword}{public}:}
-\DoxyCodeLine{56     \textcolor{keyword}{using} \mbox{\hyperlink{class_si_1_1_node_a30bf21d6327a9ec23d77c18022b8276f}{Graph}} = Si::Graph<Node*, GraphList>;}
-\DoxyCodeLine{57 }
-\DoxyCodeLine{62     \mbox{\hyperlink{class_si_1_1_node_ab079ebcac2cf870469b8cd67824f1fc0}{Node}}(std::initializer\_list<Node*> nodes);}
+\DoxyCodeLine{38 \textcolor{keyword}{class }NodeContainer;}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{53 \textcolor{keyword}{class }\mbox{\hyperlink{class_si_1_1_node}{Node}} \{}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \textcolor{keyword}{friend} \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{keyword}{public}:}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{62     \textcolor{keyword}{using} \mbox{\hyperlink{class_si_1_1_node_a8d2a8e7b295fbd85f5219ae0e47c3539}{Graph}} = Si::Graph<std::unique\_ptr<Node>, \mbox{\hyperlink{struct_si_1_1_graph_list}{GraphList}}>;}
 \DoxyCodeLine{63 }
-\DoxyCodeLine{70     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_si_1_1_node_ad392027fc4d094c018b90f4bd92798f8}{OnAttach}}();}
-\DoxyCodeLine{71 }
-\DoxyCodeLine{76     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_si_1_1_node_acd249869767df516e1f0bcc371d819b4}{OnTick}}(\textcolor{keywordtype}{float} deltaTime);}
-\DoxyCodeLine{77 }
-\DoxyCodeLine{83     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_si_1_1_node_a9592b5b72aea1fddec1c987d2c8c5fea}{OnDetach}}();}
+\DoxyCodeLine{64     \mbox{\hyperlink{class_si_1_1_node}{Node}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_si_1_1_node}{Node}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{65     \mbox{\hyperlink{class_si_1_1_node}{Node}}(\mbox{\hyperlink{class_si_1_1_node}{Node}}\&\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67     \textcolor{keywordtype}{bool} Attach();}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{75     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_si_1_1_node_ad392027fc4d094c018b90f4bd92798f8}{OnAttach}}();}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{81     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_si_1_1_node_acd249869767df516e1f0bcc371d819b4}{OnTick}}(\textcolor{keywordtype}{float} deltaTime);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     \textcolor{keywordtype}{void} Detach();}
 \DoxyCodeLine{84 }
-\DoxyCodeLine{88     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_si_1_1_node_af48b1b2fc3fecf69427ee572e99b611b}{\string~Node}}();}
-\DoxyCodeLine{89 }
-\DoxyCodeLine{90 \textcolor{keyword}{private}:}
-\DoxyCodeLine{91     Node::Graph::vertex\_descriptor m\_descriptor;}
-\DoxyCodeLine{92 \};}
-\DoxyCodeLine{93 }
-\DoxyCodeLine{94 \} \textcolor{comment}{// Si}}
-\DoxyCodeLine{95 }
-\DoxyCodeLine{96 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_NODE\_HPP}}
+\DoxyCodeLine{90     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_si_1_1_node_a9592b5b72aea1fddec1c987d2c8c5fea}{OnDetach}}();}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{95     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_si_1_1_node_a3fe9035c3da6fcbc53a3b4a8daa34458}{\string~Node}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97     \textcolor{keywordtype}{bool} IsAncestor(\mbox{\hyperlink{class_si_1_1_node}{Node}}\& ancestor);}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99     \mbox{\hyperlink{class_si_1_1_node}{Node}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{class_si_1_1_node}{Node}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{100     \mbox{\hyperlink{class_si_1_1_node}{Node}}\& operator=(\mbox{\hyperlink{class_si_1_1_node}{Node}}\&\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{103     \mbox{\hyperlink{class_si_1_1_node}{Node}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{keyword}{private}:}
+\DoxyCodeLine{106     Node::Graph::vertex\_descriptor m\_descriptor;}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108 \};}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{keyword}{class }\mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}} \{}
+\DoxyCodeLine{111 \textcolor{keyword}{public}:}
+\DoxyCodeLine{112     \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}() = \textcolor{keyword}{delete};}
+\DoxyCodeLine{113     \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}(std::unique\_ptr<Node>\&\&, std::initializer\_list<NodeContainer>);}
+\DoxyCodeLine{114     \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}\&) = \textcolor{keyword}{delete};}
+\DoxyCodeLine{115     \mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}(\mbox{\hyperlink{class_si_1_1_node_container}{NodeContainer}}\&\& other) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117     \mbox{\hyperlink{class_si_1_1_node}{Node}}* operator-\/>();}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119 \textcolor{keyword}{private}:}
+\DoxyCodeLine{120     Node::Graph::vertex\_descriptor m\_descriptor;}
+\DoxyCodeLine{121 \};}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123 \} \textcolor{comment}{// Si}}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#define SI\_DECL\_NODE(NODE, INODE)                                                            \(\backslash\)}}
+\DoxyCodeLine{126 \textcolor{preprocessor}{    template <typename... Args>                                                              \(\backslash\)}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{    class NODE : public Si::NodeContainer \{                                                  \(\backslash\)}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{    public:                                                                                  \(\backslash\)}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{        NODE(std::initializer\_list<NodeContainer> nodes, Args... args)                       \(\backslash\)}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{            : Si::NodeContainer(std::make\_unique<INODE>(std::forward<Args>(args)...), nodes) \(\backslash\)}}
+\DoxyCodeLine{131 \textcolor{preprocessor}{        \{                                                                                    \(\backslash\)}}
+\DoxyCodeLine{132 \textcolor{preprocessor}{        \}                                                                                    \(\backslash\)}}
+\DoxyCodeLine{133 \textcolor{preprocessor}{    \};}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_NODE\_HPP}}
 
 \end{DoxyCode}
