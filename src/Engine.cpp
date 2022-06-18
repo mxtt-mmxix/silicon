@@ -26,6 +26,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <mutex>
+#include <limits>
+
 #ifdef BUILD_EMSCRIPTEN
 #include <emscripten.h>
 #endif
@@ -46,16 +49,10 @@ namespace {
 
 constexpr std::uint32_t SUBSYSTEM_MASK = SDL_INIT_VIDEO | SDL_INIT_AUDIO;
 
+std::mutex s_loopMutex;
+
 SDL_Event s_event;
 Si::Window s_applicationWindow;
-
-void Loop()
-{
-    Si::StopWatch stopWatch;
-
-    while (SDL_PollEvent(&s_event)) {
-    }
-}
 
 }
 
@@ -98,6 +95,8 @@ bool Initialize()
             return false;
         }
 
+        bgfx::renderFrame();
+
     } else {
         bgfxPD.nwh = (void*)"#canvas";
     }
@@ -110,44 +109,71 @@ bool Initialize()
 
     bgfx::setPlatformData(bgfxPD);
 
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
-
-    if (renderer == nullptr) {
-        SI_CORE_ERROR("Failed to create temporary renderer: {}", SDL_GetError());
-        return false;
-    }
-
-    if (SDL_GetRendererOutputSize(renderer, &windowWidth, &windowHeight) < 0) {
-        SI_CORE_ERROR("Failed to get window size: {}", SDL_GetError());
-        return false;
-    }
-
-    SDL_DestroyRenderer(renderer);
-
     bgfx::Init bgfxInit;
     bgfxInit.type = bgfx::RendererType::Count;
     bgfxInit.resolution.width = windowWidth;
     bgfxInit.resolution.height = windowHeight;
     bgfxInit.resolution.reset = BGFX_RESET_VSYNC;
 
-    bgfx::renderFrame();
     bgfx::init(bgfxInit);
+
+    bgfx::setViewClear(0, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH, 0xff0000ff, 1.0f, 0);
+    bgfx::setViewRect(0, 0, 0, windowWidth, windowHeight);
 
     SI_CORE_INFO("{}: Welcome to Silicon Engine!", BOOST_CURRENT_FUNCTION);
 
     return true;
 }
 
-void Run(const std::function<void(float)>& func)
+void Loop(void* outLoopReturn)
 {
+    std::uint32_t nullParameter;
+    auto* outLoopReturnInt = static_cast<uint32_t*>(outLoopReturn);
+
+    if (outLoopReturn == nullptr) outLoopReturnInt = &nullParameter;
+
+    if (SDL_WasInit(SUBSYSTEM_MASK) != SUBSYSTEM_MASK) {
+        SI_CORE_ERROR("{}: Engine was not initialized!", BOOST_CURRENT_FUNCTION);
+        *outLoopReturnInt = SI_ENGINE_LOOP_ENGINE_NOT_INITIALIZED;
+        return ;
+    }
+
+    std::unique_lock lock { s_loopMutex, std::defer_lock };
+
+    if (!lock.try_lock()) {
+        SI_CORE_ERROR("{}: Failed to take control of loop! Please do not call this if Engine::Run() is running.", BOOST_CURRENT_FUNCTION);
+        *outLoopReturnInt = SI_ENGINE_LOOP_LOOP_ALREADY_RUNNING;
+        return ;
+    }
+
+    while (SDL_PollEvent(&s_event)) {
+        if (s_event.type == SDL_QUIT) {
+            *outLoopReturnInt = SI_ENGINE_LOOP_USER_QUIT;
+
 #ifdef __EMSCRIPTEN__
-    emscripten_set_main_loop(Loop, 0, true);
+            emscripten_cancel_main_loop();
+#endif
+            return ;
+        }
+    }
+
+    bgfx::touch(0);
+    bgfx::frame();
+
+    *outLoopReturnInt = SI_ENGINE_LOOP_CONTINUE;
+}
+
+void Run()
+{
+    std::uint32_t loopReturn = 0;
+
+#ifdef __EMSCRIPTEN__
+    emscripten_set_main_loop_arg(Loop, &loopReturn, 0, true);
     return;
 #endif
 
-    while (s_event.type != SDL_QUIT) {
-        Loop();
-    }
+    while (!loopReturn)
+        Loop(&loopReturn);
 }
 
 void DeInitialize()

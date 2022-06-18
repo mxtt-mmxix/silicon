@@ -18,6 +18,8 @@ if (BUILD_EMSCRIPTEN)
     set(VCPKG_TARGET_TRIPLET "wasm32-emscripten")
 
     add_compile_definitions(BUILD_EMSCRIPTEN)
+
+    add_link_options("-sALLOW_MEMORY_GROWTH" "-sUSE_SDL=2" "-sUSE_BOOST_HEADERS=1" "-sMAX_WEBGL_VERSION=2")
 endif()
 
 project(Silicon)
@@ -32,11 +34,6 @@ elseif(${CMAKE_SYSTEM_NAME} EQUAL "Linux")
     set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_install/x64-linux")
 elseif(${CMAKE_SYSTEM_NAME} EQUAL "Emscripten")
     set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_install/wasm32-emscripten")
-endif()
-
-if (NOT BUILD_EMSCRIPTEN)
-    find_package(SDL2 CONFIG REQUIRED)
-    find_package(Boost REQUIRED)
 endif()
 
 find_package(fmt CONFIG REQUIRED)
@@ -64,11 +61,6 @@ set(SRC
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SRC})
 
-if (BUILD_EMSCRIPTEN)
-    set(CMAKE_EXECUTABLE_SUFFIX ".html")
-    add_link_options("--emrun" "-sALLOW_MEMORY_GROWTH" "-sUSE_SDL=2" "-sUSE_BOOST_HEADERS=1" "-sMAX_WEBGL_VERSION=2")
-endif()
-
 add_library(${PROJECT_NAME} ${SRC})
 
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" "${CMAKE_CURRENT_BINARY_DIR}/include")
@@ -77,7 +69,13 @@ target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE bgfx bx)
 
-if(NOT BUILD_EMSCRIPTEN)
+if(BUILD_EMSCRIPTEN)
+    set(CMAKE_EXECUTABLE_SUFFIX ".html")
+    add_link_options("--emrun")
+else()
+    find_package(SDL2 CONFIG REQUIRED)
+    find_package(Boost REQUIRED)
+
     target_link_libraries(${PROJECT_NAME} PUBLIC
             Boost::boost)
     target_link_libraries(${PROJECT_NAME} PRIVATE
@@ -87,4 +85,10 @@ endif()
 
 include(test/HelloWorld/HelloWorld.cmake)
 include(test/NodeTree/NodeTree.cmake)
+
+if (NOT SKIP_ENGINE_TESTS)
+
 include(test/EngineInit/EngineInit.cmake)
+include(test/LoopOnce/LoopOnce.cmake)
+
+endif()
