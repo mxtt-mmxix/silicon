@@ -46,7 +46,11 @@ public:
 
     bool Open(const String& name, std::uint32_t width = 800, uint32_t height = 600);
     void Close();
-    uint32_t getID() const;
+
+    std::uint32_t getID() const;
+    std::int32_t getWidth();
+    std::int32_t getHeight();
+    void* getNativeHandle() const;
 
     ~Window();
 

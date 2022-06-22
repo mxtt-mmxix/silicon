@@ -27,9 +27,10 @@
  */
 
 #include <SDL2/SDL_video.h>
+#include <SDL2/SDL_syswm.h>
 
-#include "Silicon/Window.hpp"
 #include "Silicon/Log.hpp"
+#include "Silicon/Window.hpp"
 
 namespace Si {
 
@@ -74,7 +75,8 @@ bool Window::Open(const String& name, std::uint32_t width, uint32_t height)
 void Window::Close()
 {
     SDL_Window* window = SDL_GetWindowFromID(m_id);
-    if (window != nullptr) SDL_DestroyWindow(window);
+    if (window != nullptr)
+        SDL_DestroyWindow(window);
 }
 
 Window::~Window()
@@ -82,9 +84,67 @@ Window::~Window()
     Close();
 }
 
-uint32_t Window::getID() const
+std::uint32_t Window::getID() const
 {
     return m_id;
+}
+
+std::int32_t Window::getWidth()
+{
+    SDL_Window* window = SDL_GetWindowFromID(m_id);
+    std::int32_t width = 0;
+
+    if (window != nullptr) {
+        SDL_GL_GetDrawableSize(window, &width, nullptr);
+    }
+
+    if (!width || (window == nullptr)) {
+        SI_CORE_ERROR("Failed to get window width: {}", SDL_GetError());
+    }
+
+    return width;
+}
+
+std::int32_t Window::getHeight()
+{
+    SDL_Window* window = SDL_GetWindowFromID(m_id);
+    std::int32_t height = 0;
+
+    if (window != nullptr) {
+        SDL_GL_GetDrawableSize(SDL_GetWindowFromID(m_id), nullptr, &height);
+    }
+
+    if (!height || (window == nullptr)) {
+        SI_CORE_ERROR("Failed to get window height: {}", SDL_GetError());
+    }
+
+    return height;
+}
+
+void* Window::getNativeHandle() const
+{
+#ifdef SI_PLATFORM_EMSCRIPTEN
+    return (void*)"#canvas";
+#else
+    SDL_Window* window = SDL_GetWindowFromID(m_id);
+    SDL_SysWMinfo info;
+    SDL_VERSION(&info.version)
+
+    if (window == nullptr) {
+        SI_CORE_ERROR("Failed to get window!: {}", SDL_GetError());
+        return nullptr;
+    }
+
+    if (!SDL_GetWindowWMInfo(window, &info)) {
+        SI_CORE_ERROR("Failed to get window manager information: {}", SDL_GetError());
+        return nullptr;
+    }
+
+#ifdef SI_PLATFORM_DARWIN
+    return info.info.cocoa.window;
+#endif
+
+#endif
 }
 
 } // Si

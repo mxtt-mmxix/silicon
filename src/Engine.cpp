@@ -28,13 +28,12 @@
 
 #include <mutex>
 
-#ifdef BUILD_EMSCRIPTEN
+#ifdef SI_PLATFORM_EMSCRIPTEN
 #include <emscripten.h>
 #endif
 
 #define SDL_MAIN_HANDLED
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_syswm.h>
 
 #include <bgfx/bgfx.h>
 #include <bgfx/platform.h>
@@ -72,52 +71,20 @@ bool Initialize()
 
     s_applicationWindow.Open("Si Engine");
 
-    int windowWidth = 800, windowHeight = 600;
-    SDL_Window* window = SDL_GetWindowFromID(s_applicationWindow.getID());
-
-    SDL_GL_GetDrawableSize(window, &windowWidth, &windowHeight);
-
-    if (!windowWidth || !windowHeight) {
-        SI_CORE_ERROR("Failed to get window size!");
-    }
-
-    bgfx::PlatformData bgfxPD;
-
-    SDL_SysWMinfo info;
-    SDL_VERSION(&info.version)
-
-    if (window == nullptr) {
-        SI_CORE_ERROR("Failed to get window!: {}", SDL_GetError());
-        return false;
-    }
-
-#ifdef SI_PLATFORM_EMSCRIPTEN
-    bgfxPD.nwh = (void*)"#canvas";
-#else
-    if (!SDL_GetWindowWMInfo(window, &info)) {
-        SI_CORE_ERROR("Failed to get window manager information: {}", SDL_GetError());
-        return false;
-    }
-
-#ifdef SI_PLATFROM_APPLE
-    bgfxPD.nwh = info.info.cocoa.window;
-#endif
-
-    bgfx::renderFrame();
-#endif
-
-    bgfx::setPlatformData(bgfxPD);
-
     bgfx::Init bgfxInit;
     bgfxInit.type = bgfx::RendererType::Count;
-    bgfxInit.resolution.width = windowWidth;
-    bgfxInit.resolution.height = windowHeight;
+    bgfxInit.resolution.width = s_applicationWindow.getWidth();
+    bgfxInit.resolution.height = s_applicationWindow.getHeight();
     bgfxInit.resolution.reset = BGFX_RESET_VSYNC;
+    bgfxInit.platformData.nwh = s_applicationWindow.getNativeHandle();
 
+    bgfx::renderFrame();
     bgfx::init(bgfxInit);
 
     bgfx::setViewClear(0, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH, 0xff0000ff, 1.0f, 0);
-    bgfx::setViewRect(0, 0, 0, windowWidth, windowHeight);
+    bgfx::setViewRect(0, 0, 0, bgfxInit.resolution.width, bgfxInit.resolution.height);
+
+    atexit(Si::Engine::DeInitialize);
 
     SI_CORE_INFO("{}: Welcome to Silicon Engine!", BOOST_CURRENT_FUNCTION);
 
@@ -178,6 +145,9 @@ void Run()
 void DeInitialize()
 {
     if (SDL_WasInit(SUBSYSTEM_MASK) == SUBSYSTEM_MASK) {
+
+        bgfx::shutdown();
+
         SDL_Quit();
 
         SI_CORE_INFO("{}: Silicon Engine Shutdown.", BOOST_CURRENT_FUNCTION);

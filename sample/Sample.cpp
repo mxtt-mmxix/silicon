@@ -27,18 +27,17 @@
  */
 
 #include <cstdlib>
-#include <limits>
 
 #include "Silicon/Engine.hpp"
 
 int main(int argc, char** argv)
 {
-    if (!Si::Engine::Initialize()) return EXIT_FAILURE;
+    if (!Si::Engine::Initialize())
+    {
+        return EXIT_FAILURE;
+    }
 
-    std::uint32_t loopReturn = std::numeric_limits<std::uint32_t>::max();
-    Si::Engine::Loop(&loopReturn);
-
-    if (loopReturn) return EXIT_FAILURE;
+    Si::Engine::Run();
 
     return EXIT_SUCCESS;
 }

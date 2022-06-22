@@ -34,7 +34,6 @@
 int main(int argc, char** argv)
 {
     if (!Si::Engine::Initialize()) return EXIT_FAILURE;
-    atexit(Si::Engine::DeInitialize);
 
     return EXIT_SUCCESS;
 }

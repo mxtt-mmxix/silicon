@@ -10,35 +10,19 @@ set(
 if (BUILD_EMSCRIPTEN)
     if (NOT DEFINED ENV{EMSDK})
         message(FATAL_ERROR "-DBUILD_EMSCRIPTEN is enabled but the Emscripten SDK was not found. Please set the EMSDK environment variable.")
-    endif()
+    endif ()
 
     set(
             VCPKG_CHAINLOAD_TOOLCHAIN_FILE "$ENV{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake"
             CACHE STRING "Emscripten toolchain file")
     set(VCPKG_TARGET_TRIPLET "wasm32-emscripten")
 
-    add_compile_definitions(BUILD_EMSCRIPTEN)
-
     add_link_options("-sALLOW_MEMORY_GROWTH" "-sUSE_SDL=2" "-sUSE_BOOST_HEADERS=1" "-sMAX_WEBGL_VERSION=2")
-endif()
+endif ()
 
 project(Silicon)
 
 include(CTest)
-
-if (BUILD_EMSCRIPTEN)
-    set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_install/wasm32-emscripten")
-    add_compile_definitions(SI_PLATFORM_EMSCRIPTEN)
-elseif (${CMAKE_SYSTEM_NAME} EQUAL "Windows")
-    set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_install/x64-windows")
-    add_compile_definitions(SI_PLATFORM_WINDOWS)
-elseif(${CMAKE_SYSTEM_NAME} EQUAL "Darwin")
-    set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_install/x64-osx")
-    add_compile_definitions(SI_PLATFORM_DARWIN)
-elseif(${CMAKE_SYSTEM_NAME} EQUAL "Linux")
-    set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_install/x64-linux")
-    add_compile_definitions(SI_PLATFORM_LINUX)
-endif()
 
 find_package(fmt CONFIG REQUIRED)
 
@@ -68,15 +52,29 @@ source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SRC})
 add_library(${PROJECT_NAME} ${SRC})
 
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include" "${CMAKE_CURRENT_BINARY_DIR}/include")
-
 target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt)
-
 target_link_libraries(${PROJECT_NAME} PRIVATE bgfx bx)
 
-if(BUILD_EMSCRIPTEN)
+if (BUILD_EMSCRIPTEN)
+    set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_install/wasm32-emscripten")
+    target_compile_definitions(${PROJECT_NAME} PUBLIC SI_PLATFORM_EMSCRIPTEN)
+elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_install/x64-windows")
+    target_compile_definitions(${PROJECT_NAME} PUBLIC SI_PLATFORM_WINDOWS)
+elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_install/x64-osx")
+    target_compile_definitions(${PROJECT_NAME} PUBLIC SI_PLATFORM_DARWIN)
+elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    set(CMAKE_PREFIX_PATH "${CMAKE_CURRENT_BINARY_DIR}/vcpkg_install/x64-linux")
+    target_compile_definitions(${PROJECT_NAME} PUBLIC SI_PLATFORM_LINUX)
+else()
+    message(FATAL_ERROR "${CMAKE_SYSTEM_NAME} is not supported yet!")
+endif ()
+
+if (BUILD_EMSCRIPTEN)
     set(CMAKE_EXECUTABLE_SUFFIX ".html")
     add_link_options("--emrun")
-else()
+else ()
     find_package(SDL2 CONFIG REQUIRED)
     find_package(Boost REQUIRED)
 
@@ -85,14 +83,16 @@ else()
     target_link_libraries(${PROJECT_NAME} PRIVATE
             SDL2::SDL2
             SDL2::SDL2main)
-endif()
+endif ()
 
 include(test/HelloWorld/HelloWorld.cmake)
 include(test/NodeTree/NodeTree.cmake)
 
 if (NOT SKIP_ENGINE_TESTS)
 
-include(test/EngineInit/EngineInit.cmake)
-include(test/LoopOnce/LoopOnce.cmake)
+    include(test/EngineInit/EngineInit.cmake)
+    include(test/LoopOnce/LoopOnce.cmake)
 
-endif()
+endif ()
+
+add_subdirectory(sample)
