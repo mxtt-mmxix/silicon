@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.16)
 
 option(BUILD_EMSCRIPTEN "Builds Silicon Engine to target the Web using WASM and WebGL via Emscripten")
 option(SKIP_ENGINE_TESTS "Skips engine tests which require a browser environment")
@@ -18,6 +18,12 @@ if (BUILD_EMSCRIPTEN)
     set(VCPKG_TARGET_TRIPLET "wasm32-emscripten")
 
     add_link_options("-sALLOW_MEMORY_GROWTH" "-sUSE_SDL=2" "-sUSE_BOOST_HEADERS=1" "-sMAX_WEBGL_VERSION=2")
+endif ()
+
+if (${CMAKE_HOST_WIN32})
+    execute_process(COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/libs/vcpkg/bootstrap-vcpkg.bat")
+else()
+    execute_process(COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/libs/vcpkg/bootstrap-vcpkg.sh")
 endif ()
 
 project(Silicon)
@@ -45,7 +51,7 @@ set(SRC
         include/Silicon/Allocator.hpp
         include/Silicon/String.hpp
         src/StopWatch.cpp
-        include/Silicon/StopWatch.hpp src/Window.cpp include/Silicon/Window.hpp)
+        include/Silicon/StopWatch.hpp src/Window.cpp include/Silicon/Window.hpp include/Silicon/Event.hpp src/Event.cpp)
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SRC})
 
