@@ -26,55 +26,17 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-//
-// Created by Matthew McCall on 5/27/22.
-//
+#ifndef SILICON_BUTTON_HPP
+#define SILICON_BUTTON_HPP
 
-#include <cstdlib>
-
-#include "Silicon/Log.hpp"
 #include "Silicon/Node.hpp"
-#include "Silicon/String.hpp"
 
-class CustomNode : public Si::Node {
-public:
-    explicit CustomNode(Si::String message)
-        : m_message(std::move(message))
-    {
-        SI_INFO("Constructing: {}", m_message);
-    }
 
-    CustomNode(const CustomNode&) = delete;
+namespace Si {
 
-    bool OnAttach() override
-    {
-        SI_INFO("Attaching: {}", m_message);
-        return true;
-    }
-
-    void OnDetach() override
-    {
-        SI_INFO("Detaching: {}", m_message);
-    }
-
-    ~CustomNode() override {
-        SI_INFO("Destroying {}", m_message);
-    };
-
-private:
-    Si::String m_message;
+class Button : public Node {
 };
 
+} // Si
 
-int main(int argc, char** argv)
-{
-    CustomNode nodeA("Node A");
-    CustomNode nodeB("Node B");
-
-    nodeA.AddChild(nodeB);
-
-    nodeA.Attach();
-    nodeA.Detach();
-
-    return EXIT_SUCCESS;
-}
+#endif // SILICON_BUTTON_HPP

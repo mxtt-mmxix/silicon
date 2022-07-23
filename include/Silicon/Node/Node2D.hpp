@@ -26,55 +26,32 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-//
-// Created by Matthew McCall on 5/27/22.
-//
+#ifndef SILICON_NODE2D_HPP
+#define SILICON_NODE2D_HPP
 
-#include <cstdlib>
-
-#include "Silicon/Log.hpp"
+#include "Silicon/Math.hpp"
 #include "Silicon/Node.hpp"
-#include "Silicon/String.hpp"
 
-class CustomNode : public Si::Node {
+#include "Texture.hpp"
+
+namespace Si {
+
+class Node2D : public Node {
+
+    Vec3f m_translation, m_rotation, m_scale;
+
 public:
-    explicit CustomNode(Si::String message)
-        : m_message(std::move(message))
-    {
-        SI_INFO("Constructing: {}", m_message);
-    }
+    Node2D();
 
-    CustomNode(const CustomNode&) = delete;
+    void SetTranslation(const Vec3f& translation);
+    void SetRotation(const Vec3f& rotation);
+    void SetScale(const Vec3f& scale);
 
-    bool OnAttach() override
-    {
-        SI_INFO("Attaching: {}", m_message);
-        return true;
-    }
-
-    void OnDetach() override
-    {
-        SI_INFO("Detaching: {}", m_message);
-    }
-
-    ~CustomNode() override {
-        SI_INFO("Destroying {}", m_message);
-    };
-
-private:
-    Si::String m_message;
+    [[nodiscard]] const Vec3f& GetTranslation() const;
+    [[nodiscard]] const Vec3f& GetRotation() const;
+    [[nodiscard]] const Vec3f& GetScale() const;
 };
 
-
-int main(int argc, char** argv)
-{
-    CustomNode nodeA("Node A");
-    CustomNode nodeB("Node B");
-
-    nodeA.AddChild(nodeB);
-
-    nodeA.Attach();
-    nodeA.Detach();
-
-    return EXIT_SUCCESS;
 }
+
+#endif // SILICON_NODE2D_HPP

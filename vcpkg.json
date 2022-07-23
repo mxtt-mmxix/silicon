@@ -1,5 +1,4 @@
 {
-    "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
     "name": "silicon",
     "version": "0.0.1",
     "dependencies": [
@@ -9,6 +8,7 @@
         },
         "fmt",
         "boost-pool",
-        "boost-graph"
+        "boost-graph",
+        "boost-smart-ptr"
     ]
 }

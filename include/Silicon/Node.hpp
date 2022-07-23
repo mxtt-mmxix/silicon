@@ -35,8 +35,6 @@
 
 namespace Si {
 
-class NodeContainer;
-
 /**
  * A Node is the building block of your game.
  *
@@ -51,18 +49,20 @@ class NodeContainer;
  * attached to a specific location in the tree nor should its behavior depend on where it is attached in the tree.
  */
 class Node {
-
-    friend NodeContainer;
-
 public:
-
     /**
      * Helper type used to define the Node tree. You do not need to use this type directly.
      */
-    using Graph = Si::Graph<std::unique_ptr<Node>, GraphList>;
+    using Graph = Si::Graph<Node*, GraphList>;
 
     Node(const Node&) = delete;
     Node(Node&&) = delete;
+
+    /**
+     * Adds a child to this Node.
+     */
+    void AddChild(Node*);
+    void AddChild(Node&);
 
     bool Attach();
 
@@ -100,39 +100,13 @@ public:
     Node& operator=(Node&&) = delete;
 
 protected:
-    Node() = default;
-
-private:
-    Node::Graph::vertex_descriptor m_descriptor;
-
-};
-
-/**
- * Node Container is a helper type to make declarative programming with nodes easier.
- */
-class NodeContainer {
-public:
-    NodeContainer() = delete;
-    NodeContainer(std::unique_ptr<Node>&&, std::initializer_list<NodeContainer>);
-    NodeContainer(const NodeContainer&) = delete;
-    NodeContainer(NodeContainer&& other) noexcept;
-
-    Node* operator->();
+    Node();
+    Node(Node*);
 
 private:
     Node::Graph::vertex_descriptor m_descriptor;
 };
 
-} // Si
-
-#define SI_DECL_NODE(NODE, INODE)                                                            \
-    template <typename... Args>                                                              \
-    class NODE : public Si::NodeContainer {                                                  \
-    public:                                                                                  \
-        NODE(std::initializer_list<NodeContainer> nodes, Args... args)                       \
-            : Si::NodeContainer(std::make_unique<INODE>(std::forward<Args>(args)...), nodes) \
-        {                                                                                    \
-        }                                                                                    \
-    };
+}
 
 #endif // SILICON_NODE_HPP

@@ -41,6 +41,33 @@ Si::Node::Graph s_graph;
 
 namespace Si {
 
+Node::Node()
+{
+    m_descriptor = boost::add_vertex(s_graph);
+    s_graph[m_descriptor] = this;
+}
+
+Node::Node(Node* parent)
+{
+    assert(parent != nullptr);
+
+    m_descriptor = boost::add_vertex(s_graph);
+    s_graph[m_descriptor] = this;
+
+    parent->AddChild(this);
+}
+
+void Node::AddChild(Node* node)
+{
+    assert(node != nullptr);
+    boost::add_edge(m_descriptor, node->m_descriptor, s_graph);
+}
+
+void Node::AddChild(Node& node)
+{
+    boost::add_edge(m_descriptor, node.m_descriptor, s_graph);
+}
+
 bool Node::Attach()
 {
     String AttachFailError;
@@ -102,27 +129,6 @@ bool Node::IsAncestor(Node& ancestor)
     }
 
     return false;
-}
-
-NodeContainer::NodeContainer(std::unique_ptr<Node>&& ptr, std::initializer_list<NodeContainer> nodes)
-{
-    m_descriptor = boost::add_vertex(s_graph);
-    s_graph[m_descriptor] = std::move(ptr);
-    s_graph[m_descriptor]->m_descriptor = m_descriptor;
-
-    for (const NodeContainer& node : nodes) {
-        boost::add_edge(m_descriptor, node.m_descriptor, s_graph);
-    }
-}
-
-NodeContainer::NodeContainer(NodeContainer&& other) noexcept
-    : m_descriptor(other.m_descriptor)
-{
-}
-
-Node* NodeContainer::operator->()
-{
-    return s_graph[m_descriptor].get();
 }
 
 } // Si

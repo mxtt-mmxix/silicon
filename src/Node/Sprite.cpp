@@ -26,55 +26,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-//
-// Created by Matthew McCall on 5/27/22.
-//
+#include "Silicon/Node/Sprite.hpp"
 
-#include <cstdlib>
+namespace Si {
 
-#include "Silicon/Log.hpp"
-#include "Silicon/Node.hpp"
-#include "Silicon/String.hpp"
-
-class CustomNode : public Si::Node {
-public:
-    explicit CustomNode(Si::String message)
-        : m_message(std::move(message))
-    {
-        SI_INFO("Constructing: {}", m_message);
-    }
-
-    CustomNode(const CustomNode&) = delete;
-
-    bool OnAttach() override
-    {
-        SI_INFO("Attaching: {}", m_message);
-        return true;
-    }
-
-    void OnDetach() override
-    {
-        SI_INFO("Detaching: {}", m_message);
-    }
-
-    ~CustomNode() override {
-        SI_INFO("Destroying {}", m_message);
-    };
-
-private:
-    Si::String m_message;
-};
-
-
-int main(int argc, char** argv)
-{
-    CustomNode nodeA("Node A");
-    CustomNode nodeB("Node B");
-
-    nodeA.AddChild(nodeB);
-
-    nodeA.Attach();
-    nodeA.Detach();
-
-    return EXIT_SUCCESS;
 }

@@ -51,7 +51,16 @@ set(SRC
         include/Silicon/Allocator.hpp
         include/Silicon/String.hpp
         src/StopWatch.cpp
-        include/Silicon/StopWatch.hpp src/Window.cpp include/Silicon/Window.hpp include/Silicon/Event.hpp src/Event.cpp)
+        include/Silicon/StopWatch.hpp src/Window.cpp
+        include/Silicon/Window.hpp
+        include/Silicon/Event.hpp
+        src/Event.cpp
+        include/Silicon/Node/Node2D.hpp
+        include/Silicon/Math.hpp src/Node/Node2D.cpp
+        src/Node/Texture.cpp
+        include/Silicon/Node/Texture.hpp
+        src/Node/UI/Button.cpp
+        include/Silicon/Node/UI/Button.hpp include/Silicon/Node/Sprite.hpp src/Node/Sprite.cpp)
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${SRC})
 

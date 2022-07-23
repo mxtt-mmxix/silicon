@@ -26,55 +26,37 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-//
-// Created by Matthew McCall on 5/27/22.
-//
+#include "Silicon/Node/Node2D.hpp"
+#include "Silicon/Math.hpp"
+namespace Si {
 
-#include <cstdlib>
+Node2D::Node2D() {
 
-#include "Silicon/Log.hpp"
-#include "Silicon/Node.hpp"
-#include "Silicon/String.hpp"
+}
 
-class CustomNode : public Si::Node {
-public:
-    explicit CustomNode(Si::String message)
-        : m_message(std::move(message))
-    {
-        SI_INFO("Constructing: {}", m_message);
-    }
-
-    CustomNode(const CustomNode&) = delete;
-
-    bool OnAttach() override
-    {
-        SI_INFO("Attaching: {}", m_message);
-        return true;
-    }
-
-    void OnDetach() override
-    {
-        SI_INFO("Detaching: {}", m_message);
-    }
-
-    ~CustomNode() override {
-        SI_INFO("Destroying {}", m_message);
-    };
-
-private:
-    Si::String m_message;
-};
-
-
-int main(int argc, char** argv)
+const Si::Vec3<float>& Si::Node2D::GetTranslation() const
 {
-    CustomNode nodeA("Node A");
-    CustomNode nodeB("Node B");
+    return m_translation;
+}
+const Si::Vec3<float>& Si::Node2D::GetRotation() const
+{
+    return m_rotation;
+}
+const Si::Vec3<float>& Si::Node2D::GetScale() const
+{
+    return m_scale;
+}
+void Node2D::SetTranslation(const Vec3f& translation)
+{
+    Node2D::m_translation = translation;
+}
+void Node2D::SetRotation(const Vec3f& rotation)
+{
+    Node2D::m_rotation = rotation;
+}
+void Node2D::SetScale(const Vec3f& scale)
+{
+    Node2D::m_scale = scale;
+}
 
-    nodeA.AddChild(nodeB);
-
-    nodeA.Attach();
-    nodeA.Detach();
-
-    return EXIT_SUCCESS;
 }

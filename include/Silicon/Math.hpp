@@ -27,54 +27,21 @@
  */
 
 //
-// Created by Matthew McCall on 5/27/22.
+// Created by Matthew McCall on 7/21/22.
 //
 
-#include <cstdlib>
+#ifndef SILICON_MATH_HPP
+#define SILICON_MATH_HPP
 
-#include "Silicon/Log.hpp"
-#include "Silicon/Node.hpp"
-#include "Silicon/String.hpp"
+namespace Si {
 
-class CustomNode : public Si::Node {
-public:
-    explicit CustomNode(Si::String message)
-        : m_message(std::move(message))
-    {
-        SI_INFO("Constructing: {}", m_message);
-    }
-
-    CustomNode(const CustomNode&) = delete;
-
-    bool OnAttach() override
-    {
-        SI_INFO("Attaching: {}", m_message);
-        return true;
-    }
-
-    void OnDetach() override
-    {
-        SI_INFO("Detaching: {}", m_message);
-    }
-
-    ~CustomNode() override {
-        SI_INFO("Destroying {}", m_message);
-    };
-
-private:
-    Si::String m_message;
+template <typename T>
+struct Vec3 {
+    T x, y;
 };
 
+using Vec3f = Vec3<float>;
 
-int main(int argc, char** argv)
-{
-    CustomNode nodeA("Node A");
-    CustomNode nodeB("Node B");
-
-    nodeA.AddChild(nodeB);
-
-    nodeA.Attach();
-    nodeA.Detach();
-
-    return EXIT_SUCCESS;
 }
+
+#endif // SILICON_MATH_HPP
