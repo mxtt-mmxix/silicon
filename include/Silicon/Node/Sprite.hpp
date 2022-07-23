@@ -35,6 +35,11 @@ namespace Si {
 
 class Sprite : public Node2D {
     Texture m_texture;
+
+public:
+    Sprite();
+    [[nodiscard]] const Texture& GetTexture() const;
+    void SetTexture(Texture& texture);
 };
 
 } // Si

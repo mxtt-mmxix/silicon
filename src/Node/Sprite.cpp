@@ -30,4 +30,19 @@
 
 namespace Si {
 
+Sprite::Sprite() : m_texture(this) {
+
+}
+
+const Texture& Sprite::GetTexture() const
+{
+    return m_texture;
+}
+
+void Sprite::SetTexture(Texture& texture)
+{
+    m_texture = std::move(texture);
+    m_texture.SetParent(this);
+}
+
 }

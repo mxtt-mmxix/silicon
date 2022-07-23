@@ -30,4 +30,9 @@
 
 namespace Si {
 
+Texture::Texture(Node* parent)
+    : Node(parent)
+{
+}
+
 }

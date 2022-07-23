@@ -1,0 +1,63 @@
+\hypertarget{_node2_d_8hpp_source}{}\doxysection{Node2\+D.\+hpp}
+\label{_node2_d_8hpp_source}\index{include/Silicon/Node/Node2D.hpp@{include/Silicon/Node/Node2D.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * BSD 2-\/Clause License}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Copyright (c) 2022, Matthew McCall}}
+\DoxyCodeLine{5 \textcolor{comment}{ * All rights reserved.}}
+\DoxyCodeLine{6 \textcolor{comment}{ *}}
+\DoxyCodeLine{7 \textcolor{comment}{ * Redistribution and use in source and binary forms, with or without}}
+\DoxyCodeLine{8 \textcolor{comment}{ * modification, are permitted provided that the following conditions are met:}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * 1. Redistributions of source code must retain the above copyright notice, this}}
+\DoxyCodeLine{11 \textcolor{comment}{ *    list of conditions and the following disclaimer.}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * 2. Redistributions in binary form must reproduce the above copyright notice,}}
+\DoxyCodeLine{14 \textcolor{comment}{ *    this list of conditions and the following disclaimer in the documentation}}
+\DoxyCodeLine{15 \textcolor{comment}{ *    and/or other materials provided with the distribution.}}
+\DoxyCodeLine{16 \textcolor{comment}{ *}}
+\DoxyCodeLine{17 \textcolor{comment}{ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "{}AS IS"{}}}
+\DoxyCodeLine{18 \textcolor{comment}{ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE}}
+\DoxyCodeLine{19 \textcolor{comment}{ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE}}
+\DoxyCodeLine{20 \textcolor{comment}{ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE}}
+\DoxyCodeLine{21 \textcolor{comment}{ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL}}
+\DoxyCodeLine{22 \textcolor{comment}{ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR}}
+\DoxyCodeLine{23 \textcolor{comment}{ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER}}
+\DoxyCodeLine{24 \textcolor{comment}{ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,}}
+\DoxyCodeLine{25 \textcolor{comment}{ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE}}
+\DoxyCodeLine{26 \textcolor{comment}{ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.}}
+\DoxyCodeLine{27 \textcolor{comment}{ */}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#ifndef SILICON\_NODE2D\_HPP}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define SILICON\_NODE2D\_HPP}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include "{}Silicon/Math.hpp"{}}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include "{}Silicon/Node.hpp"{}}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include "{}Texture.hpp"{}}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keyword}{namespace }Si \{}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{keyword}{class }\mbox{\hyperlink{class_si_1_1_node2_d}{Node2D}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_si_1_1_node}{Node}} \{}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \mbox{\hyperlink{struct_si_1_1_vec3}{Vec3f}} m\_translation, m\_rotation, m\_scale;}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{keyword}{public}:}
+\DoxyCodeLine{44     \mbox{\hyperlink{class_si_1_1_node2_d}{Node2D}}();}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46     \textcolor{keywordtype}{void} SetTranslation(\textcolor{keyword}{const} \mbox{\hyperlink{struct_si_1_1_vec3}{Vec3f}}\& translation);}
+\DoxyCodeLine{47     \textcolor{keywordtype}{void} SetRotation(\textcolor{keyword}{const} \mbox{\hyperlink{struct_si_1_1_vec3}{Vec3f}}\& rotation);}
+\DoxyCodeLine{48     \textcolor{keywordtype}{void} SetScale(\textcolor{keyword}{const} \mbox{\hyperlink{struct_si_1_1_vec3}{Vec3f}}\& scale);}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     [[nodiscard]] \textcolor{keyword}{const} \mbox{\hyperlink{struct_si_1_1_vec3}{Vec3f}}\& GetTranslation() \textcolor{keyword}{const};}
+\DoxyCodeLine{51     [[nodiscard]] \textcolor{keyword}{const} \mbox{\hyperlink{struct_si_1_1_vec3}{Vec3f}}\& GetRotation() \textcolor{keyword}{const};}
+\DoxyCodeLine{52     [[nodiscard]] \textcolor{keyword}{const} \mbox{\hyperlink{struct_si_1_1_vec3}{Vec3f}}\& GetScale() \textcolor{keyword}{const};}
+\DoxyCodeLine{53 \};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_NODE2D\_HPP}}
+
+\end{DoxyCode}

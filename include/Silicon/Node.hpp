@@ -55,8 +55,8 @@ public:
      */
     using Graph = Si::Graph<Node*, GraphList>;
 
-    Node(const Node&) = delete;
     Node(Node&&) = delete;
+    Node(const Node&) = delete;
 
     /**
      * Adds a child to this Node.
@@ -80,6 +80,8 @@ public:
      */
     virtual void OnTick(float deltaTime);
 
+    void SetParent(Node*);
+
     void Detach();
 
     /**
@@ -97,7 +99,7 @@ public:
     bool IsAncestor(Node& ancestor);
 
     Node& operator=(const Node&) = delete;
-    Node& operator=(Node&&) = delete;
+    Node& operator=(Node&&);
 
 protected:
     Node();

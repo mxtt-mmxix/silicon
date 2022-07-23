@@ -103,6 +103,14 @@ void Node::OnTick(float deltaTime)
 {
 }
 
+void Node::SetParent(Node* parent)
+{
+    assert(parent != nullptr);
+
+    boost::clear_in_edges(m_descriptor, s_graph);
+    boost::add_edge(parent->m_descriptor, m_descriptor, s_graph);
+}
+
 void Node::Detach()
 {
     auto [childrenBegin, childrenEnd] = boost::adjacent_vertices(m_descriptor, s_graph);
@@ -129,6 +137,24 @@ bool Node::IsAncestor(Node& ancestor)
     }
 
     return false;
+}
+
+Node& Node::operator=(Node&& other)
+{
+    auto [inEdgesBegin, inEdgesEnd] = boost::in_edges(other.m_descriptor, s_graph);
+    auto [outEdgesBegin, outEdgesEnd] = boost::out_edges(other.m_descriptor, s_graph);
+
+    for (auto i = inEdgesBegin; i != inEdgesEnd; i++) {
+        boost::add_edge(boost::source(*i, s_graph), m_descriptor, s_graph);
+    }
+
+    for (auto i = outEdgesBegin; i != outEdgesEnd; i++) {
+        boost::add_edge(m_descriptor, boost::target(*i, s_graph), s_graph);
+    }
+
+    boost::clear_vertex(other.m_descriptor, s_graph);
+
+    return *this;
 }
 
 } // Si

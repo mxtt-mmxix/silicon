@@ -1,0 +1,109 @@
+\hypertarget{_event_8hpp_source}{}\doxysection{Event.\+hpp}
+\label{_event_8hpp_source}\index{include/Silicon/Event.hpp@{include/Silicon/Event.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{/*}}
+\DoxyCodeLine{2 \textcolor{comment}{ * BSD 2-\/Clause License}}
+\DoxyCodeLine{3 \textcolor{comment}{ *}}
+\DoxyCodeLine{4 \textcolor{comment}{ * Copyright (c) 2022, Matthew McCall}}
+\DoxyCodeLine{5 \textcolor{comment}{ * All rights reserved.}}
+\DoxyCodeLine{6 \textcolor{comment}{ *}}
+\DoxyCodeLine{7 \textcolor{comment}{ * Redistribution and use in source and binary forms, with or without}}
+\DoxyCodeLine{8 \textcolor{comment}{ * modification, are permitted provided that the following conditions are met:}}
+\DoxyCodeLine{9 \textcolor{comment}{ *}}
+\DoxyCodeLine{10 \textcolor{comment}{ * 1. Redistributions of source code must retain the above copyright notice, this}}
+\DoxyCodeLine{11 \textcolor{comment}{ *    list of conditions and the following disclaimer.}}
+\DoxyCodeLine{12 \textcolor{comment}{ *}}
+\DoxyCodeLine{13 \textcolor{comment}{ * 2. Redistributions in binary form must reproduce the above copyright notice,}}
+\DoxyCodeLine{14 \textcolor{comment}{ *    this list of conditions and the following disclaimer in the documentation}}
+\DoxyCodeLine{15 \textcolor{comment}{ *    and/or other materials provided with the distribution.}}
+\DoxyCodeLine{16 \textcolor{comment}{ *}}
+\DoxyCodeLine{17 \textcolor{comment}{ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "{}AS IS"{}}}
+\DoxyCodeLine{18 \textcolor{comment}{ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE}}
+\DoxyCodeLine{19 \textcolor{comment}{ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE}}
+\DoxyCodeLine{20 \textcolor{comment}{ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE}}
+\DoxyCodeLine{21 \textcolor{comment}{ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL}}
+\DoxyCodeLine{22 \textcolor{comment}{ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR}}
+\DoxyCodeLine{23 \textcolor{comment}{ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER}}
+\DoxyCodeLine{24 \textcolor{comment}{ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,}}
+\DoxyCodeLine{25 \textcolor{comment}{ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE}}
+\DoxyCodeLine{26 \textcolor{comment}{ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.}}
+\DoxyCodeLine{27 \textcolor{comment}{ */}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#ifndef SILICON\_EVENT\_HPP}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#define SILICON\_EVENT\_HPP}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include "{}SDL2/SDL\_events.h"{}}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#include "{}Types.hpp"{}}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 \textcolor{keyword}{namespace }Si \{}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{keyword}{namespace }Event \{}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_si_1_1_event_1_1_app_quit}{AppQuit}} \{ \};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_si_1_1_event_1_1_window}{Window}} \{}
+\DoxyCodeLine{45         \mbox{\hyperlink{struct_si_1_1_event_1_1_window}{Window}}(SDL\_WindowEvent);}
+\DoxyCodeLine{46         std::uint32\_t windowID;}
+\DoxyCodeLine{47     \};}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_si_1_1_event_1_1_window_close}{WindowClose}} : \textcolor{keyword}{public} \mbox{\hyperlink{struct_si_1_1_event_1_1_window}{Window}} \{}
+\DoxyCodeLine{50         \mbox{\hyperlink{struct_si_1_1_event_1_1_window_close}{WindowClose}}(SDL\_WindowEvent);}
+\DoxyCodeLine{51     \};}
+\DoxyCodeLine{52     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_si_1_1_event_1_1_window_resize}{WindowResize}} : \textcolor{keyword}{public} \mbox{\hyperlink{struct_si_1_1_event_1_1_window}{Window}} \{}
+\DoxyCodeLine{53         \mbox{\hyperlink{struct_si_1_1_event_1_1_window_resize}{WindowResize}}(SDL\_WindowEvent);}
+\DoxyCodeLine{54         std::uint32\_t width, height;}
+\DoxyCodeLine{55     \};}
+\DoxyCodeLine{56     \textcolor{keyword}{struct }\mbox{\hyperlink{struct_si_1_1_event_1_1_window_move}{WindowMove}} : \textcolor{keyword}{public} \mbox{\hyperlink{struct_si_1_1_event_1_1_window}{Window}} \{}
+\DoxyCodeLine{57         \mbox{\hyperlink{struct_si_1_1_event_1_1_window_move}{WindowMove}}(SDL\_WindowEvent);}
+\DoxyCodeLine{58         std::uint32\_t x, y;}
+\DoxyCodeLine{59     \};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{64 \textcolor{keyword}{class }\mbox{\hyperlink{class_si_1_1_sub}{Sub}} \{}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     \textcolor{keyword}{friend} \textcolor{keywordtype}{void} Pub(\textcolor{keyword}{const} T\& data);}
+\DoxyCodeLine{67     \textcolor{keyword}{using} Callback = std::function<void(\textcolor{keyword}{const} T\&)>;}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{keyword}{public}:}
+\DoxyCodeLine{70     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_si_1_1_sub}{Sub}}(Callback func)}
+\DoxyCodeLine{71         : Func(func)}
+\DoxyCodeLine{72     \{}
+\DoxyCodeLine{73         \mbox{\hyperlink{class_si_1_1_sub}{Sub<T>::Subscribers}}.push\_back(\textcolor{keyword}{this});}
+\DoxyCodeLine{74     \}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     \mbox{\hyperlink{class_si_1_1_sub}{\string~Sub}}()}
+\DoxyCodeLine{77     \{}
+\DoxyCodeLine{78         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& i = std::find\_if(\mbox{\hyperlink{class_si_1_1_sub}{Sub<T>::Subscribers}}.begin(), \mbox{\hyperlink{class_si_1_1_sub}{Sub<T>::Subscribers}}.end(), [\textcolor{keyword}{this}](\mbox{\hyperlink{class_si_1_1_sub}{Sub<T>}}* sub) \{}
+\DoxyCodeLine{79             \textcolor{keywordflow}{return} \textcolor{keyword}{this} == sub;}
+\DoxyCodeLine{80         \});}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82         \textcolor{keywordflow}{if} (i != \mbox{\hyperlink{class_si_1_1_sub}{Sub<T>::Subscribers}}.end())}
+\DoxyCodeLine{83             \mbox{\hyperlink{class_si_1_1_sub}{Sub<T>::Subscribers}}.erase(i);}
+\DoxyCodeLine{84     \}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86     \textcolor{keyword}{static} std::vector<Sub<T>*> Subscribers;}
+\DoxyCodeLine{87     \textcolor{keyword}{const} Callback\& Func;}
+\DoxyCodeLine{88 \};}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{91 \textcolor{keywordtype}{void} Pub(\textcolor{keyword}{const} T\& data)}
+\DoxyCodeLine{92 \{}
+\DoxyCodeLine{93     \textcolor{keywordflow}{for} (\mbox{\hyperlink{class_si_1_1_sub}{Sub<T>}}* i : \mbox{\hyperlink{class_si_1_1_sub}{Sub<T>::Subscribers}}) \{}
+\DoxyCodeLine{94         i-\/>Func(data);}
+\DoxyCodeLine{95     \}}
+\DoxyCodeLine{96 \}}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{99 std::vector<Sub<T>*> Sub<T>::Subscribers \{\};}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101 \}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_EVENT\_HPP}}
+
+\end{DoxyCode}

@@ -47,16 +47,20 @@
 \DoxyCodeLine{46 }
 \DoxyCodeLine{47     \textcolor{keywordtype}{bool} Open(\textcolor{keyword}{const} \mbox{\hyperlink{class_si_1_1_string}{String}}\& name, std::uint32\_t width = 800, uint32\_t height = 600);}
 \DoxyCodeLine{48     \textcolor{keywordtype}{void} Close();}
-\DoxyCodeLine{49     uint32\_t getID() \textcolor{keyword}{const};}
-\DoxyCodeLine{50 }
-\DoxyCodeLine{51     \mbox{\hyperlink{class_si_1_1_window}{\string~Window}}();}
-\DoxyCodeLine{52 }
-\DoxyCodeLine{53 \textcolor{keyword}{private}:}
-\DoxyCodeLine{54     std::uint32\_t m\_id;}
-\DoxyCodeLine{55 \};}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     std::uint32\_t getID() \textcolor{keyword}{const};}
+\DoxyCodeLine{51     std::int32\_t getWidth();}
+\DoxyCodeLine{52     std::int32\_t getHeight();}
+\DoxyCodeLine{53     \textcolor{keywordtype}{void}* getNativeHandle() \textcolor{keyword}{const};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55     \mbox{\hyperlink{class_si_1_1_window}{\string~Window}}();}
 \DoxyCodeLine{56 }
-\DoxyCodeLine{57 \} \textcolor{comment}{// Si}}
-\DoxyCodeLine{58 }
-\DoxyCodeLine{59 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_WINDOW\_HPP}}
+\DoxyCodeLine{57 \textcolor{keyword}{private}:}
+\DoxyCodeLine{58     std::uint32\_t m\_id;}
+\DoxyCodeLine{59 \};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \} \textcolor{comment}{// Si}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SILICON\_WINDOW\_HPP}}
 
 \end{DoxyCode}

@@ -9,12 +9,12 @@ Contains the necessary functions to initialize, run, and shutdown the engine.
 \begin{DoxyCompactItemize}
 \item 
 enum \+: std\+::uint32\+\_\+t \{ \newline
-\mbox{\hyperlink{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba289fabece39bc9ed5f1b07f06751b9d6}{SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+\+CONTINUE}} = 0
-, \mbox{\hyperlink{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fbaaaa051d90b504acb2a146902569940b9}{SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+\+USER\+\_\+\+QUIT}}
-, \mbox{\hyperlink{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba1c924a939191a06a8bf5537acd0f55b9}{SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+\+ENGINE\+\_\+\+NOT\+\_\+\+INITIALIZED}}
-, \mbox{\hyperlink{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fbad5e624c78ac8de0104e36f2b25fd44ec}{SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+\+LOOP\+\_\+\+ALREADY\+\_\+\+RUNNING}}
+\mbox{\hyperlink{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fbaca151efb4905130b4c553697a2961f90}{LOOP\+\_\+\+CONTINUE}} = 0
+, \mbox{\hyperlink{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba01a0916f8dbd0de43ff45e2b7518b394}{LOOP\+\_\+\+USER\+\_\+\+QUIT}}
+, \mbox{\hyperlink{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba89c8dc41e999eccddbe3e36f4af62721}{LOOP\+\_\+\+ENGINE\+\_\+\+NOT\+\_\+\+INITIALIZED}}
+, \mbox{\hyperlink{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba5f2b5242b1018777cc733ffa5a371f16}{LOOP\+\_\+\+ALREADY\+\_\+\+RUNNING}}
 , \newline
-\mbox{\hyperlink{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba674f47c70c543480848af79f87e8882c}{SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+\+UNKNOWN\+\_\+\+ERROR}}
+\mbox{\hyperlink{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba84187cc86f0c0bf4371045eb9b285ef3}{LOOP\+\_\+\+UNKNOWN\+\_\+\+ERROR}}
  \}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
@@ -23,7 +23,7 @@ enum \+: std\+::uint32\+\_\+t \{ \newline
 bool \mbox{\hyperlink{namespace_si_1_1_engine_af1949482d1047d6b783cc35c7390b6c9}{Initialize}} ()
 \begin{DoxyCompactList}\small\item\em Initializes the engine. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{namespace_si_1_1_engine_ae104fbb9f1f9ee756292587dbd249cf4}{Loop}} (void $\ast$out\+Loop\+Return=nullptr)
-\begin{DoxyCompactList}\small\item\em Runs the loop once. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Runs the loop once; If you do need control of the main loop, please see \mbox{\hyperlink{namespace_si_1_1_engine_ae3417b6ed7cd2a9d1799d0d4c3287972}{Engine\+::\+Run()}}. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{namespace_si_1_1_engine_ae3417b6ed7cd2a9d1799d0d4c3287972}\label{namespace_si_1_1_engine_ae3417b6ed7cd2a9d1799d0d4c3287972}} 
 void {\bfseries Run} ()
 \begin{DoxyCompactList}\small\item\em Enters the main loop and does not return until the \mbox{\hyperlink{namespace_si_1_1_engine}{Engine}} is ready to shutdown. \end{DoxyCompactList}\item 
@@ -40,24 +40,24 @@ Contains the necessary functions to initialize, run, and shutdown the engine.
 {\footnotesize\ttfamily anonymous enum \+: std\+::uint32\+\_\+t}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SI\_ENGINE\_LOOP\_CONTINUE@{SI\_ENGINE\_LOOP\_CONTINUE}!Si::Engine@{Si::Engine}}\index{Si::Engine@{Si::Engine}!SI\_ENGINE\_LOOP\_CONTINUE@{SI\_ENGINE\_LOOP\_CONTINUE}}}\mbox{\Hypertarget{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba289fabece39bc9ed5f1b07f06751b9d6}\label{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba289fabece39bc9ed5f1b07f06751b9d6}} 
-SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+\+CONTINUE&The loop should continue running. \\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOOP\_CONTINUE@{LOOP\_CONTINUE}!Si::Engine@{Si::Engine}}\index{Si::Engine@{Si::Engine}!LOOP\_CONTINUE@{LOOP\_CONTINUE}}}\mbox{\Hypertarget{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fbaca151efb4905130b4c553697a2961f90}\label{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fbaca151efb4905130b4c553697a2961f90}} 
+LOOP\+\_\+\+CONTINUE&The loop should continue running. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SI\_ENGINE\_LOOP\_USER\_QUIT@{SI\_ENGINE\_LOOP\_USER\_QUIT}!Si::Engine@{Si::Engine}}\index{Si::Engine@{Si::Engine}!SI\_ENGINE\_LOOP\_USER\_QUIT@{SI\_ENGINE\_LOOP\_USER\_QUIT}}}\mbox{\Hypertarget{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fbaaaa051d90b504acb2a146902569940b9}\label{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fbaaaa051d90b504acb2a146902569940b9}} 
-SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+\+USER\+\_\+\+QUIT&The user requested a quit, i.\+e window close. \\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOOP\_USER\_QUIT@{LOOP\_USER\_QUIT}!Si::Engine@{Si::Engine}}\index{Si::Engine@{Si::Engine}!LOOP\_USER\_QUIT@{LOOP\_USER\_QUIT}}}\mbox{\Hypertarget{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba01a0916f8dbd0de43ff45e2b7518b394}\label{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba01a0916f8dbd0de43ff45e2b7518b394}} 
+LOOP\+\_\+\+USER\+\_\+\+QUIT&The user requested a quit, i.\+e window close. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SI\_ENGINE\_LOOP\_ENGINE\_NOT\_INITIALIZED@{SI\_ENGINE\_LOOP\_ENGINE\_NOT\_INITIALIZED}!Si::Engine@{Si::Engine}}\index{Si::Engine@{Si::Engine}!SI\_ENGINE\_LOOP\_ENGINE\_NOT\_INITIALIZED@{SI\_ENGINE\_LOOP\_ENGINE\_NOT\_INITIALIZED}}}\mbox{\Hypertarget{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba1c924a939191a06a8bf5537acd0f55b9}\label{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba1c924a939191a06a8bf5537acd0f55b9}} 
-SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+\+ENGINE\+\_\+\+NOT\+\_\+\+INITIALIZED&The engine was not initialized. \\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOOP\_ENGINE\_NOT\_INITIALIZED@{LOOP\_ENGINE\_NOT\_INITIALIZED}!Si::Engine@{Si::Engine}}\index{Si::Engine@{Si::Engine}!LOOP\_ENGINE\_NOT\_INITIALIZED@{LOOP\_ENGINE\_NOT\_INITIALIZED}}}\mbox{\Hypertarget{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba89c8dc41e999eccddbe3e36f4af62721}\label{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba89c8dc41e999eccddbe3e36f4af62721}} 
+LOOP\+\_\+\+ENGINE\+\_\+\+NOT\+\_\+\+INITIALIZED&The engine was not initialized. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SI\_ENGINE\_LOOP\_LOOP\_ALREADY\_RUNNING@{SI\_ENGINE\_LOOP\_LOOP\_ALREADY\_RUNNING}!Si::Engine@{Si::Engine}}\index{Si::Engine@{Si::Engine}!SI\_ENGINE\_LOOP\_LOOP\_ALREADY\_RUNNING@{SI\_ENGINE\_LOOP\_LOOP\_ALREADY\_RUNNING}}}\mbox{\Hypertarget{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fbad5e624c78ac8de0104e36f2b25fd44ec}\label{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fbad5e624c78ac8de0104e36f2b25fd44ec}} 
-SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+\+LOOP\+\_\+\+ALREADY\+\_\+\+RUNNING&\mbox{\hyperlink{namespace_si_1_1_engine_ae104fbb9f1f9ee756292587dbd249cf4}{Engine\+::\+Loop()}} is being called elsewhere. \\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOOP\_ALREADY\_RUNNING@{LOOP\_ALREADY\_RUNNING}!Si::Engine@{Si::Engine}}\index{Si::Engine@{Si::Engine}!LOOP\_ALREADY\_RUNNING@{LOOP\_ALREADY\_RUNNING}}}\mbox{\Hypertarget{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba5f2b5242b1018777cc733ffa5a371f16}\label{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba5f2b5242b1018777cc733ffa5a371f16}} 
+LOOP\+\_\+\+ALREADY\+\_\+\+RUNNING&\mbox{\hyperlink{namespace_si_1_1_engine_ae104fbb9f1f9ee756292587dbd249cf4}{Engine\+::\+Loop()}} is being called elsewhere. \\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{SI\_ENGINE\_LOOP\_UNKNOWN\_ERROR@{SI\_ENGINE\_LOOP\_UNKNOWN\_ERROR}!Si::Engine@{Si::Engine}}\index{Si::Engine@{Si::Engine}!SI\_ENGINE\_LOOP\_UNKNOWN\_ERROR@{SI\_ENGINE\_LOOP\_UNKNOWN\_ERROR}}}\mbox{\Hypertarget{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba674f47c70c543480848af79f87e8882c}\label{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba674f47c70c543480848af79f87e8882c}} 
-SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+\+UNKNOWN\+\_\+\+ERROR&Some other error occurred. \\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOOP\_UNKNOWN\_ERROR@{LOOP\_UNKNOWN\_ERROR}!Si::Engine@{Si::Engine}}\index{Si::Engine@{Si::Engine}!LOOP\_UNKNOWN\_ERROR@{LOOP\_UNKNOWN\_ERROR}}}\mbox{\Hypertarget{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba84187cc86f0c0bf4371045eb9b285ef3}\label{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fba84187cc86f0c0bf4371045eb9b285ef3}} 
+LOOP\+\_\+\+UNKNOWN\+\_\+\+ERROR&Some other error occurred. \\
 \hline
 
 \end{DoxyEnumFields}
@@ -95,9 +95,9 @@ true if the engine initializes successfully.
 
 
 
-Runs the loop once. 
+Runs the loop once; If you do need control of the main loop, please see \mbox{\hyperlink{namespace_si_1_1_engine_ae3417b6ed7cd2a9d1799d0d4c3287972}{Engine\+::\+Run()}}. 
 
-If you do need control of the main loop, please see \mbox{\hyperlink{namespace_si_1_1_engine_ae3417b6ed7cd2a9d1799d0d4c3287972}{Engine\+::\+Run()}}. 
+
 \begin{DoxyParams}{Parameters}
 {\em out\+Loop\+Return} & A pointer to a std\+::uint32\+\_\+t to store the exit code. For Emscripten builds, control is passed to the browser with no way to return a value, thus an out variable is used. 0 indicates the loop should continue running while a non-\/zero exit code indicates a user quit event (i.\+e. window closed), or an error. See SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+$\ast$ enums for details. \\
 \hline

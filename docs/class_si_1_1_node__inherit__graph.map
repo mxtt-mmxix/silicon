@@ -1,0 +1,7 @@
+<map id="Si::Node" name="Si::Node">
+<area shape="rect" id="node1" title="A Node is the building block of your game." alt="" coords="118,5,191,32"/>
+<area shape="rect" id="node2" href="$class_si_1_1_button.html" title=" " alt="" coords="5,80,85,107"/>
+<area shape="rect" id="node3" href="$class_si_1_1_node2_d.html" title=" " alt="" coords="109,80,200,107"/>
+<area shape="rect" id="node5" href="$class_si_1_1_texture.html" title=" " alt="" coords="224,80,309,107"/>
+<area shape="rect" id="node4" href="$class_si_1_1_sprite.html" title=" " alt="" coords="117,155,193,181"/>
+</map>

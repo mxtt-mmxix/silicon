@@ -7,6 +7,8 @@
             "features": [ "vulkan" ]
         },
         "fmt",
+        "lz4",
+        "cgltf",
         "boost-pool",
         "boost-graph",
         "boost-smart-ptr"

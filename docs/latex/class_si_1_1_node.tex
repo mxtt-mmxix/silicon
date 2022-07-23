@@ -9,19 +9,35 @@ A \mbox{\hyperlink{class_si_1_1_node}{Node}} is the building block of your game.
 
 {\ttfamily \#include $<$Node.\+hpp$>$}
 
+
+
+Inheritance diagram for Si\+::Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{class_si_1_1_node__inherit__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{class_si_1_1_node_a8d2a8e7b295fbd85f5219ae0e47c3539}{Graph}} = Si\+::\+Graph$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_si_1_1_node}{Node}} $>$, \mbox{\hyperlink{struct_si_1_1_graph_list}{Graph\+List}} $>$
+using \mbox{\hyperlink{class_si_1_1_node_a30bf21d6327a9ec23d77c18022b8276f}{Graph}} = Si\+::\+Graph$<$ \mbox{\hyperlink{class_si_1_1_node}{Node}} $\ast$, \mbox{\hyperlink{struct_si_1_1_graph_list}{Graph\+List}} $>$
 \begin{DoxyCompactList}\small\item\em Helper type used to define the \mbox{\hyperlink{class_si_1_1_node}{Node}} tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\Hypertarget{class_si_1_1_node_ab1be4d68d014c87a53a96556b642dba4}\label{class_si_1_1_node_ab1be4d68d014c87a53a96556b642dba4}} 
+{\bfseries Node} (\mbox{\hyperlink{class_si_1_1_node}{Node}} \&\&)=delete
+\item 
 \mbox{\Hypertarget{class_si_1_1_node_a552c78b01eef5a52d9dbabc1cca98165}\label{class_si_1_1_node_a552c78b01eef5a52d9dbabc1cca98165}} 
 {\bfseries Node} (const \mbox{\hyperlink{class_si_1_1_node}{Node}} \&)=delete
 \item 
-\mbox{\Hypertarget{class_si_1_1_node_ab1be4d68d014c87a53a96556b642dba4}\label{class_si_1_1_node_ab1be4d68d014c87a53a96556b642dba4}} 
-{\bfseries Node} (\mbox{\hyperlink{class_si_1_1_node}{Node}} \&\&)=delete
+\mbox{\Hypertarget{class_si_1_1_node_a51ba6dab2da64721d50e6203dda855ff}\label{class_si_1_1_node_a51ba6dab2da64721d50e6203dda855ff}} 
+void {\bfseries Add\+Child} (\mbox{\hyperlink{class_si_1_1_node}{Node}} $\ast$)
+\begin{DoxyCompactList}\small\item\em Adds a child to this \mbox{\hyperlink{class_si_1_1_node}{Node}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_si_1_1_node_aee4de1600f19f90189206a967641a39e}\label{class_si_1_1_node_aee4de1600f19f90189206a967641a39e}} 
+void {\bfseries Add\+Child} (\mbox{\hyperlink{class_si_1_1_node}{Node}} \&)
 \item 
 \mbox{\Hypertarget{class_si_1_1_node_abe603e86452a5c2b6d1a42ff01ebb8c9}\label{class_si_1_1_node_abe603e86452a5c2b6d1a42ff01ebb8c9}} 
 bool {\bfseries Attach} ()
@@ -30,6 +46,9 @@ virtual bool \mbox{\hyperlink{class_si_1_1_node_ad392027fc4d094c018b90f4bd92798f
 \begin{DoxyCompactList}\small\item\em Gets called when the \mbox{\hyperlink{class_si_1_1_node}{Node}} is attached to the tree. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{class_si_1_1_node_acd249869767df516e1f0bcc371d819b4}{On\+Tick}} (float delta\+Time)
 \begin{DoxyCompactList}\small\item\em Gets called on each application tick. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_si_1_1_node_afada3eefe99c2d45b4c19da296080686}\label{class_si_1_1_node_afada3eefe99c2d45b4c19da296080686}} 
+void {\bfseries Set\+Parent} (\mbox{\hyperlink{class_si_1_1_node}{Node}} $\ast$)
+\item 
 \mbox{\Hypertarget{class_si_1_1_node_aace3436e3d1ae77fd1747f46e7337423}\label{class_si_1_1_node_aace3436e3d1ae77fd1747f46e7337423}} 
 void {\bfseries Detach} ()
 \item 
@@ -44,8 +63,14 @@ bool {\bfseries Is\+Ancestor} (\mbox{\hyperlink{class_si_1_1_node}{Node}} \&ance
 \mbox{\Hypertarget{class_si_1_1_node_a0b214591ed4de97b3efaab883c83c025}\label{class_si_1_1_node_a0b214591ed4de97b3efaab883c83c025}} 
 \mbox{\hyperlink{class_si_1_1_node}{Node}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_si_1_1_node}{Node}} \&)=delete
 \item 
-\mbox{\Hypertarget{class_si_1_1_node_aa879994c7fb21b97c30c11b05f215d0c}\label{class_si_1_1_node_aa879994c7fb21b97c30c11b05f215d0c}} 
-\mbox{\hyperlink{class_si_1_1_node}{Node}} \& {\bfseries operator=} (\mbox{\hyperlink{class_si_1_1_node}{Node}} \&\&)=delete
+\mbox{\Hypertarget{class_si_1_1_node_ae03489189a1fb0a92c30bc9768047143}\label{class_si_1_1_node_ae03489189a1fb0a92c30bc9768047143}} 
+\mbox{\hyperlink{class_si_1_1_node}{Node}} \& {\bfseries operator=} (\mbox{\hyperlink{class_si_1_1_node}{Node}} \&\&)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_si_1_1_node_a7923036cb54943ffc0120fff38840f1f}\label{class_si_1_1_node_a7923036cb54943ffc0120fff38840f1f}} 
+{\bfseries Node} (\mbox{\hyperlink{class_si_1_1_node}{Node}} $\ast$)
 \end{DoxyCompactItemize}
 
 
@@ -57,11 +82,11 @@ Nodes allow you to define your application declaratively. Nodes can be attached 
 A \mbox{\hyperlink{class_si_1_1_node}{Node}} may be instantiated but not yet attached to a tree. Subsequently, a \mbox{\hyperlink{class_si_1_1_node}{Node}} may be attached and detached from the tree several times. This allows Nodes to be reused between \char`\"{}scenes\char`\"{}. a \mbox{\hyperlink{class_si_1_1_node}{Node}} cannot be \char`\"{}attached\char`\"{} again if it is currently attached; A \mbox{\hyperlink{class_si_1_1_node}{Node}} must be detached first before it can be attached again. A \mbox{\hyperlink{class_si_1_1_node}{Node}} should not expect to be attached to a specific location in the tree nor should its behavior depend on where it is attached in the tree. 
 
 \doxysubsection{Member Typedef Documentation}
-\mbox{\Hypertarget{class_si_1_1_node_a8d2a8e7b295fbd85f5219ae0e47c3539}\label{class_si_1_1_node_a8d2a8e7b295fbd85f5219ae0e47c3539}} 
+\mbox{\Hypertarget{class_si_1_1_node_a30bf21d6327a9ec23d77c18022b8276f}\label{class_si_1_1_node_a30bf21d6327a9ec23d77c18022b8276f}} 
 \index{Si::Node@{Si::Node}!Graph@{Graph}}
 \index{Graph@{Graph}!Si::Node@{Si::Node}}
 \doxysubsubsection{\texorpdfstring{Graph}{Graph}}
-{\footnotesize\ttfamily using \mbox{\hyperlink{class_si_1_1_node_a8d2a8e7b295fbd85f5219ae0e47c3539}{Si\+::\+Node\+::\+Graph}} =  Si\+::\+Graph$<$std\+::unique\+\_\+ptr$<$\mbox{\hyperlink{class_si_1_1_node}{Node}}$>$, \mbox{\hyperlink{struct_si_1_1_graph_list}{Graph\+List}}$>$}
+{\footnotesize\ttfamily using \mbox{\hyperlink{class_si_1_1_node_a30bf21d6327a9ec23d77c18022b8276f}{Si\+::\+Node\+::\+Graph}} =  Si\+::\+Graph$<$\mbox{\hyperlink{class_si_1_1_node}{Node}}$\ast$, \mbox{\hyperlink{struct_si_1_1_graph_list}{Graph\+List}}$>$}
 
 
 

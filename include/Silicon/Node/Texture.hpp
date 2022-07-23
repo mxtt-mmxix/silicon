@@ -34,6 +34,8 @@
 namespace Si {
 
 class Texture : public Node {
+public:
+    Texture(Node* parent);
 };
 
 }

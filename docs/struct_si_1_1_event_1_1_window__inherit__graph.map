@@ -1,0 +1,6 @@
+<map id="Si::Event::Window" name="Si::Event::Window">
+<area shape="rect" id="node1" title=" " alt="" coords="211,5,341,32"/>
+<area shape="rect" id="node2" href="$struct_si_1_1_event_1_1_window_close.html" title=" " alt="" coords="5,80,171,107"/>
+<area shape="rect" id="node3" href="$struct_si_1_1_event_1_1_window_move.html" title=" " alt="" coords="195,80,357,107"/>
+<area shape="rect" id="node4" href="$struct_si_1_1_event_1_1_window_resize.html" title=" " alt="" coords="382,80,554,107"/>
+</map>
