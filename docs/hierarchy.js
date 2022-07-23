@@ -1,11 +1,11 @@
 var hierarchy =
 [
     [ "Si::Event::AppQuit", "struct_si_1_1_event_1_1_app_quit.html", null ],
-    [ "Si::GraphList", "struct_si_1_1_graph_list.html", null ],
-    [ "Si::GraphVector", "struct_si_1_1_graph_vector.html", null ],
-    [ "IString", null, [
+    [ "std::basic_string", "http://en.cppreference.com/w/cpp/string/basic_string.html", [
       [ "Si::String", "class_si_1_1_string.html", null ]
     ] ],
+    [ "Si::GraphList", "struct_si_1_1_graph_list.html", null ],
+    [ "Si::GraphVector", "struct_si_1_1_graph_vector.html", null ],
     [ "Si::LogEntry", "struct_si_1_1_log_entry.html", null ],
     [ "Si::Node", "class_si_1_1_node.html", [
       [ "Si::Button", "class_si_1_1_button.html", null ],

@@ -1,4 +1,5 @@
 <map id="Si::Event::WindowMove" name="Si::Event::WindowMove">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,168,107"/>
-<area shape="rect" id="node2" href="$struct_si_1_1_event_1_1_window.html" title=" " alt="" coords="21,5,152,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,173,168,200"/>
+<area shape="rect" id="node2" href="$struct_si_1_1_event_1_1_window.html" title=" " alt="" coords="89,96,220,123"/>
+<area shape="rect" id="node3" href="/Users/mmccall/CLionProjects/silicon/cppreference-doxygen-web.tag.xml$cpp/types/integer" title=" " alt="" coords="27,5,122,32"/>
 </map>

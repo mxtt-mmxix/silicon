@@ -37,7 +37,7 @@ Contains the necessary functions to initialize, run, and shutdown the engine.
 \doxysubsection{Enumeration Type Documentation}
 \mbox{\Hypertarget{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fb}\label{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fb}} 
 \doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
-{\footnotesize\ttfamily anonymous enum \+: std\+::uint32\+\_\+t}
+{\footnotesize\ttfamily anonymous enum \+: \textbf{ std\+::uint32\+\_\+t}}
 
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{LOOP\_CONTINUE@{LOOP\_CONTINUE}!Si::Engine@{Si::Engine}}\index{Si::Engine@{Si::Engine}!LOOP\_CONTINUE@{LOOP\_CONTINUE}}}\mbox{\Hypertarget{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fbaca151efb4905130b4c553697a2961f90}\label{namespace_si_1_1_engine_a8d24f7a009a8f6f7a1b7a5a484b785fbaca151efb4905130b4c553697a2961f90}} 
@@ -99,6 +99,6 @@ Runs the loop once; If you do need control of the main loop, please see \mbox{\h
 
 
 \begin{DoxyParams}{Parameters}
-{\em out\+Loop\+Return} & A pointer to a std\+::uint32\+\_\+t to store the exit code. For Emscripten builds, control is passed to the browser with no way to return a value, thus an out variable is used. 0 indicates the loop should continue running while a non-\/zero exit code indicates a user quit event (i.\+e. window closed), or an error. See SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+$\ast$ enums for details. \\
+{\em out\+Loop\+Return} & A pointer to a \textbf{ std\+::uint32\+\_\+t} to store the exit code. For Emscripten builds, control is passed to the browser with no way to return a value, thus an out variable is used. 0 indicates the loop should continue running while a non-\/zero exit code indicates a user quit event (i.\+e. window closed), or an error. See SI\+\_\+\+ENGINE\+\_\+\+LOOP\+\_\+$\ast$ enums for details. \\
 \hline
 \end{DoxyParams}

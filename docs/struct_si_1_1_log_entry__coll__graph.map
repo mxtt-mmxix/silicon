@@ -1,5 +1,5 @@
 <map id="Si::LogEntry" name="Si::LogEntry">
 <area shape="rect" id="node1" title="A log entry." alt="" coords="13,171,107,197"/>
 <area shape="rect" id="node2" href="$class_si_1_1_string.html" title="Stores char type strings." alt="" coords="22,81,98,108"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,5,115,32"/>
+<area shape="rect" id="node3" href="/Users/mmccall/CLionProjects/silicon/cppreference-doxygen-web.tag.xml$cpp/string/basic_string" title=" " alt="" coords="5,5,115,32"/>
 </map>

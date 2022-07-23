@@ -1,4 +1,5 @@
 <map id="Si::Event::WindowClose" name="Si::Event::WindowClose">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,171,107"/>
-<area shape="rect" id="node2" href="$struct_si_1_1_event_1_1_window.html" title=" " alt="" coords="23,5,153,32"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,171,171,197"/>
+<area shape="rect" id="node2" href="$struct_si_1_1_event_1_1_window.html" title=" " alt="" coords="23,95,153,121"/>
+<area shape="rect" id="node3" href="/Users/mmccall/CLionProjects/silicon/cppreference-doxygen-web.tag.xml$cpp/types/integer" title=" " alt="" coords="41,5,135,32"/>
 </map>
